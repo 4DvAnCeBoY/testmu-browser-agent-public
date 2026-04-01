@@ -396,7 +396,7 @@ Add the following to your existing `~/.claude/settings.json` (merge into the `mc
 }
 ```
 
-macOS, Linux, and Windows are all supported. Pre-built binaries for Apple Silicon, Intel, Linux x86-64, and Windows x86-64 are available on the releases page. Build from source with Go 1.23+.
+macOS, Linux, and Windows are all supported. Pre-built binaries for Apple Silicon, Intel, Linux x86-64, and Windows x86-64 are available on the releases page.
 
 **Docker:**
 

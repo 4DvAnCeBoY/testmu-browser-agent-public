@@ -218,7 +218,7 @@ brew install testmu/tap/testmu-browser-agent
 docker run --rm -it ghcr.io/4DvAnCeBoY/testmu-browser-agent-public:latest snapshot
 ```
 
-### Build from source
+### Pre-built binaries only
 
 Source is not included in this distribution. Download a pre-built binary from [GitHub Releases](https://github.com/4DvAnCeBoY/testmu-browser-agent-public/releases).
 

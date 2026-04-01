@@ -189,7 +189,7 @@ configure_claude_code() {
   header "Claude Code"
   ask_yn "  Configure testmu-browser-agent for Claude Code?" "y" || return 0
   resolve_lambdatest
-  target="$HOME/.claude/mcp.json"
+  target="$HOME/.claude/settings.json"
   fragment="$(dirname "$0")/../plugins/claude-code/mcp${FRAGMENT_SUFFIX}.json"
   if [ ! -f "$fragment" ]; then
     warn "Plugin fragment not found: $fragment — skipping Claude Code"
