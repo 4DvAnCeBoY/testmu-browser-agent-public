@@ -67,9 +67,22 @@ else
     info "Installed to ${INSTALL_DIR}/testmu-browser-agent"
 fi
 
-# ─── Step 2: Register MCP server in ~/.claude/settings.json ───
+# ─── Step 1b: Install Chrome for Testing if needed ───
+if testmu-browser-agent install --help >/dev/null 2>&1; then
+    info "Installing Chrome for Testing (if not already present)..."
+    testmu-browser-agent install 2>/dev/null && info "Chrome for Testing ready." || warn "Chrome install skipped — using system Chrome."
+fi
+
+# ─── Step 2: Register MCP server in .claude/settings.json ───
+# Writes to project-level by default; use --global for ~/.claude/settings.json
 info "Configuring MCP server..."
-SETTINGS_DIR="$HOME/.claude"
+if [ "${1:-}" = "--global" ]; then
+    SETTINGS_DIR="$HOME/.claude"
+    info "Using global config: ~/.claude/settings.json"
+else
+    SETTINGS_DIR=".claude"
+    info "Using project config: .claude/settings.json (pass --global for global)"
+fi
 SETTINGS_FILE="$SETTINGS_DIR/settings.json"
 
 mkdir -p "$SETTINGS_DIR"

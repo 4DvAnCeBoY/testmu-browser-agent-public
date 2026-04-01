@@ -6,7 +6,7 @@ Browser automation for Claude Code. Drives a real Chrome browser (local or Lambd
 
 ## Option A: Skill (recommended, simpler)
 
-The skill integration works like agent-browser — Claude calls the `testmu-browser-agent` CLI directly via `Bash(testmu-browser-agent:*)`. No MCP server or daemon required.
+The skill integration works like agent-browser — Claude calls the `testmu-browser-agent` CLI directly via `Bash(testmu-browser-agent:*)`. No separate MCP server setup required (the CLI manages its own browser daemon internally).
 
 ### Install
 
@@ -117,7 +117,7 @@ After adding the config and restarting Claude Code, verify the server is active:
 |---|---|---|
 | Setup | Binary + SKILL.md file | Binary + settings.json config |
 | How Claude calls it | `Bash(testmu-browser-agent:*)` | JSON tool calls |
-| Server/daemon required | No | No (MCP starts on demand) |
+| Separate server setup | No (CLI manages browser internally) | No (MCP starts on demand) |
 | Works in any Claude Code project | Yes (copy SKILL.md) | Yes (global settings) |
 | Typed JSON schemas | No | Yes |
 | Best for | General use, simplest setup | Programmatic/structured workflows |

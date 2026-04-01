@@ -12,23 +12,19 @@ AI-native browser automation for Chrome. Drives a real browser (local or LambdaT
 
 ## Install
 
-**curl (recommended):**
+If the `testmu-browser-agent` binary is not found on PATH, run the full setup (installs binary + Chrome for Testing + MCP config):
+
+```sh
+curl -sSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public/main/plugins/claude-code/setup.sh | sh
+```
+
+Or install the binary only:
 
 ```sh
 curl -sSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public/main/scripts/install.sh | sh
 ```
 
-**npm:**
-
-```sh
-npm install -g testmu-browser-agent
-```
-
-**brew:**
-
-```sh
-brew install testmu-browser-agent
-```
+After install, run `testmu-browser-agent install` to download Chrome for Testing (required if system Chrome is not available).
 
 ---
 
