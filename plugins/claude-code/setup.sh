@@ -2,10 +2,13 @@
 # testmu-browser-agent — Claude Code setup
 # Usage: curl -sSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public/main/plugins/claude-code/setup.sh | sh
 #
-# This script:
+# This script installs everything you need:
 #   1. Installs the testmu-browser-agent binary (if not already installed)
-#   2. Registers the MCP server in ~/.claude/settings.json
-#   3. Installs the skill to .claude/skills/ in the current project
+#   2. Installs Chrome for Testing (if not already present)
+#   3. Registers the MCP server in .claude/settings.json (project-level by default, --global for user-wide)
+#   4. Installs the skill to .claude/skills/ (for CLI-based Bash integration)
+#
+# You get both Skill (CLI via Bash) and MCP (structured tools) — use whichever you prefer.
 set -e
 
 REPO="4DvAnCeBoY/testmu-browser-agent-public"
