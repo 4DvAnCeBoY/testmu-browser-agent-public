@@ -1,45 +1,33 @@
 ---
 name: testmu-browser-agent
-description: AI-native browser automation for Chrome. Use when you need to navigate websites, fill forms, take screenshots, extract data, or test web applications. Supports local Chrome and LambdaTest cloud browsers via CLI or MCP server.
+description: Browser automation CLI for AI agents. Use when the user needs to interact with websites, including navigating pages, filling forms, clicking buttons, taking screenshots, extracting data, testing web apps, or automating any browser task. Triggers include requests to "open a website", "fill out a form", "click a button", "take a screenshot", "scrape data from a page", "test this web app", "login to a site", "automate browser actions", or any task requiring programmatic web interaction.
+allowed-tools: Bash(testmu-browser-agent:*)
 ---
 
 # testmu-browser-agent — AI Agent Skill Guide
 
-AI-native browser automation for Chrome. Drives a real browser (local or LambdaTest cloud) through a CLI or MCP server. The core loop is: open a page → snapshot the accessibility tree → act on element refs → verify. Supports state persistence so authenticated sessions survive across runs.
+AI-native browser automation for Chrome. Drives a real browser (local or LambdaTest cloud) through a CLI. The core loop is: open a page → snapshot the accessibility tree → act on element refs → verify. Supports state persistence so authenticated sessions survive across runs.
 
 ---
 
-## Quick Start
+## Install
 
-Five commands to get started immediately:
+**curl (recommended):**
 
 ```sh
-# 1. Open a URL and take a screenshot
-testmu-browser-agent open https://example.com
-testmu-browser-agent screenshot --output example.png
-# → Saved screenshot to example.png
+curl -sSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public/main/scripts/install.sh | sh
+```
 
-# 2. Snapshot the page (get @ref IDs for interactive elements)
-testmu-browser-agent open https://httpbin.org/forms/post
-testmu-browser-agent snapshot
-# → [ref=e1] textbox "Customer name"
-# → [ref=e2] textbox "Telephone"
-# → [ref=e7] button "Submit order"
+**npm:**
 
-# 3. Fill a form using ref IDs
-testmu-browser-agent fill @e1 "Jane Doe"
-testmu-browser-agent fill @e2 "555-0100"
-testmu-browser-agent click @e7
-# → Clicked [ref=e7]
+```sh
+npm install -g testmu-browser-agent
+```
 
-# 4. Extract structured data with JS
-testmu-browser-agent eval 'JSON.stringify(document.title)'
-# → "Pizza order form"
+**brew:**
 
-# 5. Save browser state after login
-testmu-browser-agent state save --name my-session
-# → State saved: my-session
-testmu-browser-agent close
+```sh
+brew install testmu-browser-agent
 ```
 
 ---
@@ -75,15 +63,250 @@ testmu-browser-agent close
 
 ---
 
-## Common Tasks
+## Command Chaining
 
-### Web Research & Data Extraction
+Chain commands with `&&` for compact scripting:
+
+```sh
+# Open, snapshot, fill, submit, wait, screenshot in one line
+testmu-browser-agent open https://httpbin.org/forms/post && \
+  testmu-browser-agent snapshot && \
+  testmu-browser-agent fill '[name="custname"]' "Jane Doe" && \
+  testmu-browser-agent fill '[name="custemail"]' "jane@example.com" && \
+  testmu-browser-agent click '[type="submit"]' && \
+  testmu-browser-agent wait --text "Customer name" --timeout 15000 && \
+  testmu-browser-agent screenshot --output result.png && \
+  testmu-browser-agent close
+
+# Login and save state in one chain
+testmu-browser-agent open https://example.com/login && \
+  testmu-browser-agent fill '#username' "admin" && \
+  testmu-browser-agent fill '#password' "secret" && \
+  testmu-browser-agent click '[type="submit"]' && \
+  testmu-browser-agent wait --url "/dashboard" && \
+  testmu-browser-agent state save --name mysite && \
+  testmu-browser-agent close
+```
+
+---
+
+## Authentication Handling
+
+### State Save / Load
+
+```sh
+# Login once and persist the session
+testmu-browser-agent open https://example.com/login
+testmu-browser-agent fill '#username' "admin"
+testmu-browser-agent fill '#password' "secret"
+testmu-browser-agent click '[type="submit"]'
+testmu-browser-agent wait --url "/dashboard" --timeout 15000
+testmu-browser-agent state save --name mysite
+testmu-browser-agent close
+
+# Subsequent runs: restore session, skip login
+testmu-browser-agent open https://example.com
+testmu-browser-agent state load --name mysite
+testmu-browser-agent navigate https://example.com/dashboard
+testmu-browser-agent snapshot
+```
+
+### Auth Vault (encrypted credentials)
+
+```sh
+# Store credentials encrypted at rest
+testmu-browser-agent auth save --name mysite --url https://example.com/login \
+  --username admin --password secret
+
+# Auto-login using stored credentials
+testmu-browser-agent auth login --name mysite
+
+# Manage vault entries
+testmu-browser-agent auth list
+testmu-browser-agent auth show --name mysite
+testmu-browser-agent auth delete --name mysite
+```
+
+### Session Persistence with Encryption
+
+```sh
+# Save session state with an encryption key
+testmu-browser-agent state save --name session --storage-key "$MY_KEY"
+
+# Load it back (requires same key)
+testmu-browser-agent state load --name session --storage-key "$MY_KEY"
+
+# List and clean up saved states
+testmu-browser-agent state list
+testmu-browser-agent state delete --name session
+```
+
+---
+
+## Essential Commands
+
+### Navigation
+
+```sh
+testmu-browser-agent open <url>           # Open URL in browser
+testmu-browser-agent navigate <url>       # Navigate current tab to URL
+testmu-browser-agent back                 # Browser back
+testmu-browser-agent forward              # Browser forward
+testmu-browser-agent reload               # Reload current page
+testmu-browser-agent close                # Close browser
+```
+
+### Snapshot
+
+```sh
+testmu-browser-agent snapshot             # Accessibility tree with @ref IDs
+testmu-browser-agent snapshot --output json  # Machine-readable JSON output
+```
+
+### Interaction
+
+```sh
+testmu-browser-agent click <ref|selector>              # Click element
+testmu-browser-agent fill <ref|selector> <text>        # Fill input field
+testmu-browser-agent type <ref|selector> <text>        # Type keystroke-by-keystroke
+testmu-browser-agent press <key>                       # Press keyboard key (Enter, Tab, Escape)
+testmu-browser-agent select <ref|selector> <value>     # Select dropdown option
+testmu-browser-agent scroll <ref|selector> <direction> # Scroll element or page
+testmu-browser-agent hover <ref|selector>              # Hover over element
+testmu-browser-agent check <ref|selector>              # Check a checkbox
+testmu-browser-agent uncheck <ref|selector>            # Uncheck a checkbox
+testmu-browser-agent drag <source> <target>            # Drag and drop
+testmu-browser-agent tap <ref|selector>                # Tap (touch event)
+testmu-browser-agent swipe <ref|selector> <direction>  # Swipe gesture
+```
+
+### Get Info
+
+```sh
+testmu-browser-agent get text <selector>  # Extract text from element
+testmu-browser-agent get url              # Current page URL
+testmu-browser-agent get title            # Current page title
+testmu-browser-agent eval '<js>'          # Evaluate JavaScript expression
+```
+
+### Wait
+
+```sh
+testmu-browser-agent wait --selector ".el"        # Wait for element to appear
+testmu-browser-agent wait --url "/path"           # Wait for URL to match
+testmu-browser-agent wait --text "Success"        # Wait for text to appear
+testmu-browser-agent wait --timeout 5000          # Fixed pause (ms)
+testmu-browser-agent wait --download              # Wait for a file download
+```
+
+### Network
+
+```sh
+testmu-browser-agent route "**/*.png" --abort                           # Block requests
+testmu-browser-agent route "/api/data" --body '{"mock":true}' --status 200  # Mock response
+testmu-browser-agent route "/api/*" --header "X-Test:true"              # Add header
+testmu-browser-agent unroute "/api/data"                                # Remove rule
+testmu-browser-agent unroute                                            # Remove all rules
+testmu-browser-agent console                                            # Read console logs
+testmu-browser-agent errors                                             # Read JS errors
+```
+
+### Capture
+
+```sh
+testmu-browser-agent screenshot --output page.png              # PNG screenshot
+testmu-browser-agent screenshot --output page.jpg --quality 85 # JPEG screenshot
+testmu-browser-agent pdf report.pdf                            # Save page as PDF
+testmu-browser-agent record start                              # Start video recording
+testmu-browser-agent record stop --output video.webm           # Stop and save recording
+```
+
+### State
+
+```sh
+testmu-browser-agent state save --name <name>           # Save full browser state
+testmu-browser-agent state load --name <name>           # Load saved state
+testmu-browser-agent state list                         # List saved states
+testmu-browser-agent state delete --name <name>         # Delete saved state
+testmu-browser-agent cookies                            # Get all cookies
+testmu-browser-agent storage                            # Read localStorage/sessionStorage
+testmu-browser-agent clipboard                          # Read clipboard contents
+```
+
+### Tabs
+
+```sh
+testmu-browser-agent tabs                   # List all open tabs
+testmu-browser-agent tab new               # Open new tab
+testmu-browser-agent tab <index>           # Switch to tab by index
+testmu-browser-agent frame '<selector>'    # Switch to iframe context
+testmu-browser-agent window new            # Open new browser window
+```
+
+### Device Emulation
+
+```sh
+testmu-browser-agent geolocation <lat> <lon>    # Override geolocation
+testmu-browser-agent timezone <tz>              # Override timezone (e.g. America/New_York)
+testmu-browser-agent locale <locale>            # Override locale (e.g. fr-FR)
+testmu-browser-agent device-list               # List supported device profiles
+testmu-browser-agent device-emulate "iPhone 15" # Emulate a device
+testmu-browser-agent permissions geolocation notifications  # Grant permissions
+testmu-browser-agent offline                    # Toggle offline mode
+testmu-browser-agent offline --disable          # Disable offline mode
+```
+
+### Diff
+
+```sh
+testmu-browser-agent diff snapshot        # Diff accessibility tree vs last snapshot
+testmu-browser-agent diff screenshot      # Diff screenshot vs last stored
+testmu-browser-agent diff url <url>       # Navigate and diff before/after
+```
+
+---
+
+## Common Patterns
+
+### Form Submission
+
+```sh
+testmu-browser-agent open https://httpbin.org/forms/post
+testmu-browser-agent snapshot
+# → [ref=e1] textbox "Customer name"
+# → [ref=e2] textbox "Telephone"
+# → [ref=e7] button "Submit order"
+testmu-browser-agent fill @e1 "Jane Doe"
+testmu-browser-agent fill @e2 "555-0100"
+testmu-browser-agent select '[name="size"]' "medium"
+testmu-browser-agent check '[name="topping"][value="bacon"]'
+testmu-browser-agent click @e7
+testmu-browser-agent wait --text "Customer name" --timeout 15000
+testmu-browser-agent snapshot
+```
+
+### Auth with Vault
+
+```sh
+# Store once
+testmu-browser-agent auth save --name github --url https://github.com/login \
+  --username myuser --password mypass
+
+# Reuse in every run
+testmu-browser-agent auth login --name github
+testmu-browser-agent wait --url "/dashboard" --timeout 20000
+testmu-browser-agent state save --name github-session
+testmu-browser-agent close
+
+# Future runs: just load state
+testmu-browser-agent open https://github.com
+testmu-browser-agent state load --name github-session
+```
+
+### Data Extraction
 
 ```sh
 testmu-browser-agent open https://books.toscrape.com
-testmu-browser-agent snapshot
-
-# Extract structured data as JSON
 testmu-browser-agent eval 'JSON.stringify(
   Array.from(document.querySelectorAll("article.product_pod")).map(el => ({
     title: el.querySelector("h3 a").getAttribute("title"),
@@ -91,244 +314,63 @@ testmu-browser-agent eval 'JSON.stringify(
   }))
 )'
 # → [{"title":"A Light in the Attic","price":"£51.77"},...]
-
-# Get plain text from a specific section
 testmu-browser-agent get text .page_inner
-
-# Get page title and current URL
-testmu-browser-agent get title
-testmu-browser-agent get url
 ```
 
-### Form Filling
+### Parallel Sessions
 
 ```sh
-testmu-browser-agent open https://httpbin.org/forms/post
-testmu-browser-agent snapshot
-# → discover refs
+# Session A — tab 0
+testmu-browser-agent open https://app.example.com
+testmu-browser-agent state load --name user-a
 
-testmu-browser-agent fill '[name="custname"]' "Jane Doe"
-testmu-browser-agent fill '[name="custemail"]' "jane@example.com"
-testmu-browser-agent select '[name="size"]' "medium"
-testmu-browser-agent check '[name="topping"][value="bacon"]'
-testmu-browser-agent click '[type="submit"]'
-testmu-browser-agent wait --text "Customer name" --timeout 15000
-testmu-browser-agent snapshot
-```
-
-### Visual Testing & Screenshots
-
-```sh
-# Full-page screenshot
-testmu-browser-agent screenshot --output page.png --format png
-
-# Generate PDF
-testmu-browser-agent pdf report.pdf
-
-# Screenshot with JPEG compression
-testmu-browser-agent screenshot --output page.jpg --format jpeg --quality 85
-
-# Highlight an element before screenshotting
-testmu-browser-agent highlight @e12
-testmu-browser-agent screenshot --output highlighted.png
-```
-
-### Authenticated Sessions
-
-```sh
-# Login once and save state
-testmu-browser-agent open https://the-internet.herokuapp.com/login
-testmu-browser-agent fill '#username' "tomsmith"
-testmu-browser-agent fill '#password' "SuperSecretPassword!"
-testmu-browser-agent click '[type="submit"]'
-testmu-browser-agent wait --url "/secure" --timeout 15000
-testmu-browser-agent state save --name herokuapp-session
-testmu-browser-agent close
-
-# Subsequent runs: skip login
-testmu-browser-agent open https://the-internet.herokuapp.com
-testmu-browser-agent state load --name herokuapp-session
-testmu-browser-agent navigate https://the-internet.herokuapp.com/secure
-testmu-browser-agent snapshot
-# → Shows secure area content without re-authenticating
-```
-
-### Waiting for Dynamic Content
-
-```sh
-# Wait for element to appear (SPA routing, lazy load)
-testmu-browser-agent wait --selector ".results-table" --timeout 15000
-
-# Wait for URL change (after form submit or redirect)
-testmu-browser-agent wait --url "/confirmation" --timeout 10000
-
-# Wait for visible text (success message)
-testmu-browser-agent wait --text "Order confirmed" --timeout 20000
-
-# Fixed pause in milliseconds (avoid when possible; prefer condition-based waits)
-testmu-browser-agent wait --timeout 3000
-```
-
-### Network Interception
-
-```sh
-# Block all image requests
-testmu-browser-agent route "**/*.png" --abort
-testmu-browser-agent route "**/*.jpg" --abort
-
-# Mock an API response
-testmu-browser-agent route "/api/data" --body '{"mock":true}' --status 200
-
-# Add a response header
-testmu-browser-agent route "/api/*" --header "X-Test:true"
-
-# Remove a specific rule
-testmu-browser-agent unroute "/api/data"
-
-# Remove all interception rules
-testmu-browser-agent unroute
-```
-
-### Auth Vault
-
-```sh
-# Save credentials to the encrypted vault
-testmu-browser-agent auth save --name mysite --url https://example.com/login --username user --password pass
-
-# Auto-login using stored credentials
-testmu-browser-agent auth login --name mysite
-
-# List stored credentials (passwords masked)
-testmu-browser-agent auth list
-
-# Show or delete a credential
-testmu-browser-agent auth show --name mysite
-testmu-browser-agent auth delete --name mysite
-```
-
-### Device Emulation
-
-```sh
-# Override geolocation (latitude, longitude)
-testmu-browser-agent geolocation 37.7749 -122.4194
-
-# Override timezone and locale
-testmu-browser-agent timezone America/New_York
-testmu-browser-agent locale fr-FR
-
-# Grant permissions
-testmu-browser-agent permissions geolocation notifications
-
-# Toggle offline mode
-testmu-browser-agent offline
-testmu-browser-agent offline --disable
-
-# Emulate a device
-testmu-browser-agent device-list
-testmu-browser-agent device-emulate "iPhone 15"
-```
-
-### Downloads
-
-```sh
-# Enable download tracking and wait for next download
-testmu-browser-agent download
-
-# Set download directory
-testmu-browser-agent download --dir /tmp/downloads
-
-# Wait for a download to complete
-testmu-browser-agent wait --download
-```
-
-### Diff Snapshots
-
-```sh
-# Diff accessibility tree against last snapshot
-testmu-browser-agent diff snapshot
-
-# Navigate to a URL and diff before/after
-testmu-browser-agent diff url https://example.com
-
-# Diff current screenshot against last stored
-testmu-browser-agent diff screenshot
-```
-
-### Multi-Tab Workflows
-
-```sh
-# List open tabs
-testmu-browser-agent tabs
-# → [0] https://example.com (active)
-
-# Open a new tab and switch to it
+# Open second tab — session B
 testmu-browser-agent tab new
-testmu-browser-agent open https://other-site.com
+testmu-browser-agent open https://app.example.com
+testmu-browser-agent state load --name user-b
 
 # Switch back to tab 0
 testmu-browser-agent tab 0
-
-# Work inside an iframe
-testmu-browser-agent frame '#iframe-selector'
 testmu-browser-agent snapshot
 ```
 
 ---
 
-## MCP Server Usage
+## Ref Lifecycle
 
-Start the MCP server and add it to Claude Code's `settings.json`:
-
-```sh
-testmu-browser-agent mcp
-```
-
-**settings.json** (Claude Code MCP configuration):
-
-```json
-{
-  "mcpServers": {
-    "testmu-browser-agent": {
-      "command": "testmu-browser-agent",
-      "args": ["mcp"]
-    }
-  }
-}
-```
-
-Once configured, Claude Code can call the 10 MCP tools directly. Example tool calls:
-
-```json
-// Navigate to a URL
-{ "tool": "browser_navigate", "action": "open", "url": "https://example.com" }
-
-// Snapshot interactive elements
-{ "tool": "browser_query", "action": "snapshot", "interactive": true }
-
-// Fill a form field
-{ "tool": "browser_interact", "action": "fill", "selector": "@e12", "text": "hello" }
-
-// Take a screenshot
-{ "tool": "browser_media", "action": "screenshot", "output": "page.png" }
-
-// Save session state
-{ "tool": "browser_state", "action": "state_save", "name": "my-session" }
-```
-
-See [references/mcp-tools.md](./references/mcp-tools.md) for complete schemas and response formats.
+- `@ref` IDs (e.g. `@e12`, `@e23`) are assigned fresh on each snapshot.
+- They remain valid until the next navigation or page reload.
+- After **any** navigation (`navigate`, `click` that triggers redirect, form submit, `back`, `forward`, `reload`), always call `snapshot` again before using refs.
+- Stale ref usage will return an error — that is your signal to re-snapshot.
 
 ---
 
-## Best Practices
+## Security
 
-- **Always snapshot before acting.** Refs like `@e12` are only valid for the current page load. After any navigation, re-snapshot.
-- **Use `--output json` in scripts.** Machine-readable output avoids parsing issues: `testmu-browser-agent snapshot --output json`.
-- **Prefer condition-based waits.** Use `--selector`, `--url`, or `--text` over fixed `--timeout` sleeps.
-- **Save state after login.** Call `state save` once after authenticating; subsequent runs load it to skip the login flow.
-- **Use `--storage-key` for encrypted state.** Sensitive sessions (tokens, cookies) should be stored encrypted: `state save --name session --storage-key $MY_KEY`.
-- **Use `--headless` in CI.** Always pass `--headless` when running in automated pipelines.
-- **Ref IDs over CSS selectors.** When possible, use `@ref` IDs from snapshot — they are more stable than brittle CSS selectors.
-- **Check console errors.** After complex interactions run `testmu-browser-agent errors` to catch JavaScript exceptions.
+**Domain allowlist** — restrict the agent to specific origins:
+
+```sh
+testmu-browser-agent open https://app.example.com --allow-origins "app.example.com,api.example.com"
+```
+
+**Action policy** — disallow dangerous actions in automated pipelines:
+
+```sh
+testmu-browser-agent open https://app.example.com --deny-actions "download,eval"
+```
+
+**Encrypted state** — store sensitive sessions encrypted at rest:
+
+```sh
+testmu-browser-agent state save --name prod-session --storage-key "$SESSION_KEY"
+testmu-browser-agent state load --name prod-session --storage-key "$SESSION_KEY"
+```
+
+**Headless CI** — always use headless mode in automated environments:
+
+```sh
+testmu-browser-agent open https://app.example.com --headless
+```
 
 ---
 
@@ -341,7 +383,7 @@ Deep-dive documentation:
 | [references/commands.md](./references/commands.md) | Complete CLI command reference with all flags and examples |
 | [references/snapshot-refs.md](./references/snapshot-refs.md) | Accessibility snapshots, @ref IDs, diffing, token optimization |
 | [references/session-management.md](./references/session-management.md) | State save/load, encryption, cookies, localStorage patterns |
-| [references/mcp-tools.md](./references/mcp-tools.md) | All 10 MCP tools with JSON schemas and request/response examples |
+| [references/mcp-tools.md](./references/mcp-tools.md) | All MCP tools with JSON schemas and request/response examples |
 
 ---
 

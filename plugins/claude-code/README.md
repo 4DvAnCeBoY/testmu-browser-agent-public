@@ -1,14 +1,30 @@
 # testmu-browser-agent — Claude Code Plugin
 
-Browser automation for Claude Code via MCP. Drives a real Chrome browser (local or LambdaTest cloud) from within your Claude Code session.
+Browser automation for Claude Code. Drives a real Chrome browser (local or LambdaTest cloud) from within your Claude Code session. Supports two integration modes: a **Skill** (CLI via Bash, no server needed) and an **MCP server** (structured JSON tool calls).
 
 ---
 
-## Installation
+## Option A: Skill (recommended, simpler)
 
-### One-liner (recommended)
+The skill integration works like agent-browser — Claude calls the `testmu-browser-agent` CLI directly via `Bash(testmu-browser-agent:*)`. No MCP server or daemon required.
 
-Installs the binary, registers MCP server, and adds the skill to your project:
+### Install
+
+**Step 1: Install the binary**
+
+```sh
+curl -sSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public/main/scripts/install.sh | sh
+```
+
+**Step 2: Install the skill**
+
+```sh
+mkdir -p .claude/skills/testmu-browser-agent
+curl -sSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public/main/skills/testmu-browser-agent/SKILL.md \
+  -o .claude/skills/testmu-browser-agent/SKILL.md
+```
+
+**Or use the setup script (installs both at once):**
 
 ```sh
 curl -sSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public/main/plugins/claude-code/setup.sh | sh
@@ -16,7 +32,23 @@ curl -sSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-publ
 
 Restart Claude Code after running.
 
-### Manual MCP Configuration
+### How it works
+
+Claude reads the skill's `allowed-tools: Bash(testmu-browser-agent:*)` declaration and calls the CLI directly:
+
+```
+Open https://example.com and take a screenshot
+```
+
+Claude will run `testmu-browser-agent open`, `testmu-browser-agent snapshot`, `testmu-browser-agent screenshot` — no MCP handshake needed.
+
+---
+
+## Option B: MCP Server (structured tool calls)
+
+The MCP integration exposes 10 structured tools that Claude calls as JSON. Useful for programmatic workflows where you want typed tool schemas and JSON responses.
+
+### Install
 
 Add the MCP server to your Claude Code settings. Choose **one** of:
 
@@ -48,13 +80,9 @@ Add the MCP server to your Claude Code settings. Choose **one** of:
 }
 ```
 
-You can also copy `plugins/claude-code/settings.json` from this repo directly into `.claude/settings.json`.
+Restart Claude Code after adding the config.
 
----
-
-## LambdaTest Cloud Variant
-
-To run against LambdaTest cloud browsers, use `plugins/claude-code/settings-lambdatest.json` and fill in your credentials:
+### LambdaTest Cloud Variant
 
 ```json
 {
@@ -73,9 +101,7 @@ To run against LambdaTest cloud browsers, use `plugins/claude-code/settings-lamb
 
 Get your credentials at [lambdatest.com/capabilities-generator](https://www.lambdatest.com/capabilities-generator/).
 
----
-
-## Verification
+### Verification
 
 After adding the config and restarting Claude Code, verify the server is active:
 
@@ -85,15 +111,28 @@ After adding the config and restarting Claude Code, verify the server is active:
 
 ---
 
+## When to use which
+
+| | Skill (Option A) | MCP Server (Option B) |
+|---|---|---|
+| Setup | Binary + SKILL.md file | Binary + settings.json config |
+| How Claude calls it | `Bash(testmu-browser-agent:*)` | JSON tool calls |
+| Server/daemon required | No | No (MCP starts on demand) |
+| Works in any Claude Code project | Yes (copy SKILL.md) | Yes (global settings) |
+| Typed JSON schemas | No | Yes |
+| Best for | General use, simplest setup | Programmatic/structured workflows |
+
+---
+
 ## Quick Example
 
-Once configured, Claude Code can drive the browser directly:
+Once configured (either option), Claude Code can drive the browser directly:
 
 ```
 Open https://example.com, take a snapshot, fill the search box with "hello", and screenshot the result.
 ```
 
-Claude will call `browser_navigate`, `browser_query`, `browser_interact`, and `browser_media` automatically.
+With the skill, Claude runs the CLI commands. With MCP, Claude calls `browser_navigate`, `browser_query`, `browser_interact`, and `browser_media` as structured tool calls.
 
 ---
 
@@ -102,5 +141,6 @@ Claude will call `browser_navigate`, `browser_query`, `browser_interact`, and `b
 See [`skills/testmu-browser-agent/SKILL.md`](../../skills/testmu-browser-agent/SKILL.md) for the complete agent guide covering:
 - Core workflow (open → snapshot → @ref → verify)
 - Common tasks: forms, auth, scraping, device emulation, network interception
-- All 10 MCP tools with JSON schemas
+- Auth vault and session persistence
+- All CLI commands organized by category
 - Best practices and templates

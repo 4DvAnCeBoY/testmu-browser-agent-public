@@ -130,7 +130,18 @@ mkdir -p "$SKILL_DIR/references" "$SKILL_DIR/templates"
 # Download skill files from the repo
 BASE_RAW="https://raw.githubusercontent.com/${REPO}/main/skills/testmu-browser-agent"
 
+# Download SKILL.md with the proper frontmatter (allowed-tools: Bash(testmu-browser-agent:*))
 curl -sSfL "$BASE_RAW/SKILL.md" -o "$SKILL_DIR/SKILL.md"
+
+# Verify frontmatter is present; if not, prepend it
+if ! grep -q "allowed-tools:" "$SKILL_DIR/SKILL.md" 2>/dev/null; then
+    warn "SKILL.md missing frontmatter — patching..."
+    TMP=$(mktemp)
+    printf -- '---\nname: testmu-browser-agent\ndescription: Browser automation CLI for AI agents. Use when the user needs to interact with websites, including navigating pages, filling forms, clicking buttons, taking screenshots, extracting data, testing web apps, or automating any browser task.\nallowed-tools: Bash(testmu-browser-agent:*)\n---\n\n' > "$TMP"
+    cat "$SKILL_DIR/SKILL.md" >> "$TMP"
+    mv "$TMP" "$SKILL_DIR/SKILL.md"
+    info "Frontmatter patched into $SKILL_DIR/SKILL.md"
+fi
 curl -sSfL "$BASE_RAW/references/commands.md" -o "$SKILL_DIR/references/commands.md" 2>/dev/null || true
 curl -sSfL "$BASE_RAW/references/snapshot-refs.md" -o "$SKILL_DIR/references/snapshot-refs.md" 2>/dev/null || true
 curl -sSfL "$BASE_RAW/references/mcp-tools.md" -o "$SKILL_DIR/references/mcp-tools.md" 2>/dev/null || true
