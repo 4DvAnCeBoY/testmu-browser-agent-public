@@ -96,23 +96,6 @@ chmod +x testmu-browser-agent-darwin-arm64
 mv testmu-browser-agent-darwin-arm64 /usr/local/bin/testmu-browser-agent
 ```
 
-### Build from source
-
-Requires Go 1.23 or later.
-
-```bash
-git clone https://github.com/4DvAnCeBoY/testmu-browser-agent-public.git
-cd testmu-browser-agent
-make build        # outputs ./testmu-browser-agent
-make install      # copies binary to /usr/local/bin
-```
-
-To cross-compile for all platforms:
-
-```bash
-make build-all
-```
-
 ---
 
 ## CLI Commands
@@ -801,10 +784,4 @@ docker run --rm \
 
 ## Benchmarks
 
-Run the benchmark suite to measure snapshot generation, action dispatch, and SSE throughput on your machine:
-
-```bash
-make benchmark
-```
-
-Results and historical data are in [benchmarks/](benchmarks/).
+Benchmark results and historical data are in [benchmarks/](benchmarks/).

@@ -220,13 +220,7 @@ docker run --rm -it ghcr.io/4DvAnCeBoY/testmu-browser-agent-public:latest snapsh
 
 ### Build from source
 
-```bash
-git clone https://github.com/4DvAnCeBoY/testmu-browser-agent-public
-cd testmu-browser-agent
-go build -o testmu-browser-agent ./cmd/testmu-browser-agent
-```
-
-Requires Go 1.23+. No CGO. Cross-compiles cleanly.
+Source is not included in this distribution. Download a pre-built binary from [GitHub Releases](https://github.com/4DvAnCeBoY/testmu-browser-agent-public/releases).
 
 ---
 
