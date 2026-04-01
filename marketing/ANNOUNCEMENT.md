@@ -146,7 +146,7 @@ The MCP server exposes 10 grouped tools that map cleanly to everything a browser
 | `browser_state` | Cookies, localStorage/sessionStorage, saved sessions, clipboard |
 | `browser_tabs` | Open, close, switch tabs; manage windows and iframes |
 | `browser_wait` | Wait for element, URL, text, network idle, or fixed timeout |
-| `browser_config` | Set viewport, user agent, geolocation; connect to remote CDP |
+| `browser_config` | Set viewport, user agent, and other options (set); connect to remote CDP (connect) |
 | `browser_network` | Read console logs, capture errors, handle dialogs, stream events |
 | `browser_devtools` | Trace, profile, batch commands, performance metrics |
 
