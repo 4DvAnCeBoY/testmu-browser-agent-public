@@ -1,4 +1,4 @@
-# testmu-browser-agent
+# testmu-browser-agent-public
 
 AI-native browser automation for Chrome. Use when asked to navigate websites, fill forms, extract data, take screenshots, or test web UIs. Drives a real browser via CLI or MCP server. Local Chrome and LambdaTest cloud are both supported.
 
@@ -126,4 +126,4 @@ testmu-browser-agent eval 'JSON.stringify(Array.from(document.querySelectorAll("
 
 ## Full Reference
 
-See `skills/testmu-browser-agent/SKILL.md` for complete documentation including network interception, device emulation, multi-tab workflows, auth vault, downloads, and diff snapshots.
+See `skills/testmu-browser-agent-public/SKILL.md` for complete documentation including network interception, device emulation, multi-tab workflows, auth vault, downloads, and diff snapshots.

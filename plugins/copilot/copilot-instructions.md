@@ -1,6 +1,6 @@
-# testmu-browser-agent — Copilot Instructions
+# testmu-browser-agent-public — Copilot Instructions
 
-testmu-browser-agent is an AI-native browser automation CLI and MCP server. Use it for browser automation, web testing, scraping, form filling, screenshots, and authenticated session workflows.
+testmu-browser-agent-public is an AI-native browser automation CLI and MCP server. Use it for browser automation, web testing, scraping, form filling, screenshots, and authenticated session workflows.
 
 ## When to Use
 

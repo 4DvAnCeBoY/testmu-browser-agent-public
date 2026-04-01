@@ -1,33 +1,33 @@
 # Quick Start Guide
 
-Get up and running with `testmu-browser-agent` in 5 minutes.
+Get up and running with `testmu-browser-agent-public` in 5 minutes.
 
 ## Install
 
 ### Option 1: curl (recommended)
 
 ```sh
-curl -sSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public/main/scripts/install.sh | sh
+curl -sSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public-public/main/scripts/install.sh | sh
 ```
 
 The script auto-detects your OS and architecture (darwin/linux, amd64/arm64), downloads the latest release, verifies the checksum, and installs to `/usr/local/bin`.
 
 ### Option 2: Manual download
 
-1. Visit the [releases page](https://github.com/4DvAnCeBoY/testmu-browser-agent-public/releases) and download the binary for your platform:
+1. Visit the [releases page](https://github.com/4DvAnCeBoY/testmu-browser-agent-public-public/releases) and download the binary for your platform:
 
    | Platform      | Binary                                    |
    |---------------|-------------------------------------------|
-   | macOS (Apple) | `testmu-browser-agent-darwin-arm64`       |
-   | macOS (Intel) | `testmu-browser-agent-darwin-amd64`       |
-   | Linux         | `testmu-browser-agent-linux-amd64`        |
-   | Windows       | `testmu-browser-agent-windows-amd64.exe`  |
+   | macOS (Apple) | `testmu-browser-agent-public-darwin-arm64`       |
+   | macOS (Intel) | `testmu-browser-agent-public-darwin-amd64`       |
+   | Linux         | `testmu-browser-agent-public-linux-amd64`        |
+   | Windows       | `testmu-browser-agent-public-windows-amd64.exe`  |
 
 2. Make it executable and move it to your PATH:
 
    ```sh
-   chmod +x testmu-browser-agent-darwin-arm64
-   sudo mv testmu-browser-agent-darwin-arm64 /usr/local/bin/testmu-browser-agent
+   chmod +x testmu-browser-agent-public-darwin-arm64
+   sudo mv testmu-browser-agent-public-darwin-arm64 /usr/local/bin/testmu-browser-agent
    ```
 
 3. Verify the install:
@@ -138,6 +138,6 @@ testmu-browser-agent close
 
 ## Next Steps
 
-- **[MCP Integration](./mcp-integration.md)** — Use testmu-browser-agent as an MCP server inside Claude Code so AI can drive the browser directly.
+- **[MCP Integration](./mcp-integration.md)** — Use testmu-browser-agent-public as an MCP server inside Claude Code so AI can drive the browser directly.
 - **[LambdaTest Cloud](./lambdatest.md)** — Run sessions on LambdaTest's cloud grid for parallelism and CI/CD.
 - **[Command Reference](./commands.md)** — Full list of every command, flag, and alias.

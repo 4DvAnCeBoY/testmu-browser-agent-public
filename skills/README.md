@@ -1,6 +1,6 @@
 # Skills & MCP Installation Guide
 
-Install testmu-browser-agent as a skill or MCP server in your AI coding assistant.
+Install testmu-browser-agent-public as a skill or MCP server in your AI coding assistant.
 
 **Supports 9 AI coding tools:** Claude Code, Cursor, GitHub Copilot, Windsurf, Gemini CLI, OpenAI Codex, Goose, OpenCode, Cline
 
@@ -19,10 +19,10 @@ Options: `--yes` (non-interactive), `--lambdatest` (enable cloud), `--tool curso
 Install the binary first:
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public/main/scripts/install.sh | sh
+curl -sSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public-public/main/scripts/install.sh | sh
 ```
 
-Or download from [GitHub Releases](https://github.com/4DvAnCeBoY/testmu-browser-agent-public/releases).
+Or download from [GitHub Releases](https://github.com/4DvAnCeBoY/testmu-browser-agent-public-public/releases).
 
 ## Plugin Packages
 
@@ -49,10 +49,10 @@ Each directory has a README with step-by-step instructions.
 ### Option A: Marketplace Plugin (recommended)
 
 ```bash
-npx skills add 4DvAnCeBoY/testmu-browser-agent-public
+npx skills add 4DvAnCeBoY/testmu-browser-agent-public-public
 ```
 
-This installs the skill to `.claude/skills/testmu-browser-agent/SKILL.md` and registers the MCP server automatically.
+This installs the skill to `.claude/skills/testmu-browser-agent-public/SKILL.md` and registers the MCP server automatically.
 
 ### Option B: Manual MCP Setup
 
@@ -61,7 +61,7 @@ Add to your project or user settings (`.claude/settings.json` or `~/.claude/sett
 ```json
 {
   "mcpServers": {
-    "testmu-browser-agent": {
+    "testmu-browser-agent-public": {
       "command": "testmu-browser-agent",
       "args": ["mcp"],
       "env": {}
@@ -75,7 +75,7 @@ With LambdaTest cloud:
 ```json
 {
   "mcpServers": {
-    "testmu-browser-agent": {
+    "testmu-browser-agent-public": {
       "command": "testmu-browser-agent",
       "args": ["mcp", "--provider", "lambdatest"],
       "env": {
@@ -91,7 +91,7 @@ With LambdaTest cloud:
 
 ```bash
 mkdir -p .claude/skills
-cp -r skills/testmu-browser-agent .claude/skills/
+cp -r skills/testmu-browser-agent-public .claude/skills/
 ```
 
 Restart Claude Code after any of the above.
@@ -104,8 +104,8 @@ Restart Claude Code after any of the above.
 
 Open Cursor Settings > MCP Servers > Add Server:
 
-- **Name:** `testmu-browser-agent`
-- **Command:** `testmu-browser-agent`
+- **Name:** `testmu-browser-agent-public`
+- **Command:** `testmu-browser-agent-public`
 - **Arguments:** `mcp`
 
 Or add to `.cursor/mcp.json` in your project:
@@ -113,7 +113,7 @@ Or add to `.cursor/mcp.json` in your project:
 ```json
 {
   "mcpServers": {
-    "testmu-browser-agent": {
+    "testmu-browser-agent-public": {
       "command": "testmu-browser-agent",
       "args": ["mcp"]
     }
@@ -127,7 +127,7 @@ Copy the skill into Cursor rules:
 
 ```bash
 mkdir -p .cursor/rules
-cp skills/testmu-browser-agent/SKILL.md .cursor/rules/testmu-browser-agent.md
+cp skills/testmu-browser-agent-public/SKILL.md .cursor/rules/testmu-browser-agent-public.md
 ```
 
 ---
@@ -141,7 +141,7 @@ Add to `~/.codeium/windsurf/mcp_config.json`:
 ```json
 {
   "mcpServers": {
-    "testmu-browser-agent": {
+    "testmu-browser-agent-public": {
       "command": "testmu-browser-agent",
       "args": ["mcp"]
     }
@@ -153,7 +153,7 @@ Add to `~/.codeium/windsurf/mcp_config.json`:
 
 ```bash
 mkdir -p .windsurf/rules
-cp skills/testmu-browser-agent/SKILL.md .windsurf/rules/testmu-browser-agent.md
+cp skills/testmu-browser-agent-public/SKILL.md .windsurf/rules/testmu-browser-agent-public.md
 ```
 
 Restart Windsurf after setup.
@@ -179,7 +179,7 @@ Add to `~/.gemini/settings.json`:
 ```json
 {
   "mcpServers": {
-    "testmu-browser-agent": {
+    "testmu-browser-agent-public": {
       "command": "testmu-browser-agent",
       "args": ["mcp"]
     }
@@ -209,7 +209,7 @@ Add to `~/.codex/config.json`:
 ```json
 {
   "mcpServers": {
-    "testmu-browser-agent": {
+    "testmu-browser-agent-public": {
       "command": "testmu-browser-agent",
       "args": ["mcp"]
     }
@@ -228,7 +228,7 @@ Add to `.vscode/mcp.json`:
 ```json
 {
   "servers": {
-    "testmu-browser-agent": {
+    "testmu-browser-agent-public": {
       "command": "testmu-browser-agent",
       "args": ["mcp"]
     }
@@ -240,7 +240,7 @@ Add to `.vscode/mcp.json`:
 
 ```bash
 mkdir -p .github
-cp skills/testmu-browser-agent/SKILL.md .github/copilot-instructions.md
+cp skills/testmu-browser-agent-public/SKILL.md .github/copilot-instructions.md
 ```
 
 ---
@@ -253,7 +253,7 @@ Add to `~/.config/goose/config.yaml`:
 
 ```yaml
 mcp_servers:
-  testmu-browser-agent:
+  testmu-browser-agent-public:
     command: testmu-browser-agent
     args:
       - mcp
@@ -270,7 +270,7 @@ Add to `~/.opencode/config.json`:
 ```json
 {
   "mcpServers": {
-    "testmu-browser-agent": {
+    "testmu-browser-agent-public": {
       "command": "testmu-browser-agent",
       "args": ["mcp"]
     }
@@ -289,7 +289,7 @@ Add to Cline MCP settings (`~/Library/Application Support/Code/User/globalStorag
 ```json
 {
   "mcpServers": {
-    "testmu-browser-agent": {
+    "testmu-browser-agent-public": {
       "command": "testmu-browser-agent",
       "args": ["mcp"],
       "disabled": false

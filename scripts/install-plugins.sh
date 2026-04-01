@@ -1,5 +1,5 @@
 #!/bin/sh
-# install-plugins.sh — configure testmu-browser-agent as an MCP server for AI coding tools
+# install-plugins.sh — configure testmu-browser-agent-public as an MCP server for AI coding tools
 # Usage: ./scripts/install-plugins.sh [OPTIONS]
 #
 # Options:
@@ -61,13 +61,13 @@ done
 # Prerequisite: binary must be installed
 # ---------------------------------------------------------------------------
 if ! command -v testmu-browser-agent >/dev/null 2>&1; then
-  error "testmu-browser-agent is not installed or not on PATH."
+  error "testmu-browser-agent-public is not installed or not on PATH."
   echo ""
   echo "Install it first:"
-  echo "  curl -sSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public/main/scripts/install.sh | sh"
+  echo "  curl -sSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public-public/main/scripts/install.sh | sh"
   exit 1
 fi
-info "Found $(testmu-browser-agent --version 2>/dev/null || echo 'testmu-browser-agent')"
+info "Found $(testmu-browser-agent --version 2>/dev/null || echo 'testmu-browser-agent-public')"
 
 # ---------------------------------------------------------------------------
 # Prerequisite: jq must be available for JSON merging
@@ -187,7 +187,7 @@ CONFIGURED=""
 
 configure_claude_code() {
   header "Claude Code"
-  ask_yn "  Configure testmu-browser-agent for Claude Code?" "y" || return 0
+  ask_yn "  Configure testmu-browser-agent-public for Claude Code?" "y" || return 0
   resolve_lambdatest
   target="$HOME/.claude/mcp.json"
   fragment="$(dirname "$0")/../plugins/claude-code/mcp${FRAGMENT_SUFFIX}.json"
@@ -201,7 +201,7 @@ configure_claude_code() {
 
 configure_cursor() {
   header "Cursor"
-  ask_yn "  Configure testmu-browser-agent for Cursor?" "y" || return 0
+  ask_yn "  Configure testmu-browser-agent-public for Cursor?" "y" || return 0
   resolve_lambdatest
   target="$HOME/.cursor/mcp.json"
   fragment="$(dirname "$0")/../plugins/cursor/mcp${FRAGMENT_SUFFIX}.json"
@@ -215,7 +215,7 @@ configure_cursor() {
 
 configure_copilot() {
   header "VS Code + GitHub Copilot"
-  ask_yn "  Configure testmu-browser-agent for VS Code + Copilot?" "y" || return 0
+  ask_yn "  Configure testmu-browser-agent-public for VS Code + Copilot?" "y" || return 0
   resolve_lambdatest
   # VS Code MCP settings live in settings.json under "mcp.servers"
   # but the copilot plugin fragment uses "servers" key for the dedicated mcp.json
@@ -231,7 +231,7 @@ configure_copilot() {
 
 configure_windsurf() {
   header "Windsurf"
-  ask_yn "  Configure testmu-browser-agent for Windsurf?" "y" || return 0
+  ask_yn "  Configure testmu-browser-agent-public for Windsurf?" "y" || return 0
   resolve_lambdatest
   target="$HOME/.codeium/windsurf/mcp_config.json"
   fragment="$(dirname "$0")/../plugins/windsurf/mcp_config${FRAGMENT_SUFFIX}.json"
@@ -245,7 +245,7 @@ configure_windsurf() {
 
 configure_gemini_cli() {
   header "Gemini CLI"
-  ask_yn "  Configure testmu-browser-agent for Gemini CLI?" "y" || return 0
+  ask_yn "  Configure testmu-browser-agent-public for Gemini CLI?" "y" || return 0
   resolve_lambdatest
   target="$HOME/.gemini/mcp.json"
   fragment="$(dirname "$0")/../plugins/gemini-cli/mcp${FRAGMENT_SUFFIX}.json"
@@ -259,7 +259,7 @@ configure_gemini_cli() {
 
 configure_codex() {
   header "Codex"
-  ask_yn "  Configure testmu-browser-agent for Codex?" "y" || return 0
+  ask_yn "  Configure testmu-browser-agent-public for Codex?" "y" || return 0
   resolve_lambdatest
   target="$HOME/.codex/mcp.json"
   fragment="$(dirname "$0")/../plugins/codex/mcp${FRAGMENT_SUFFIX}.json"
@@ -273,7 +273,7 @@ configure_codex() {
 
 configure_goose() {
   header "Goose"
-  ask_yn "  Configure testmu-browser-agent for Goose?" "y" || return 0
+  ask_yn "  Configure testmu-browser-agent-public for Goose?" "y" || return 0
   resolve_lambdatest
   target="$HOME/.config/goose/mcp.json"
   fragment="$(dirname "$0")/../plugins/goose/mcp${FRAGMENT_SUFFIX}.json"
@@ -287,7 +287,7 @@ configure_goose() {
 
 configure_opencode() {
   header "OpenCode"
-  ask_yn "  Configure testmu-browser-agent for OpenCode?" "y" || return 0
+  ask_yn "  Configure testmu-browser-agent-public for OpenCode?" "y" || return 0
   resolve_lambdatest
   target="$HOME/.opencode/config.json"
   fragment="$(dirname "$0")/../plugins/opencode/config${FRAGMENT_SUFFIX}.json"
@@ -301,7 +301,7 @@ configure_opencode() {
 
 configure_cline() {
   header "Cline (VS Code extension)"
-  ask_yn "  Configure testmu-browser-agent for Cline?" "y" || return 0
+  ask_yn "  Configure testmu-browser-agent-public for Cline?" "y" || return 0
   resolve_lambdatest
 
   # Detect platform-specific settings path
@@ -392,7 +392,7 @@ tool_detected() {
 # Main
 # ---------------------------------------------------------------------------
 
-printf "\n${BOLD}testmu-browser-agent — Plugin Installer${RESET}\n"
+printf "\n${BOLD}testmu-browser-agent-public — Plugin Installer${RESET}\n"
 printf "==========================================\n"
 
 ALL_TOOLS="claude-code cursor copilot windsurf gemini-cli codex goose opencode cline"

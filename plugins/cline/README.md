@@ -1,12 +1,12 @@
-# testmu-browser-agent — Cline Plugin
+# testmu-browser-agent-public — Cline Plugin
 
-Integrates testmu-browser-agent with [Cline](https://github.com/saoudrizwan/claude-dev) (VS Code extension) as an MCP server, giving Cline direct access to browser automation tools.
+Integrates testmu-browser-agent-public with [Cline](https://github.com/saoudrizwan/claude-dev) (VS Code extension) as an MCP server, giving Cline direct access to browser automation tools.
 
 ## Prerequisites
 
-- `testmu-browser-agent` installed and on your `PATH`
+- `testmu-browser-agent-public` installed and on your `PATH`
   ```sh
-  curl -sSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public/main/scripts/install.sh | sh
+  curl -sSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public-public/main/scripts/install.sh | sh
   ```
 - Cline extension installed in VS Code (`saoudrizwan.claude-dev`)
 
@@ -39,7 +39,7 @@ Run the universal plugin installer from the project root:
    ```json
    {
      "mcpServers": {
-       "testmu-browser-agent": {
+       "testmu-browser-agent-public": {
          "command": "testmu-browser-agent",
          "args": ["mcp"],
          "disabled": false
@@ -48,7 +48,7 @@ Run the universal plugin installer from the project root:
    }
    ```
 
-3. If the file already exists and contains other MCP servers, add only the `"testmu-browser-agent"` entry inside the existing `mcpServers` object — do not replace the whole file.
+3. If the file already exists and contains other MCP servers, add only the `"testmu-browser-agent-public"` entry inside the existing `mcpServers` object — do not replace the whole file.
 
 4. Reload VS Code (or use **Developer: Reload Window** from the command palette). Cline picks up changes automatically on most versions; a reload ensures they take effect.
 
@@ -84,7 +84,7 @@ testmu-browser-agent mcp --help
 
 | Symptom | Fix |
 |---------|-----|
-| `command not found: testmu-browser-agent` | Re-run the install script or add `/usr/local/bin` to `PATH` |
+| `command not found: testmu-browser-agent-public` | Re-run the install script or add `/usr/local/bin` to `PATH` |
 | MCP tools not listed in Cline | Check JSON syntax with `jq . "<settings-file-path>"` |
 | `disabled: true` in settings | Set `"disabled": false` in the `mcpServers` entry |
 | Browser does not open | Ensure Chrome is installed; run `testmu-browser-agent open https://example.com` directly to test |

@@ -1,6 +1,6 @@
 # MCP Integration
 
-`testmu-browser-agent` ships a built-in [Model Context Protocol](https://modelcontextprotocol.io) (MCP) server. Running `testmu-browser-agent mcp` starts a stdio JSON-RPC 2.0 server that exposes 10 grouped browser tools to any MCP client, including **Claude Code**.
+`testmu-browser-agent-public` ships a built-in [Model Context Protocol](https://modelcontextprotocol.io) (MCP) server. Running `testmu-browser-agent mcp` starts a stdio JSON-RPC 2.0 server that exposes 10 grouped browser tools to any MCP client, including **Claude Code**.
 
 ---
 
@@ -13,7 +13,7 @@ Add the server to your Claude Code `settings.json` (usually `~/.claude/settings.
 ```json
 {
   "mcpServers": {
-    "testmu-browser-agent": {
+    "testmu-browser-agent-public": {
       "command": "testmu-browser-agent",
       "args": ["mcp"],
       "env": {}
@@ -27,7 +27,7 @@ By default the agent launches a headless Chromium instance. To run with a visibl
 ```json
 {
   "mcpServers": {
-    "testmu-browser-agent": {
+    "testmu-browser-agent-public": {
       "command": "testmu-browser-agent",
       "args": ["mcp", "--headless=false"],
       "env": {}
@@ -43,7 +43,7 @@ Set your LambdaTest credentials and pass the `--provider` flag:
 ```json
 {
   "mcpServers": {
-    "testmu-browser-agent": {
+    "testmu-browser-agent-public": {
       "command": "testmu-browser-agent",
       "args": ["mcp", "--provider", "lambdatest"],
       "env": {
@@ -116,7 +116,7 @@ Claude chains these calls automatically based on the snapshot refs, without requ
 | Transport | stdio (stdin/stdout) |
 | Message format | Newline-delimited JSON-RPC 2.0 |
 | Protocol version | `2024-11-05` |
-| Server name | `testmu-browser-agent` |
+| Server name | `testmu-browser-agent-public` |
 | Server version | `1.0.0` |
 | Logs | Sent to stderr (does not interfere with protocol) |
 
@@ -143,7 +143,7 @@ Response:
   "id": 1,
   "result": {
     "protocolVersion": "2024-11-05",
-    "serverInfo": { "name": "testmu-browser-agent", "version": "1.0.0" },
+    "serverInfo": { "name": "testmu-browser-agent-public", "version": "1.0.0" },
     "capabilities": { "tools": {} }
   }
 }

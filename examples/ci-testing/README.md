@@ -1,6 +1,6 @@
-# CI Testing with testmu-browser-agent and LambdaTest
+# CI Testing with testmu-browser-agent-public and LambdaTest
 
-This example shows how to run browser tests in GitHub Actions using `testmu-browser-agent` with LambdaTest as the browser provider.
+This example shows how to run browser tests in GitHub Actions using `testmu-browser-agent-public` with LambdaTest as the browser provider.
 
 ## Prerequisites
 
@@ -43,7 +43,7 @@ Commit and push — the workflow will trigger on the next push or pull request.
 
 ## How It Works
 
-1. GitHub Actions installs `testmu-browser-agent` via the install script.
+1. GitHub Actions installs `testmu-browser-agent-public` via the install script.
 2. LambdaTest credentials are injected as environment variables.
 3. The test script runs browser actions against LambdaTest's cloud grid.
 4. On failure, screenshots are uploaded as workflow artifacts for inspection.

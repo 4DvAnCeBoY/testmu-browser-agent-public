@@ -1,5 +1,5 @@
 mcp_servers:
-  testmu-browser-agent:
+  testmu-browser-agent-public:
     command: testmu-browser-agent
     args:
       - mcp

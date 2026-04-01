@@ -1,6 +1,6 @@
-# testmu-browser-agent — GitHub Copilot Plugin
+# testmu-browser-agent-public — GitHub Copilot Plugin
 
-Integrates testmu-browser-agent with GitHub Copilot via MCP (VS Code) or custom instructions (Copilot Chat / Workspace).
+Integrates testmu-browser-agent-public with GitHub Copilot via MCP (VS Code) or custom instructions (Copilot Chat / Workspace).
 
 ---
 
@@ -29,7 +29,7 @@ Or add the server entry manually to an existing `.vscode/mcp.json`:
 ```json
 {
   "servers": {
-    "testmu-browser-agent": {
+    "testmu-browser-agent-public": {
       "command": "testmu-browser-agent",
       "args": ["mcp"]
     }
@@ -56,14 +56,14 @@ export LT_ACCESS_KEY=your-access-key
 
 1. Open VS Code with the project
 2. Open Copilot Chat (Ctrl+Alt+I / Cmd+Option+I)
-3. Ask: `@workspace Use testmu-browser-agent to open https://example.com and take a screenshot`
+3. Ask: `@workspace Use testmu-browser-agent-public to open https://example.com and take a screenshot`
 4. Copilot should invoke `browser_navigate` and `browser_media` tools directly
 
 ---
 
 ## Option 2: Custom Instructions (Copilot Chat / Workspace)
 
-Teaches Copilot how to use testmu-browser-agent via natural language instructions — no MCP required.
+Teaches Copilot how to use testmu-browser-agent-public via natural language instructions — no MCP required.
 
 ### Install
 
@@ -80,7 +80,7 @@ GitHub Copilot reads `.github/copilot-instructions.md` automatically and applies
 
 1. Open Copilot Chat in VS Code or GitHub Copilot Workspace
 2. Ask: `Write a script to scrape book titles from books.toscrape.com`
-3. Copilot should generate `testmu-browser-agent` CLI commands using the snapshot → @ref → verify workflow
+3. Copilot should generate `testmu-browser-agent-public` CLI commands using the snapshot → @ref → verify workflow
 
 ---
 

@@ -1,6 +1,6 @@
-# testmu-browser-agent — Windsurf Plugin
+# testmu-browser-agent-public — Windsurf Plugin
 
-Integrates testmu-browser-agent with Windsurf via MCP (direct tool calls) or rules (AI code generation guidance).
+Integrates testmu-browser-agent-public with Windsurf via MCP (direct tool calls) or rules (AI code generation guidance).
 
 ---
 
@@ -22,7 +22,7 @@ Merge the server entry into `~/.codeium/windsurf/mcp_config.json`:
 ```json
 {
   "mcpServers": {
-    "testmu-browser-agent": {
+    "testmu-browser-agent-public": {
       "command": "testmu-browser-agent",
       "args": ["mcp"]
     }
@@ -56,14 +56,14 @@ export LT_ACCESS_KEY=your-access-key
 
 1. Restart Windsurf after editing the config
 2. Open the AI panel (Cascade)
-3. Ask: `Use testmu-browser-agent to open https://example.com and take a screenshot`
+3. Ask: `Use testmu-browser-agent-public to open https://example.com and take a screenshot`
 4. Cascade should invoke `browser_navigate` and `browser_media` tools directly
 
 ---
 
 ## Option 2: Rules File
 
-Teaches Windsurf's AI how to generate testmu-browser-agent code — no MCP required.
+Teaches Windsurf's AI how to generate testmu-browser-agent-public code — no MCP required.
 
 ### Install
 
@@ -71,7 +71,7 @@ Copy the rules file into your project:
 
 ```sh
 mkdir -p .windsurf/rules
-cp plugins/windsurf/rules/testmu-browser-agent.md .windsurf/rules/testmu-browser-agent.md
+cp plugins/windsurf/rules/testmu-browser-agent-public.md .windsurf/rules/testmu-browser-agent-public.md
 ```
 
 Windsurf reads `.windsurf/rules/` automatically and applies rules to all Cascade AI responses in the project.
@@ -80,7 +80,7 @@ Windsurf reads `.windsurf/rules/` automatically and applies rules to all Cascade
 
 1. Open Cascade in Windsurf
 2. Ask: `Write a script to log into the-internet.herokuapp.com and save the session`
-3. Cascade should generate `testmu-browser-agent` CLI commands using the snapshot → @ref → verify workflow
+3. Cascade should generate `testmu-browser-agent-public` CLI commands using the snapshot → @ref → verify workflow
 
 ---
 
@@ -96,4 +96,4 @@ MCP enables direct tool-call automation; rules enable guided code generation. In
 |---|---|
 | `mcp_config.json` | Windsurf MCP config (local Chrome) |
 | `mcp_config-lambdatest.json` | Windsurf MCP config (LambdaTest cloud) |
-| `rules/testmu-browser-agent.md` | Windsurf rules for `.windsurf/rules/` |
+| `rules/testmu-browser-agent-public.md` | Windsurf rules for `.windsurf/rules/` |

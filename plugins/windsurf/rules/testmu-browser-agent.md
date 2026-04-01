@@ -1,4 +1,4 @@
-# testmu-browser-agent
+# testmu-browser-agent-public
 
 AI-native browser automation CLI and MCP server for Chrome. Use for browser automation, web testing, scraping, form filling, screenshots, and authenticated session workflows — local or via LambdaTest cloud.
 

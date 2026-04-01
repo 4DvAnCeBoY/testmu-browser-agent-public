@@ -1,6 +1,6 @@
 # Commands Reference
 
-Complete reference for all `testmu-browser-agent` commands and flags.
+Complete reference for all `testmu-browser-agent-public` commands and flags.
 
 ---
 
@@ -13,7 +13,7 @@ These flags apply to every command and must be placed before the subcommand name
 | `--provider` | string | `local` | Browser provider: `local`, `lambdatest`, or `appium` |
 | `--headless` | bool | `true` | Run browser in headless mode |
 | `--port` | int | `9222` | Daemon HTTP server port |
-| `--socket` | string | `/tmp/testmu-browser-agent.sock` | Unix socket path for daemon communication |
+| `--socket` | string | `/tmp/testmu-browser-agent-public.sock` | Unix socket path for daemon communication |
 | `--storage-key` | string | _(empty)_ | AES-256-GCM encryption key for saved session state |
 | `--browser-path` | string | _(auto-detect)_ | Path to a custom browser executable |
 | `--timeout` | int | `30` | Default command timeout in seconds |
@@ -283,7 +283,7 @@ testmu-browser-agent batch '[
 
 | Command | Usage | Flags | Description |
 |---------|-------|-------|-------------|
-| `install` | `install` | `--dest <dir>` | Download and install Chrome for Testing. Default: `~/.testmu-browser-agent/chrome/`. |
+| `install` | `install` | `--dest <dir>` | Download and install Chrome for Testing. Default: `~/.testmu-browser-agent-public/chrome/`. |
 | `upgrade` | `upgrade` | | Check GitHub for the latest release and self-update the CLI binary. |
 
 ---

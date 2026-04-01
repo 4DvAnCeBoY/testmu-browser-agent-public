@@ -18,7 +18,7 @@ Deep dive on browser state persistence: save/load, AES-256-GCM encryption, cooki
 
 ## Overview
 
-`testmu-browser-agent` can persist complete browser state across sessions. State includes:
+`testmu-browser-agent-public` can persist complete browser state across sessions. State includes:
 
 - **Cookies** — authentication tokens, session identifiers, CSRF tokens
 - **localStorage** — user preferences, cached data, auth tokens stored by SPAs
@@ -122,11 +122,11 @@ testmu-browser-agent state load --name prod-session --storage-key "$SESSION_KEY"
 
 ```sh
 # All cookies for the current session
-testmu-browser-agent cookies get
+testmu-browser-agent-public cookies get
 # → [{"name":"session_id","value":"abc123","domain":"app.example.com",...}]
 
 # Cookies for a specific domain
-testmu-browser-agent cookies get --domain app.example.com
+testmu-browser-agent-public cookies get --domain app.example.com
 ```
 
 ### Setting cookies manually
@@ -137,7 +137,7 @@ Useful for injecting authentication tokens without going through the login UI:
 testmu-browser-agent open https://app.example.com
 
 # Inject a session cookie
-testmu-browser-agent cookies set '{
+testmu-browser-agent-public cookies set '{
   "name": "session_id",
   "value": "abc123xyz",
   "domain": "app.example.com",
@@ -153,8 +153,8 @@ testmu-browser-agent navigate https://app.example.com/dashboard
 ### Clearing cookies
 
 ```sh
-testmu-browser-agent cookies clear                           # All cookies
-testmu-browser-agent cookies clear --domain app.example.com # Domain-specific
+testmu-browser-agent-public cookies clear                           # All cookies
+testmu-browser-agent-public cookies clear --domain app.example.com # Domain-specific
 ```
 
 ---
@@ -165,16 +165,16 @@ testmu-browser-agent cookies clear --domain app.example.com # Domain-specific
 
 ```sh
 # All localStorage keys and values
-testmu-browser-agent storage get
+testmu-browser-agent-public storage get
 # → {"theme":"dark","user_id":"42","token":"eyJ..."}
 
 # A specific key
-testmu-browser-agent storage get "auth_token"
+testmu-browser-agent-public storage get "auth_token"
 # → "eyJhbGciOiJIUzI1NiJ9..."
 
 # sessionStorage
-testmu-browser-agent storage get --session
-testmu-browser-agent storage get "tab_state" --session
+testmu-browser-agent-public storage get --session
+testmu-browser-agent-public storage get "tab_state" --session
 ```
 
 ### Writing storage
@@ -183,10 +183,10 @@ Useful for setting feature flags, bypassing onboarding, or injecting tokens:
 
 ```sh
 # Set a localStorage value
-testmu-browser-agent storage set "feature_flags" '{"newUI":true,"betaFeature":false}'
+testmu-browser-agent-public storage set "feature_flags" '{"newUI":true,"betaFeature":false}'
 
 # Set sessionStorage
-testmu-browser-agent storage set "wizard_step" "3" --session
+testmu-browser-agent-public storage set "wizard_step" "3" --session
 
 # Reload page to apply
 testmu-browser-agent reload
@@ -195,9 +195,9 @@ testmu-browser-agent reload
 ### Removing storage entries
 
 ```sh
-testmu-browser-agent storage remove "old_token"
-testmu-browser-agent storage clear           # Clear all localStorage
-testmu-browser-agent storage clear --session # Clear all sessionStorage
+testmu-browser-agent-public storage remove "old_token"
+testmu-browser-agent-public storage clear           # Clear all localStorage
+testmu-browser-agent-public storage clear --session # Clear all sessionStorage
 ```
 
 ---
@@ -235,7 +235,7 @@ TOKEN="$(curl -s -X POST https://api.example.com/auth \
   | jq -r '.access_token')"
 
 testmu-browser-agent open https://app.example.com
-testmu-browser-agent storage set "auth_token" "$TOKEN"
+testmu-browser-agent-public storage set "auth_token" "$TOKEN"
 testmu-browser-agent reload
 testmu-browser-agent wait --selector ".user-menu" --timeout 10
 ```

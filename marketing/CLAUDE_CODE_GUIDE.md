@@ -2,7 +2,7 @@
 
 You can already ask Claude Code to write code, refactor files, and run tests. Now you can ask it to open a browser, click a button, fill out a form, and screenshot the result — all from a single prompt, no Playwright script required.
 
-**testmu-browser-agent** is a one-binary MCP server that gives Claude Code a real Chrome browser it controls directly. Claude navigates, reads the page, reasons about what to do next, and acts — in a loop, until your task is done.
+**testmu-browser-agent-public** is a one-binary MCP server that gives Claude Code a real Chrome browser it controls directly. Claude navigates, reads the page, reasons about what to do next, and acts — in a loop, until your task is done.
 
 ```
 You: "Log into GitHub and screenshot my notification count."
@@ -23,19 +23,19 @@ No CSS selectors. No Playwright boilerplate. No script to write and debug. Just 
 ### Step 1 — Install the binary
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public/main/scripts/install.sh | sh
+curl -sSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public-public/main/scripts/install.sh | sh
 ```
 
 Or via npm:
 
 ```bash
-npm install -g testmu-browser-agent
+npm install -g testmu-browser-agent-public
 ```
 
 Or via Homebrew:
 
 ```bash
-brew install testmu/tap/testmu-browser-agent
+brew install testmu/tap/testmu-browser-agent-public
 ```
 
 One binary. No Node runtime. No Python environment. No Chromium download step.
@@ -47,7 +47,7 @@ Add this to `~/.claude/settings.json` (user-wide) or `.claude/settings.json` (pr
 ```json
 {
   "mcpServers": {
-    "testmu-browser-agent": {
+    "testmu-browser-agent-public": {
       "command": "testmu-browser-agent",
       "args": ["mcp"],
       "env": {}
@@ -61,7 +61,7 @@ Add this to `~/.claude/settings.json` (user-wide) or `.claude/settings.json` (pr
 The Skills installer registers the MCP server and drops the usage guide into Claude's context automatically:
 
 ```bash
-npx skills add 4DvAnCeBoY/testmu-browser-agent-public
+npx skills add 4DvAnCeBoY/testmu-browser-agent-public-public
 ```
 
 That's it. Restart Claude Code and ask it to open a website.
@@ -128,7 +128,7 @@ Smaller context = cheaper inference + more room for your actual task. Claude can
 
 ### Daemon mode — the browser persists
 
-testmu-browser-agent keeps a single Chrome process alive between tool calls (daemon mode). Claude can make 10 consecutive MCP calls without any browser cold-start overhead. The session — tabs, cookies, local storage — is exactly where it was after the previous call.
+testmu-browser-agent-public keeps a single Chrome process alive between tool calls (daemon mode). Claude can make 10 consecutive MCP calls without any browser cold-start overhead. The session — tabs, cookies, local storage — is exactly where it was after the previous call.
 
 ---
 
@@ -363,7 +363,7 @@ No local Chrome required. Run every browser session on LambdaTest's real browser
 ```json
 {
   "mcpServers": {
-    "testmu-browser-agent": {
+    "testmu-browser-agent-public": {
       "command": "testmu-browser-agent",
       "args": ["mcp", "--provider", "lambdatest"],
       "env": {
@@ -395,7 +395,7 @@ Get your `LT_USERNAME` and `LT_ACCESS_KEY` from the [LambdaTest Automation Dashb
     cat > ~/.claude/settings.json << 'EOF'
     {
       "mcpServers": {
-        "testmu-browser-agent": {
+        "testmu-browser-agent-public": {
           "command": "testmu-browser-agent",
           "args": ["mcp", "--provider", "lambdatest"],
           "env": {
@@ -553,7 +553,7 @@ No maintenance. No fragile selectors. No boilerplate.
 
 ```bash
 # 1. Install
-curl -sSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public/main/scripts/install.sh | sh
+curl -sSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public-public/main/scripts/install.sh | sh
 
 # 2. Add to Claude Code settings
 # ~/.claude/settings.json → see "30-Second Setup" above
@@ -564,7 +564,7 @@ curl -sSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-publ
 # Ask Claude: "Open https://example.com and tell me what links are on the page."
 ```
 
-- [GitHub](https://github.com/4DvAnCeBoY/testmu-browser-agent-public) — source, issues, releases
+- [GitHub](https://github.com/4DvAnCeBoY/testmu-browser-agent-public-public) — source, issues, releases
 - [Full Command Reference](../docs/guides/commands.md) — every CLI command and flag
 - [LambdaTest Integration](../docs/guides/lambdatest.md) — cloud browser setup
 - [MCP Protocol Details](../docs/guides/mcp-integration.md) — tool schemas, JSON-RPC examples

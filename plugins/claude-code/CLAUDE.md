@@ -1,6 +1,6 @@
-# testmu-browser-agent — Claude Code Instructions
+# testmu-browser-agent-public — Claude Code Instructions
 
-This project has browser automation available via **testmu-browser-agent** (MCP server). Use it whenever you need to navigate websites, interact with UI elements, extract data, or verify web application behavior.
+This project has browser automation available via **testmu-browser-agent-public** (MCP server). Use it whenever you need to navigate websites, interact with UI elements, extract data, or verify web application behavior.
 
 ---
 
@@ -50,4 +50,4 @@ open URL -> snapshot -> act on @ref -> re-snapshot -> verify
 
 ## Full Reference
 
-See [`skills/testmu-browser-agent/SKILL.md`](../../skills/testmu-browser-agent/SKILL.md) for the complete guide including common task recipes, session management, network interception, device emulation, and all MCP tool schemas.
+See [`skills/testmu-browser-agent-public/SKILL.md`](../../skills/testmu-browser-agent-public/SKILL.md) for the complete guide including common task recipes, session management, network interception, device emulation, and all MCP tool schemas.

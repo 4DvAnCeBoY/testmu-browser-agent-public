@@ -18,7 +18,7 @@
 
 set -euo pipefail
 
-BIN="testmu-browser-agent"
+BIN="testmu-browser-agent-public"
 TARGET_URL="${1:-https://the-internet.herokuapp.com}"
 USERNAME="${USERNAME:-tomsmith}"
 PASSWORD="${PASSWORD:-SuperSecretPassword!}"

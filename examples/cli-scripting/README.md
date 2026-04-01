@@ -1,4 +1,4 @@
-# CLI Scripting with testmu-browser-agent
+# CLI Scripting with testmu-browser-agent-public
 
 This directory contains shell scripting patterns for automating browser workflows from the command line.
 

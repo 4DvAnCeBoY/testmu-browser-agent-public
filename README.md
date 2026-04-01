@@ -1,10 +1,10 @@
-# testmu-browser-agent
+# testmu-browser-agent-public
 
 AI-native browser automation CLI and MCP server for Chrome, built in Go.
 
-[![CI](https://github.com/4DvAnCeBoY/testmu-browser-agent-public/actions/workflows/ci.yml/badge.svg)](https://github.com/4DvAnCeBoY/testmu-browser-agent-public/actions)
+[![CI](https://github.com/4DvAnCeBoY/testmu-browser-agent-public-public/actions/workflows/ci.yml/badge.svg)](https://github.com/4DvAnCeBoY/testmu-browser-agent-public-public/actions)
 [![Go 1.23+](https://img.shields.io/badge/go-1.23%2B-blue.svg)](https://go.dev/)
-[![Platform](https://img.shields.io/badge/platform-macOS%20%7C%20Linux%20%7C%20Windows-lightgrey.svg)](https://github.com/4DvAnCeBoY/testmu-browser-agent-public/releases)
+[![Platform](https://img.shields.io/badge/platform-macOS%20%7C%20Linux%20%7C%20Windows-lightgrey.svg)](https://github.com/4DvAnCeBoY/testmu-browser-agent-public-public/releases)
 
 ### Works with your AI coding tool
 
@@ -20,9 +20,9 @@ AI-native browser automation CLI and MCP server for Chrome, built in Go.
 
 ---
 
-## What is testmu-browser-agent?
+## What is testmu-browser-agent-public?
 
-testmu-browser-agent is a single Go binary that exposes browser automation through three surfaces: a 90+ command CLI, a 10-tool MCP server for Claude Code, and a REST/SSE daemon API.
+testmu-browser-agent-public is a single Go binary that exposes browser automation through three surfaces: a 90+ command CLI, a 10-tool MCP server for Claude Code, and a REST/SSE daemon API.
 
 - **90+ CLI commands** — navigate, click, fill, screenshot, network interception, auth vault, device emulation, video recording, HAR capture, CDP diagnostics, and more, all from the terminal
 - **MCP server with 10 tools** — plug directly into Claude Code so AI agents can control the browser without any additional setup
@@ -34,7 +34,7 @@ testmu-browser-agent is a single Go binary that exposes browser automation throu
 ```
 CLI / MCP / REST API
        |
-  testmu-browser-agent (single Go binary)
+  testmu-browser-agent-public (single Go binary)
        |
   Chrome (local) or LambdaTest (cloud)
 ```
@@ -45,7 +45,7 @@ CLI / MCP / REST API
 
 ```bash
 # Install
-curl -sSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public/main/scripts/install.sh | sh
+curl -sSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public-public/main/scripts/install.sh | sh
 
 # Open a page
 testmu-browser-agent open https://example.com
@@ -73,27 +73,27 @@ testmu-browser-agent close
 ### Install script (macOS and Linux)
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public/main/scripts/install.sh | sh
+curl -sSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public-public/main/scripts/install.sh | sh
 ```
 
 The script detects your OS and architecture, downloads the correct binary from the latest release, and installs it to `/usr/local/bin`.
 
 ### Manual download
 
-Download the pre-built binary for your platform from the [Releases](https://github.com/4DvAnCeBoY/testmu-browser-agent-public/releases) page:
+Download the pre-built binary for your platform from the [Releases](https://github.com/4DvAnCeBoY/testmu-browser-agent-public-public/releases) page:
 
 | Platform        | Binary                                  |
 |-----------------|-----------------------------------------|
-| macOS (Apple Silicon) | `testmu-browser-agent-darwin-arm64`   |
-| macOS (Intel)   | `testmu-browser-agent-darwin-amd64`     |
-| Linux (x86-64)  | `testmu-browser-agent-linux-amd64`      |
-| Windows (x86-64)| `testmu-browser-agent-windows-amd64.exe`|
+| macOS (Apple Silicon) | `testmu-browser-agent-public-darwin-arm64`   |
+| macOS (Intel)   | `testmu-browser-agent-public-darwin-amd64`     |
+| Linux (x86-64)  | `testmu-browser-agent-public-linux-amd64`      |
+| Windows (x86-64)| `testmu-browser-agent-public-windows-amd64.exe`|
 
 Make the binary executable and move it to a directory on your PATH:
 
 ```bash
-chmod +x testmu-browser-agent-darwin-arm64
-mv testmu-browser-agent-darwin-arm64 /usr/local/bin/testmu-browser-agent
+chmod +x testmu-browser-agent-public-darwin-arm64
+mv testmu-browser-agent-public-darwin-arm64 /usr/local/bin/testmu-browser-agent
 ```
 
 ---
@@ -107,13 +107,13 @@ All commands accept [global flags](#global-flags). Run any command with `--help`
 ```bash
 testmu-browser-agent open <url>          # Open a URL in a new browser page
 testmu-browser-agent navigate <url>      # Navigate current page to a URL
-testmu-browser-agent goto <url>          # Alias for navigate
+testmu-browser-agent-public goto <url>          # Alias for navigate
 testmu-browser-agent back                # Go back in browser history
 testmu-browser-agent forward             # Go forward in browser history
 testmu-browser-agent reload              # Reload the current page
 testmu-browser-agent close               # Close the browser
-testmu-browser-agent quit                # Alias for close
-testmu-browser-agent exit                # Alias for close
+testmu-browser-agent-public quit                # Alias for close
+testmu-browser-agent-public exit                # Alias for close
 ```
 
 ### Interaction
@@ -121,32 +121,32 @@ testmu-browser-agent exit                # Alias for close
 ```bash
 # Click
 testmu-browser-agent click <ref|selector>           # Click an element
-testmu-browser-agent dblclick <ref|selector>        # Double-click an element
+testmu-browser-agent-public dblclick <ref|selector>        # Double-click an element
 
 # Forms
 testmu-browser-agent fill <ref|selector> <text>     # Fill a form field with text
-testmu-browser-agent type <text>                    # Type into the focused element
+testmu-browser-agent-public type <text>                    # Type into the focused element
 testmu-browser-agent select <ref|selector> <value>  # Choose a dropdown option
 testmu-browser-agent check <ref|selector>           # Check a checkbox
-testmu-browser-agent uncheck <ref|selector>         # Uncheck a checkbox
+testmu-browser-agent-public uncheck <ref|selector>         # Uncheck a checkbox
 
 # Keyboard
-testmu-browser-agent press <key>                    # Press a keyboard key (e.g. Enter, Tab)
-testmu-browser-agent key <key>                      # Alias for press
-testmu-browser-agent keydown <key>                  # Hold a key down
-testmu-browser-agent keyup <key>                    # Release a held key
+testmu-browser-agent-public press <key>                    # Press a keyboard key (e.g. Enter, Tab)
+testmu-browser-agent-public key <key>                      # Alias for press
+testmu-browser-agent-public keydown <key>                  # Hold a key down
+testmu-browser-agent-public keyup <key>                    # Release a held key
 
 # Pointer
-testmu-browser-agent hover <ref|selector>           # Hover over an element
-testmu-browser-agent tap <ref|selector>             # Tap (mobile-style)
-testmu-browser-agent drag <from> <to>               # Drag from one element to another
-testmu-browser-agent scroll <direction> [amount]    # Scroll the page (up/down/left/right)
-testmu-browser-agent swipe <direction> [distance]   # Swipe gesture
-testmu-browser-agent mouse <action> [x] [y]         # Raw mouse operations (move, click, wheel)
+testmu-browser-agent-public hover <ref|selector>           # Hover over an element
+testmu-browser-agent-public tap <ref|selector>             # Tap (mobile-style)
+testmu-browser-agent-public drag <from> <to>               # Drag from one element to another
+testmu-browser-agent-public scroll <direction> [amount]    # Scroll the page (up/down/left/right)
+testmu-browser-agent-public swipe <direction> [distance]   # Swipe gesture
+testmu-browser-agent-public mouse <action> [x] [y]         # Raw mouse operations (move, click, wheel)
 
 # Files and focus
-testmu-browser-agent upload <ref|selector> <file>   # Upload a file to a file input
-testmu-browser-agent focus <ref|selector>           # Focus an element
+testmu-browser-agent-public upload <ref|selector> <file>   # Upload a file to a file input
+testmu-browser-agent-public focus <ref|selector>           # Focus an element
 ```
 
 ### Query
@@ -169,19 +169,19 @@ testmu-browser-agent get box <selector>             # Get bounding box of an ele
 testmu-browser-agent get styles <selector>          # Get computed styles of an element
 
 # Find and inspect
-testmu-browser-agent find <selector>                # Find all elements matching a CSS selector
-testmu-browser-agent find --role button             # Find by ARIA role
-testmu-browser-agent find --text "Sign in"          # Find by visible text content
-testmu-browser-agent find --label "Email"           # Find by aria-label or associated label
-testmu-browser-agent find --placeholder "Search"    # Find by placeholder attribute
-testmu-browser-agent find --alt "Logo"              # Find by alt attribute
-testmu-browser-agent find --title "Close"           # Find by title attribute
-testmu-browser-agent find --testid "submit-btn"     # Find by data-testid attribute
-testmu-browser-agent find --role button --first     # Return only the first match
-testmu-browser-agent find --role link --nth 3       # Return the 3rd match
-testmu-browser-agent find --role button --last      # Return only the last match
+testmu-browser-agent-public find <selector>                # Find all elements matching a CSS selector
+testmu-browser-agent-public find --role button             # Find by ARIA role
+testmu-browser-agent-public find --text "Sign in"          # Find by visible text content
+testmu-browser-agent-public find --label "Email"           # Find by aria-label or associated label
+testmu-browser-agent-public find --placeholder "Search"    # Find by placeholder attribute
+testmu-browser-agent-public find --alt "Logo"              # Find by alt attribute
+testmu-browser-agent-public find --title "Close"           # Find by title attribute
+testmu-browser-agent-public find --testid "submit-btn"     # Find by data-testid attribute
+testmu-browser-agent-public find --role button --first     # Return only the first match
+testmu-browser-agent-public find --role link --nth 3       # Return the 3rd match
+testmu-browser-agent-public find --role button --last      # Return only the last match
 testmu-browser-agent eval <javascript>              # Evaluate JavaScript in the page
-testmu-browser-agent inspect                        # Inspect page info and metadata
+testmu-browser-agent-public inspect                        # Inspect page info and metadata
 ```
 
 ### Media
@@ -208,7 +208,7 @@ testmu-browser-agent tab new                        # Open a new tab
 testmu-browser-agent tab new https://example.com    # Open a new tab with a URL
 testmu-browser-agent tab close <id>                 # Close a tab by ID
 testmu-browser-agent tab switch <id>                # Switch to a tab by ID
-testmu-browser-agent window new                     # Open a new browser window
+testmu-browser-agent-public window new                     # Open a new browser window
 testmu-browser-agent frame <selector>               # Switch into an iframe
 ```
 
@@ -220,20 +220,20 @@ testmu-browser-agent state save --name my-session
 testmu-browser-agent state load --name my-session
 
 # Cookies
-testmu-browser-agent cookies get                    # List all cookies
-testmu-browser-agent cookies set                    # Set a cookie
-testmu-browser-agent cookies clear                  # Clear all cookies
+testmu-browser-agent-public cookies get                    # List all cookies
+testmu-browser-agent-public cookies set                    # Set a cookie
+testmu-browser-agent-public cookies clear                  # Clear all cookies
 
 # localStorage / sessionStorage
-testmu-browser-agent storage get <key>              # Get a storage value
-testmu-browser-agent storage set <key> <value>      # Set a storage value
-testmu-browser-agent storage clear                  # Clear all storage
-testmu-browser-agent storage remove <key>           # Remove a specific key
-testmu-browser-agent storage get <key> --session    # Use sessionStorage
+testmu-browser-agent-public storage get <key>              # Get a storage value
+testmu-browser-agent-public storage set <key> <value>      # Set a storage value
+testmu-browser-agent-public storage clear                  # Clear all storage
+testmu-browser-agent-public storage remove <key>           # Remove a specific key
+testmu-browser-agent-public storage get <key> --session    # Use sessionStorage
 
 # Clipboard
-testmu-browser-agent clipboard read                 # Read clipboard content
-testmu-browser-agent clipboard write "text"         # Write to clipboard
+testmu-browser-agent-public clipboard read                 # Read clipboard content
+testmu-browser-agent-public clipboard write "text"         # Write to clipboard
 ```
 
 ### Wait
@@ -251,15 +251,15 @@ testmu-browser-agent wait --timeout 60000           # Set custom timeout in mill
 ### Network and Monitoring
 
 ```bash
-testmu-browser-agent console                        # Get captured console messages
-testmu-browser-agent console --clear                # Get and clear console messages
+testmu-browser-agent-public console                        # Get captured console messages
+testmu-browser-agent-public console --clear                # Get and clear console messages
 testmu-browser-agent errors                         # Get page JavaScript errors
 testmu-browser-agent errors --clear                 # Get and clear errors
-testmu-browser-agent dialog accept                  # Accept a browser dialog (alert/confirm)
-testmu-browser-agent dialog dismiss                 # Dismiss a browser dialog
+testmu-browser-agent-public dialog accept                  # Accept a browser dialog (alert/confirm)
+testmu-browser-agent-public dialog dismiss                 # Dismiss a browser dialog
 testmu-browser-agent highlight <ref|selector>       # Visually highlight an element
-testmu-browser-agent stream                         # Stream browser events (SSE)
-testmu-browser-agent stream --filter "click"        # Filter events by type
+testmu-browser-agent-public stream                         # Stream browser events (SSE)
+testmu-browser-agent-public stream --filter "click"        # Filter events by type
 ```
 
 ### DevTools
@@ -276,11 +276,11 @@ testmu-browser-agent batch --bail '<json-commands>' # Stop batch on first error
 ### Element Queries
 
 ```bash
-testmu-browser-agent is visible <selector>           # Check if element is visible
-testmu-browser-agent is hidden <selector>            # Check if element is hidden
-testmu-browser-agent is enabled <selector>           # Check if element is enabled
-testmu-browser-agent is checked <selector>           # Check if checkbox is checked
-testmu-browser-agent scrollintoview <selector>       # Scroll an element into the viewport
+testmu-browser-agent-public is visible <selector>           # Check if element is visible
+testmu-browser-agent-public is hidden <selector>            # Check if element is hidden
+testmu-browser-agent-public is enabled <selector>           # Check if element is enabled
+testmu-browser-agent-public is checked <selector>           # Check if checkbox is checked
+testmu-browser-agent-public scrollintoview <selector>       # Scroll an element into the viewport
 ```
 
 ### Downloads
@@ -335,10 +335,10 @@ testmu-browser-agent device-emulate "iPhone 15"      # Emulate a device (viewpor
 ### Content Injection
 
 ```bash
-testmu-browser-agent addscript 'console.log("hi")'  # Evaluate JS in the current page
-testmu-browser-agent addinitscript 'window.x = 1'   # Register JS that runs on every new document
-testmu-browser-agent addstyle 'body { color: red }'  # Inject CSS into the current page
-testmu-browser-agent expose myCallback               # Expose a function to page JS (calls forwarded as SSE events)
+testmu-browser-agent-public addscript 'console.log("hi")'  # Evaluate JS in the current page
+testmu-browser-agent-public addinitscript 'window.x = 1'   # Register JS that runs on every new document
+testmu-browser-agent-public addstyle 'body { color: red }'  # Inject CSS into the current page
+testmu-browser-agent-public expose myCallback               # Expose a function to page JS (calls forwarded as SSE events)
 ```
 
 ### Video Recording
@@ -354,29 +354,29 @@ testmu-browser-agent video start --quality 90        # Set screencast quality (0
 ### HAR Capture
 
 ```bash
-testmu-browser-agent har start                       # Start capturing network traffic in HAR format
-testmu-browser-agent har stop                        # Stop and return HAR data inline
-testmu-browser-agent har stop --path traffic.har     # Stop and save HAR to file
+testmu-browser-agent-public har start                       # Start capturing network traffic in HAR format
+testmu-browser-agent-public har stop                        # Stop and return HAR data inline
+testmu-browser-agent-public har stop --path traffic.har     # Stop and save HAR to file
 ```
 
 ### Network Request Inspection
 
 ```bash
-testmu-browser-agent requests                        # List all captured network requests
-testmu-browser-agent requests --filter "api"         # Filter requests by URL pattern
-testmu-browser-agent request-detail <id>             # Get full details for a specific request
-testmu-browser-agent response-body <id>              # Get the response body for a specific request
+testmu-browser-agent-public requests                        # List all captured network requests
+testmu-browser-agent-public requests --filter "api"         # Filter requests by URL pattern
+testmu-browser-agent-public request-detail <id>             # Get full details for a specific request
+testmu-browser-agent-public response-body <id>              # Get the response body for a specific request
 ```
 
 ### Streaming
 
 ```bash
-testmu-browser-agent stream-enable                   # Subscribe to CDP events via SSE
-testmu-browser-agent stream-enable --events console,network  # Subscribe to specific event categories
-testmu-browser-agent stream-disable                  # Unsubscribe from CDP events
-testmu-browser-agent stream-status                   # Check if CDP event streaming is active
-testmu-browser-agent screencast start                # Stream live page frames as base64 images
-testmu-browser-agent screencast stop                 # Stop screencast
+testmu-browser-agent-public stream-enable                   # Subscribe to CDP events via SSE
+testmu-browser-agent-public stream-enable --events console,network  # Subscribe to specific event categories
+testmu-browser-agent-public stream-disable                  # Unsubscribe from CDP events
+testmu-browser-agent-public stream-status                   # Check if CDP event streaming is active
+testmu-browser-agent-public screencast start                # Stream live page frames as base64 images
+testmu-browser-agent-public screencast stop                 # Stop screencast
 ```
 
 ### Sessions
@@ -392,16 +392,16 @@ testmu-browser-agent --session work open https://github.com
 testmu-browser-agent --session personal open https://gmail.com
 
 # Check current session
-testmu-browser-agent session
+testmu-browser-agent-public session
 
 # List all active sessions
-testmu-browser-agent session list
+testmu-browser-agent-public session list
 
 # JSON output
-testmu-browser-agent session list --output json
+testmu-browser-agent-public session list --output json
 ```
 
-Each session creates a separate daemon with its own Unix socket in `~/.testmu-browser-agent/`. The `--socket` flag overrides session-based socket resolution for backward compatibility.
+Each session creates a separate daemon with its own Unix socket in `~/.testmu-browser-agent-public/`. The `--socket` flag overrides session-based socket resolution for backward compatibility.
 
 ### CDP / Advanced Browser Control
 
@@ -409,50 +409,50 @@ Low-level Chrome DevTools Protocol actions for advanced diagnostics, security te
 
 ```bash
 # Security
-testmu-browser-agent ignore-certs                    # Ignore TLS certificate errors
-testmu-browser-agent ignore-certs --disable          # Re-enable certificate validation
-testmu-browser-agent bypass-csp                      # Bypass Content Security Policy
-testmu-browser-agent bypass-csp --disable            # Re-enable CSP
+testmu-browser-agent-public ignore-certs                    # Ignore TLS certificate errors
+testmu-browser-agent-public ignore-certs --disable          # Re-enable certificate validation
+testmu-browser-agent-public bypass-csp                      # Bypass Content Security Policy
+testmu-browser-agent-public bypass-csp --disable            # Re-enable CSP
 
 # Cookies and Storage (CDP-level)
-testmu-browser-agent cookies-delete <name>           # Delete a specific cookie by name
-testmu-browser-agent clear-origin <origin>           # Clear all storage for an origin
-testmu-browser-agent cache --disable                 # Disable browser cache
-testmu-browser-agent cache --enable                  # Re-enable browser cache
-testmu-browser-agent indexeddb <origin>              # List IndexedDB databases for an origin
+testmu-browser-agent-public cookies-delete <name>           # Delete a specific cookie by name
+testmu-browser-agent-public clear-origin <origin>           # Clear all storage for an origin
+testmu-browser-agent-public cache --disable                 # Disable browser cache
+testmu-browser-agent-public cache --enable                  # Re-enable browser cache
+testmu-browser-agent-public indexeddb <origin>              # List IndexedDB databases for an origin
 
 # Emulation
-testmu-browser-agent touch-emulation                 # Enable touch event emulation
-testmu-browser-agent touch-emulation --disable       # Disable touch emulation
-testmu-browser-agent media-emulate print             # Emulate CSS media type (print, screen)
-testmu-browser-agent vision-deficiency deuteranopia   # Simulate vision deficiency
-testmu-browser-agent cpu-throttle 4                  # Throttle CPU (4x slowdown)
-testmu-browser-agent cpu-throttle 1                  # Remove CPU throttling
+testmu-browser-agent-public touch-emulation                 # Enable touch event emulation
+testmu-browser-agent-public touch-emulation --disable       # Disable touch emulation
+testmu-browser-agent-public media-emulate print             # Emulate CSS media type (print, screen)
+testmu-browser-agent-public vision-deficiency deuteranopia   # Simulate vision deficiency
+testmu-browser-agent-public cpu-throttle 4                  # Throttle CPU (4x slowdown)
+testmu-browser-agent-public cpu-throttle 1                  # Remove CPU throttling
 
 # Authentication
-testmu-browser-agent fetch-auth <user> <pass>        # Handle HTTP Basic/Digest auth prompt
-testmu-browser-agent fetch-auth-persist <user> <pass> # Persist HTTP auth across navigations
+testmu-browser-agent-public fetch-auth <user> <pass>        # Handle HTTP Basic/Digest auth prompt
+testmu-browser-agent-public fetch-auth-persist <user> <pass> # Persist HTTP auth across navigations
 
 # Performance and Diagnostics
-testmu-browser-agent performance-metrics             # Get runtime performance metrics
+testmu-browser-agent-public performance-metrics             # Get runtime performance metrics
 testmu-browser-agent web-vitals                      # Measure Core Web Vitals (LCP, FID, CLS)
-testmu-browser-agent dom-snapshot                    # Capture a full DOM snapshot
-testmu-browser-agent ax-query                        # Query the accessibility tree via CDP
+testmu-browser-agent-public dom-snapshot                    # Capture a full DOM snapshot
+testmu-browser-agent-public ax-query                        # Query the accessibility tree via CDP
 testmu-browser-agent frame-tree                      # Get the page frame tree hierarchy
 
 # Target and Worker Management
-testmu-browser-agent new-targets                     # List newly created tabs/popups
-testmu-browser-agent sw-unregister                   # Unregister service workers
-testmu-browser-agent browser-logs                    # Start capturing browser-level logs
-testmu-browser-agent browser-logs-get                # Retrieve captured browser logs
+testmu-browser-agent-public new-targets                     # List newly created tabs/popups
+testmu-browser-agent-public sw-unregister                   # Unregister service workers
+testmu-browser-agent-public browser-logs                    # Start capturing browser-level logs
+testmu-browser-agent-public browser-logs-get                # Retrieve captured browser logs
 
 # Scripting
-testmu-browser-agent isolated-world                  # Create an isolated JavaScript world
-testmu-browser-agent scroll-into-view-cdp <nodeId>   # Scroll node into view via CDP (by backend node ID)
+testmu-browser-agent-public isolated-world                  # Create an isolated JavaScript world
+testmu-browser-agent-public scroll-into-view-cdp <nodeId>   # Scroll node into view via CDP (by backend node ID)
 
 # WebAuthn
-testmu-browser-agent webauthn-add                    # Add a virtual WebAuthn authenticator
-testmu-browser-agent webauthn-remove <id>            # Remove a virtual authenticator
+testmu-browser-agent-public webauthn-add                    # Add a virtual WebAuthn authenticator
+testmu-browser-agent-public webauthn-remove <id>            # Remove a virtual authenticator
 
 # Request Data
 testmu-browser-agent get-post-data <requestId>       # Get POST body for a captured request
@@ -469,11 +469,11 @@ testmu-browser-agent upgrade                         # Self-update to the latest
 ### Configuration
 
 ```bash
-testmu-browser-agent set viewport 1920x1080         # Set browser viewport
-testmu-browser-agent set useragent "MyAgent/1.0"    # Override the user agent
-testmu-browser-agent set geolocation "37.77,-122.4" # Set geolocation
-testmu-browser-agent set offline true               # Enable offline mode
-testmu-browser-agent connect <cdp-url>              # Connect to a remote CDP endpoint
+testmu-browser-agent-public set viewport 1920x1080         # Set browser viewport
+testmu-browser-agent-public set useragent "MyAgent/1.0"    # Override the user agent
+testmu-browser-agent-public set geolocation "37.77,-122.4" # Set geolocation
+testmu-browser-agent-public set offline true               # Enable offline mode
+testmu-browser-agent-public connect <cdp-url>              # Connect to a remote CDP endpoint
 testmu-browser-agent device list                    # List emulatable device profiles
 ```
 
@@ -481,7 +481,7 @@ testmu-browser-agent device list                    # List emulatable device pro
 
 ## MCP Server (Claude Code Integration)
 
-testmu-browser-agent ships a Model Context Protocol server that Claude Code can use to control a real Chrome browser during conversations. The MCP server exposes 10 grouped tools and communicates over stdio — no network port required.
+testmu-browser-agent-public ships a Model Context Protocol server that Claude Code can use to control a real Chrome browser during conversations. The MCP server exposes 10 grouped tools and communicates over stdio — no network port required.
 
 ### Setup
 
@@ -490,7 +490,7 @@ Add the following to your Claude Code settings file (`.claude/settings.json` or 
 ```json
 {
   "mcpServers": {
-    "testmu-browser-agent": {
+    "testmu-browser-agent-public": {
       "command": "testmu-browser-agent",
       "args": ["mcp"],
       "env": {}
@@ -504,7 +504,7 @@ For headless mode (useful in CI or when you do not want a visible browser window
 ```json
 {
   "mcpServers": {
-    "testmu-browser-agent": {
+    "testmu-browser-agent-public": {
       "command": "testmu-browser-agent",
       "args": ["mcp", "--headless"]
     }
@@ -555,7 +555,7 @@ testmu-browser-agent --provider lambdatest screenshot --output result.png
 ### Daemon with LambdaTest
 
 ```bash
-testmu-browser-agent serve --provider lambdatest --port 9222
+testmu-browser-agent-public serve --provider lambdatest --port 9222
 ```
 
 ### MCP with LambdaTest
@@ -563,7 +563,7 @@ testmu-browser-agent serve --provider lambdatest --port 9222
 ```json
 {
   "mcpServers": {
-    "testmu-browser-agent": {
+    "testmu-browser-agent-public": {
       "command": "testmu-browser-agent",
       "args": ["mcp", "--provider", "lambdatest"],
       "env": {
@@ -604,7 +604,7 @@ testmu-browser-agent --provider appium --appium-url http://hub:4723 --platform a
 ```json
 {
   "mcpServers": {
-    "testmu-browser-agent": {
+    "testmu-browser-agent-public": {
       "command": "testmu-browser-agent",
       "args": ["mcp", "--provider", "appium", "--platform", "android"],
       "env": {
@@ -624,11 +624,11 @@ Daemon mode starts a long-lived browser process and exposes it over HTTP and a U
 ### Start the daemon
 
 ```bash
-testmu-browser-agent serve                          # HTTP on port 9222 (default)
-testmu-browser-agent serve --port 9000              # Custom port
-testmu-browser-agent serve --socket /tmp/tmu.sock   # Unix socket
-testmu-browser-agent serve --headless               # Headless mode
-testmu-browser-agent serve --provider lambdatest    # Cloud browser
+testmu-browser-agent-public serve                          # HTTP on port 9222 (default)
+testmu-browser-agent-public serve --port 9000              # Custom port
+testmu-browser-agent-public serve --socket /tmp/tmu.sock   # Unix socket
+testmu-browser-agent-public serve --headless               # Headless mode
+testmu-browser-agent-public serve --provider lambdatest    # Cloud browser
 ```
 
 ### REST API
@@ -740,23 +740,23 @@ These flags apply to every command:
 
 ## Docker
 
-Build and run testmu-browser-agent in a Docker container with Chrome included:
+Build and run testmu-browser-agent-public in a Docker container with Chrome included:
 
 ```bash
 # Build the image
-docker build -t testmu-browser-agent:latest .
+docker build -t testmu-browser-agent-public:latest .
 
 # Run a one-off command
-docker run --rm testmu-browser-agent:latest open https://example.com
+docker run --rm testmu-browser-agent-public:latest open https://example.com
 
 # Start the daemon and expose the REST API
-docker run -p 9222:9222 testmu-browser-agent:latest serve --headless
+docker run -p 9222:9222 testmu-browser-agent-public:latest serve --headless
 
 # Run with LambdaTest
 docker run --rm \
   -e LT_USERNAME=your-username \
   -e LT_ACCESS_KEY=your-access-key \
-  testmu-browser-agent:latest --provider lambdatest open https://example.com
+  testmu-browser-agent-public:latest --provider lambdatest open https://example.com
 ```
 
 ---
@@ -765,7 +765,7 @@ docker run --rm \
 
 | Example | Description |
 |---------|-------------|
-| [examples/mcp-claude/](examples/mcp-claude/) | Using testmu-browser-agent as an MCP server inside a Claude Code conversation |
+| [examples/mcp-claude/](examples/mcp-claude/) | Using testmu-browser-agent-public as an MCP server inside a Claude Code conversation |
 | [examples/ci-testing/](examples/ci-testing/) | Running browser tests in a CI pipeline with GitHub Actions |
 | [examples/cli-scripting/](examples/cli-scripting/) | Shell scripts that chain CLI commands for common automation tasks |
 

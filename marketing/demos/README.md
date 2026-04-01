@@ -1,7 +1,7 @@
-# testmu-browser-agent — Demo Assets
+# testmu-browser-agent-public — Demo Assets
 
 This directory contains runnable demo scripts and VHS tape files for recording
-terminal GIF demos of testmu-browser-agent.
+terminal GIF demos of testmu-browser-agent-public.
 
 ---
 

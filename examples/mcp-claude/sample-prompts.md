@@ -1,6 +1,6 @@
-# Sample Prompts for Claude with testmu-browser-agent
+# Sample Prompts for Claude with testmu-browser-agent-public
 
-These prompts demonstrate what you can ask Claude once testmu-browser-agent is configured as an MCP server.
+These prompts demonstrate what you can ask Claude once testmu-browser-agent-public is configured as an MCP server.
 
 ---
 

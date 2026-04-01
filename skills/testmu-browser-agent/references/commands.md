@@ -1,6 +1,6 @@
 # CLI Command Reference
 
-Complete reference for all `testmu-browser-agent` commands, flags, and examples.
+Complete reference for all `testmu-browser-agent-public` commands, flags, and examples.
 
 ## Table of Contents
 
@@ -66,7 +66,7 @@ Navigate the current page to a new URL without opening a new tab.
 
 ```sh
 testmu-browser-agent navigate https://example.com/page2
-testmu-browser-agent goto https://example.com/page2   # alias
+testmu-browser-agent-public goto https://example.com/page2   # alias
 ```
 
 ### `back`
@@ -99,8 +99,8 @@ Close the browser and terminate the daemon.
 
 ```sh
 testmu-browser-agent close
-testmu-browser-agent quit   # alias
-testmu-browser-agent exit   # alias
+testmu-browser-agent-public quit   # alias
+testmu-browser-agent-public exit   # alias
 ```
 
 ---
@@ -133,7 +133,7 @@ testmu-browser-agent fill '[name="email"]' "user@example.com"
 Type text into the currently focused element (does not clear first).
 
 ```sh
-testmu-browser-agent type " additional text"
+testmu-browser-agent-public type " additional text"
 ```
 
 ### `press <key>`
@@ -141,11 +141,11 @@ testmu-browser-agent type " additional text"
 Press a keyboard key. Accepts standard key names.
 
 ```sh
-testmu-browser-agent press Enter
-testmu-browser-agent press Tab
-testmu-browser-agent press Escape
-testmu-browser-agent press "Control+A"
-testmu-browser-agent press "Shift+Tab"
+testmu-browser-agent-public press Enter
+testmu-browser-agent-public press Tab
+testmu-browser-agent-public press Escape
+testmu-browser-agent-public press "Control+A"
+testmu-browser-agent-public press "Shift+Tab"
 ```
 
 ### `select <ref|selector> <value>`
@@ -171,7 +171,7 @@ testmu-browser-agent check @e14
 Uncheck a checkbox.
 
 ```sh
-testmu-browser-agent uncheck '[name="newsletter"]'
+testmu-browser-agent-public uncheck '[name="newsletter"]'
 ```
 
 ### `hover <ref|selector>`
@@ -179,8 +179,8 @@ testmu-browser-agent uncheck '[name="newsletter"]'
 Hover the mouse over an element (triggers CSS hover states, tooltips).
 
 ```sh
-testmu-browser-agent hover '#menu-item'
-testmu-browser-agent hover @e7
+testmu-browser-agent-public hover '#menu-item'
+testmu-browser-agent-public hover @e7
 ```
 
 ### `drag <from> <to>`
@@ -188,8 +188,8 @@ testmu-browser-agent hover @e7
 Drag an element from one target to another. Both accept ref IDs or selectors.
 
 ```sh
-testmu-browser-agent drag @e5 @e10
-testmu-browser-agent drag '#draggable' '#drop-zone'
+testmu-browser-agent-public drag @e5 @e10
+testmu-browser-agent-public drag '#draggable' '#drop-zone'
 ```
 
 ### `upload <ref|selector> <file...>`
@@ -197,8 +197,8 @@ testmu-browser-agent drag '#draggable' '#drop-zone'
 Upload one or more files to a file input.
 
 ```sh
-testmu-browser-agent upload '[type="file"]' /path/to/file.pdf
-testmu-browser-agent upload @e3 file1.png file2.png
+testmu-browser-agent-public upload '[type="file"]' /path/to/file.pdf
+testmu-browser-agent-public upload @e3 file1.png file2.png
 ```
 
 ### `scroll <direction> [amount]`
@@ -206,9 +206,9 @@ testmu-browser-agent upload @e3 file1.png file2.png
 Scroll the page or an element.
 
 ```sh
-testmu-browser-agent scroll down
-testmu-browser-agent scroll up 500
-testmu-browser-agent scroll down 1000
+testmu-browser-agent-public scroll down
+testmu-browser-agent-public scroll up 500
+testmu-browser-agent-public scroll down 1000
 ```
 
 ### `tap <ref|selector>`
@@ -216,7 +216,7 @@ testmu-browser-agent scroll down 1000
 Simulate a touch tap (for mobile viewport testing).
 
 ```sh
-testmu-browser-agent tap @e12
+testmu-browser-agent-public tap @e12
 ```
 
 ### `swipe <direction> [distance]`
@@ -224,8 +224,8 @@ testmu-browser-agent tap @e12
 Simulate a touch swipe gesture.
 
 ```sh
-testmu-browser-agent swipe left 300
-testmu-browser-agent swipe up 500
+testmu-browser-agent-public swipe left 300
+testmu-browser-agent-public swipe up 500
 ```
 
 ---
@@ -272,9 +272,9 @@ testmu-browser-agent get attr '#logo' src       # Attribute value
 Find elements matching a CSS selector and return their details.
 
 ```sh
-testmu-browser-agent find 'a[href]'
-testmu-browser-agent find '.product-card'
-testmu-browser-agent find 'input[type="text"]'
+testmu-browser-agent-public find 'a[href]'
+testmu-browser-agent-public find '.product-card'
+testmu-browser-agent-public find 'input[type="text"]'
 ```
 
 ### `eval <javascript>`
@@ -294,7 +294,7 @@ testmu-browser-agent eval 'localStorage.getItem("token")'
 Show the full DOM tree and computed styles for the focused element.
 
 ```sh
-testmu-browser-agent inspect
+testmu-browser-agent-public inspect
 ```
 
 ---
@@ -366,11 +366,11 @@ State files are stored in `~/.testmu/sessions/` by default.
 Read, inject, or clear browser cookies.
 
 ```sh
-testmu-browser-agent cookies get              # All cookies as JSON
-testmu-browser-agent cookies get --domain example.com
-testmu-browser-agent cookies set '{"name":"token","value":"abc","domain":"example.com"}'
-testmu-browser-agent cookies clear
-testmu-browser-agent cookies clear --domain example.com
+testmu-browser-agent-public cookies get              # All cookies as JSON
+testmu-browser-agent-public cookies get --domain example.com
+testmu-browser-agent-public cookies set '{"name":"token","value":"abc","domain":"example.com"}'
+testmu-browser-agent-public cookies clear
+testmu-browser-agent-public cookies clear --domain example.com
 ```
 
 ### `storage <get|set|clear|remove> [key] [value] [flags]`
@@ -378,15 +378,15 @@ testmu-browser-agent cookies clear --domain example.com
 Manage localStorage and sessionStorage.
 
 ```sh
-testmu-browser-agent storage get                    # All localStorage
-testmu-browser-agent storage get "user_prefs"       # Single key
-testmu-browser-agent storage set "theme" "dark"     # Set value
-testmu-browser-agent storage remove "old_key"       # Remove key
-testmu-browser-agent storage clear                  # Clear all
+testmu-browser-agent-public storage get                    # All localStorage
+testmu-browser-agent-public storage get "user_prefs"       # Single key
+testmu-browser-agent-public storage set "theme" "dark"     # Set value
+testmu-browser-agent-public storage remove "old_key"       # Remove key
+testmu-browser-agent-public storage clear                  # Clear all
 
 # sessionStorage
-testmu-browser-agent storage get --session
-testmu-browser-agent storage set "tab_id" "abc" --session
+testmu-browser-agent-public storage get --session
+testmu-browser-agent-public storage set "tab_id" "abc" --session
 ```
 
 ### `clipboard <read|write> [text]`
@@ -394,8 +394,8 @@ testmu-browser-agent storage set "tab_id" "abc" --session
 Access the system clipboard.
 
 ```sh
-testmu-browser-agent clipboard read
-testmu-browser-agent clipboard write "text to copy"
+testmu-browser-agent-public clipboard read
+testmu-browser-agent-public clipboard write "text to copy"
 ```
 
 ---
@@ -433,8 +433,8 @@ Flags:
 Read browser console messages (log, warn, error).
 
 ```sh
-testmu-browser-agent console
-testmu-browser-agent console --clear   # Clear after reading
+testmu-browser-agent-public console
+testmu-browser-agent-public console --clear   # Clear after reading
 ```
 
 ### `errors [--clear]`
@@ -451,9 +451,9 @@ testmu-browser-agent errors --clear
 Handle browser dialogs (alert, confirm, prompt).
 
 ```sh
-testmu-browser-agent dialog accept
-testmu-browser-agent dialog dismiss
-testmu-browser-agent dialog accept "typed response"   # For prompt dialogs
+testmu-browser-agent-public dialog accept
+testmu-browser-agent-public dialog dismiss
+testmu-browser-agent-public dialog accept "typed response"   # For prompt dialogs
 ```
 
 ### `highlight <ref|selector>`
@@ -470,8 +470,8 @@ testmu-browser-agent highlight '#submit-btn'
 Stream live browser events to stdout (network, console, navigation).
 
 ```sh
-testmu-browser-agent stream
-testmu-browser-agent stream --filter "api"
+testmu-browser-agent-public stream
+testmu-browser-agent-public stream --filter "api"
 ```
 
 ---
@@ -513,7 +513,7 @@ testmu-browser-agent snapshot   # Now operates inside the iframe
 Open a new browser window.
 
 ```sh
-testmu-browser-agent window new
+testmu-browser-agent-public window new
 ```
 
 ---
@@ -560,10 +560,10 @@ testmu-browser-agent batch '[...]' --bail
 Configure browser settings at runtime.
 
 ```sh
-testmu-browser-agent set viewport "1280x800"
-testmu-browser-agent set user-agent "Mozilla/5.0 (custom)"
-testmu-browser-agent set geolocation "37.7749,-122.4194"
-testmu-browser-agent set timezone "America/Los_Angeles"
+testmu-browser-agent-public set viewport "1280x800"
+testmu-browser-agent-public set user-agent "Mozilla/5.0 (custom)"
+testmu-browser-agent-public set geolocation "37.7749,-122.4194"
+testmu-browser-agent-public set timezone "America/Los_Angeles"
 ```
 
 ### `connect <cdp-url>`
@@ -571,8 +571,8 @@ testmu-browser-agent set timezone "America/Los_Angeles"
 Connect to a remote Chrome instance via CDP (Chrome DevTools Protocol).
 
 ```sh
-testmu-browser-agent connect ws://localhost:9222
-testmu-browser-agent connect ws://remote-host:9222/devtools/browser/abc123
+testmu-browser-agent-public connect ws://localhost:9222
+testmu-browser-agent-public connect ws://remote-host:9222/devtools/browser/abc123
 ```
 
 ### `device list`
@@ -600,7 +600,7 @@ Add to `~/.claude/settings.json`:
 ```json
 {
   "mcpServers": {
-    "testmu-browser-agent": {
+    "testmu-browser-agent-public": {
       "command": "testmu-browser-agent",
       "args": ["mcp"]
     }
@@ -613,9 +613,9 @@ Add to `~/.claude/settings.json`:
 Start the HTTP daemon server. Other CLI commands connect to this.
 
 ```sh
-testmu-browser-agent serve
-testmu-browser-agent serve --port 9222
-testmu-browser-agent serve --socket /tmp/browser.sock
+testmu-browser-agent-public serve
+testmu-browser-agent-public serve --port 9222
+testmu-browser-agent-public serve --socket /tmp/browser.sock
 ```
 
 ---
@@ -625,7 +625,7 @@ testmu-browser-agent serve --socket /tmp/browser.sock
 | Problem | Solution |
 |---|---|
 | `browser not found` | Install Chrome or set `--browser-path` |
-| `connection refused` | Run `testmu-browser-agent serve` first, or let a command auto-start it |
+| `connection refused` | Run `testmu-browser-agent-public serve` first, or let a command auto-start it |
 | `ref @e12 not found` | Re-run `snapshot` — refs expire on page navigation |
 | `timeout waiting for selector` | Increase `--timeout`, check the selector is correct |
 | `element not interactable` | Use `wait --selector` first, or scroll element into view |

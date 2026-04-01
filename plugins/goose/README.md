@@ -1,10 +1,10 @@
-# testmu-browser-agent — Goose Plugin
+# testmu-browser-agent-public — Goose Plugin
 
-Adds browser automation to Block's Goose AI agent via `testmu-browser-agent`.
+Adds browser automation to Block's Goose AI agent via `testmu-browser-agent-public`.
 
 ## Prerequisites
 
-- `testmu-browser-agent` installed and on your PATH
+- `testmu-browser-agent-public` installed and on your PATH
 - Chrome (local) or LambdaTest credentials (cloud)
 
 ```bash
@@ -28,7 +28,7 @@ Merge the following into `~/.config/goose/config.yaml`:
 
 ```yaml
 mcp_servers:
-  testmu-browser-agent:
+  testmu-browser-agent-public:
     command: testmu-browser-agent
     args:
       - mcp

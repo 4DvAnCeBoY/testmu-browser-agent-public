@@ -1,4 +1,4 @@
-# testmu-browser-agent — Social Media Launch Kit
+# testmu-browser-agent-public — Social Media Launch Kit
 
 ---
 
@@ -10,9 +10,9 @@
 
 We built a browser automation tool that cuts AI token usage by up to 90% and is resistant to CSS changes.
 
-testmu-browser-agent: AI-native CLI + MCP server, single Go binary, 90+ commands, open source.
+testmu-browser-agent-public: AI-native CLI + MCP server, single Go binary, 90+ commands, open source.
 
-https://github.com/4DvAnCeBoY/testmu-browser-agent-public
+https://github.com/4DvAnCeBoY/testmu-browser-agent-public-public
 
 ---
 
@@ -30,7 +30,7 @@ Your AI agent is burning money just to click a button.
 
 **Tweet 3 — The Solution**
 
-testmu-browser-agent uses stable `@ref` IDs on an accessibility tree snapshot.
+testmu-browser-agent-public uses stable `@ref` IDs on an accessibility tree snapshot.
 
 Instead of dumping raw HTML, the agent sees:
 
@@ -64,7 +64,7 @@ Add to `.claude/settings.json`, restart Claude Code, done.
 
 **Tweet 5 — Works Everywhere**
 
-testmu-browser-agent works as an MCP server with:
+testmu-browser-agent-public works as an MCP server with:
 
 - Claude Code
 - Cursor
@@ -95,7 +95,7 @@ Ships as a curl one-liner or npm package.
 
 **Tweet 7 — Cloud Scale**
 
-Running tests at scale? testmu-browser-agent has LambdaTest cloud built in.
+Running tests at scale? testmu-browser-agent-public has LambdaTest cloud built in.
 
 Flip one flag and your AI-driven tests run on real cloud browsers — no Selenium Grid to manage, no Docker headaches.
 
@@ -108,13 +108,13 @@ Same commands. Same MCP tools. Cloud or local.
 Install in one line:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public/main/scripts/install.sh | sh
+curl -fsSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public-public/main/scripts/install.sh | sh
 ```
 
 Or via npm:
 
 ```bash
-npm install -g testmu-browser-agent
+npm install -g testmu-browser-agent-public
 ```
 
 Then: `testmu-browser-agent mcp` and point your AI tool at it.
@@ -123,9 +123,9 @@ Then: `testmu-browser-agent mcp` and point your AI tool at it.
 
 **Tweet 9 — CTA**
 
-If you're building AI agents that touch a browser, try testmu-browser-agent.
+If you're building AI agents that touch a browser, try testmu-browser-agent-public.
 
-- Star the repo: https://github.com/4DvAnCeBoY/testmu-browser-agent-public
+- Star the repo: https://github.com/4DvAnCeBoY/testmu-browser-agent-public-public
 - Drop feedback in the issues — we read everything
 - RT if you know someone building browser automation with AI
 
@@ -139,23 +139,23 @@ If you're building AI agents that touch a browser, try testmu-browser-agent.
 
 Most AI browser agents dump the entire DOM into context.
 
-testmu-browser-agent sends a compact accessibility snapshot with stable `@ref` IDs instead.
+testmu-browser-agent-public sends a compact accessibility snapshot with stable `@ref` IDs instead.
 
 Same automation. Up to 90% fewer tokens. Your API bill will thank you.
 
-https://github.com/4DvAnCeBoY/testmu-browser-agent-public
+https://github.com/4DvAnCeBoY/testmu-browser-agent-public-public
 
 ---
 
 **Standalone 2 — Go binary angle**
 
-testmu-browser-agent is a single static Go binary.
+testmu-browser-agent-public is a single static Go binary.
 
 No Node runtime. No Python venv. No Docker image.
 
 `curl | sh`, add it to `.claude/settings.json`, and your AI agent has a full browser.
 
-https://github.com/4DvAnCeBoY/testmu-browser-agent-public
+https://github.com/4DvAnCeBoY/testmu-browser-agent-public-public
 
 ---
 
@@ -163,17 +163,17 @@ https://github.com/4DvAnCeBoY/testmu-browser-agent-public
 
 AI browser sessions can contain credentials, cookies, and auth tokens.
 
-testmu-browser-agent encrypts all persisted sessions with AES-256-GCM.
+testmu-browser-agent-public encrypts all persisted sessions with AES-256-GCM.
 
 That's the same standard used by banks. It should be table stakes for browser automation too.
 
-https://github.com/4DvAnCeBoY/testmu-browser-agent-public
+https://github.com/4DvAnCeBoY/testmu-browser-agent-public-public
 
 ---
 
 **Standalone 4 — CI/CD angle**
 
-testmu-browser-agent runs headless out of the box.
+testmu-browser-agent-public runs headless out of the box.
 
 - Local dev: headed Chrome
 - CI: headless, same binary
@@ -181,7 +181,7 @@ testmu-browser-agent runs headless out of the box.
 
 Comprehensive E2E test coverage. No environment-specific hacks.
 
-https://github.com/4DvAnCeBoY/testmu-browser-agent-public
+https://github.com/4DvAnCeBoY/testmu-browser-agent-public-public
 
 ---
 
@@ -191,9 +191,9 @@ https://github.com/4DvAnCeBoY/testmu-browser-agent-public
 
 A class name changed. The CSS selector died. The AI is lost.
 
-testmu-browser-agent references elements by accessibility role and a stable `@ref` ID — not CSS. Survives most UI refactors.
+testmu-browser-agent-public references elements by accessibility role and a stable `@ref` ID — not CSS. Survives most UI refactors.
 
-https://github.com/4DvAnCeBoY/testmu-browser-agent-public
+https://github.com/4DvAnCeBoY/testmu-browser-agent-public-public
 
 ---
 
@@ -201,9 +201,9 @@ https://github.com/4DvAnCeBoY/testmu-browser-agent-public
 
 ---
 
-**Announcing testmu-browser-agent — Open Source AI-Native Browser Automation**
+**Announcing testmu-browser-agent-public — Open Source AI-Native Browser Automation**
 
-We're open sourcing testmu-browser-agent, a CLI and MCP server built in Go that gives AI coding assistants reliable, token-efficient browser control.
+We're open sourcing testmu-browser-agent-public, a CLI and MCP server built in Go that gives AI coding assistants reliable, token-efficient browser control.
 
 **Why we built it**
 
@@ -212,7 +212,7 @@ Most browser automation tools were designed for human-written scripts. When AI a
 1. Selectors are fragile. A CSS class rename breaks a test with no warning.
 2. Context is expensive. Dumping full DOM into an LLM context costs thousands of tokens per step and degrades reasoning quality.
 
-testmu-browser-agent addresses both. The agent receives a compact accessibility tree snapshot where each interactive element has a stable `@ref` ID — unaffected by CSS or layout changes. AI tools send back `@ref` references, not XPath or CSS selectors.
+testmu-browser-agent-public addresses both. The agent receives a compact accessibility tree snapshot where each interactive element has a stable `@ref` ID — unaffected by CSS or layout changes. AI tools send back `@ref` references, not XPath or CSS selectors.
 
 **What it includes**
 
@@ -233,20 +233,20 @@ testmu-browser-agent addresses both. The agent receives a compact accessibility 
 **Getting started**
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public/main/scripts/install.sh | sh
+curl -fsSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public-public/main/scripts/install.sh | sh
 ```
 
 Or install via npm for teams already on Node-based tooling:
 
 ```bash
-npm install -g testmu-browser-agent
+npm install -g testmu-browser-agent-public
 ```
 
-We believe browser automation should be a first-class capability for AI development tools — not an afterthought bolted on top of Selenium. testmu-browser-agent is our bet on what that looks like.
+We believe browser automation should be a first-class capability for AI development tools — not an afterthought bolted on top of Selenium. testmu-browser-agent-public is our bet on what that looks like.
 
 Star the project, try it in your workflow, and let us know what's missing.
 
-https://github.com/4DvAnCeBoY/testmu-browser-agent-public
+https://github.com/4DvAnCeBoY/testmu-browser-agent-public-public
 
 ---
 
@@ -256,7 +256,7 @@ https://github.com/4DvAnCeBoY/testmu-browser-agent-public
 
 **Title:**
 
-Show HN: testmu-browser-agent – AI-native browser automation CLI + MCP server (Go, open source)
+Show HN: testmu-browser-agent-public – AI-native browser automation CLI + MCP server (Go, open source)
 
 ---
 
@@ -268,7 +268,7 @@ I've been frustrated with how AI agents handle browser automation. Two problems 
 
 **Fragile selectors.** AI-generated CSS selectors break on the next frontend deploy. XPath is worse. You end up in a maintenance loop that eats any productivity gain from the AI in the first place.
 
-testmu-browser-agent tries to fix both.
+testmu-browser-agent-public tries to fix both.
 
 **How it works**
 
@@ -300,11 +300,11 @@ Distribution. A static binary that installs with `curl | sh` removes a whole cat
 
 - Comprehensive E2E test suite
 - Open source under MIT
-- Install: `curl -fsSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public/main/scripts/install.sh | sh`
+- Install: `curl -fsSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public-public/main/scripts/install.sh | sh`
 
 Happy to answer questions about the `@ref` system, the daemon design, or the MCP integration.
 
-https://github.com/4DvAnCeBoY/testmu-browser-agent-public
+https://github.com/4DvAnCeBoY/testmu-browser-agent-public-public
 
 ---
 
@@ -320,7 +320,7 @@ https://github.com/4DvAnCeBoY/testmu-browser-agent-public
 
 Background: I've been building browser automation with AI assistants for a while. The workflow is powerful but there's a recurring problem — the AI generates CSS selectors that break the moment a frontend dev renames a class.
 
-I built testmu-browser-agent to fix this. The core idea: instead of exposing raw DOM to the AI, expose an accessibility tree snapshot with stable `@ref` IDs. Something like:
+I built testmu-browser-agent-public to fix this. The core idea: instead of exposing raw DOM to the AI, expose an accessibility tree snapshot with stable `@ref` IDs. Something like:
 
 ```
 button @e45 "Submit"
@@ -331,9 +331,9 @@ The AI navigates using `@ref` references, not CSS. These IDs are derived from th
 
 The project is a Go binary that runs as both a CLI (90+ commands) and an MCP server. Works with Claude Code, Cursor, Copilot, Codex, Gemini CLI, and others. Sessions are AES-256-GCM encrypted. LambdaTest cloud is built in for teams.
 
-Install: `curl -fsSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public/main/scripts/install.sh | sh`
+Install: `curl -fsSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public-public/main/scripts/install.sh | sh`
 
-Repo: https://github.com/4DvAnCeBoY/testmu-browser-agent-public
+Repo: https://github.com/4DvAnCeBoY/testmu-browser-agent-public-public
 
 Would love feedback on the `@ref` approach specifically — I think it's the most interesting design decision and I'm curious what edge cases others see.
 
@@ -375,7 +375,7 @@ The interesting part is how we reduce token usage. Instead of serializing DOM to
 - Comprehensive E2E test suite
 - MIT license
 
-Repo: https://github.com/4DvAnCeBoY/testmu-browser-agent-public
+Repo: https://github.com/4DvAnCeBoY/testmu-browser-agent-public-public
 
 Happy to dig into any of the Go implementation details if people are curious.
 
@@ -383,17 +383,17 @@ Happy to dig into any of the Go implementation details if people are curious.
 
 ### r/ClaudeAI
 
-**Title:** Give Claude Code a real browser with testmu-browser-agent — open source MCP server, stable @ref IDs
+**Title:** Give Claude Code a real browser with testmu-browser-agent-public — open source MCP server, stable @ref IDs
 
 **Post:**
 
-If you're using Claude Code and want it to control a browser, testmu-browser-agent is the cleanest setup I've found.
+If you're using Claude Code and want it to control a browser, testmu-browser-agent-public is the cleanest setup I've found.
 
 **Setup is three steps:**
 
 1. Install the binary:
 ```bash
-curl -fsSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public/main/scripts/install.sh | sh
+curl -fsSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public-public/main/scripts/install.sh | sh
 ```
 
 2. Add to `.claude/settings.json`:
@@ -431,7 +431,7 @@ Claude references `@ref` IDs in its actions. This is much more token-efficient t
 - Extract structured data from pages
 - Run tests and assertions
 
-90+ commands total. Open source on GitHub: https://github.com/4DvAnCeBoY/testmu-browser-agent-public
+90+ commands total. Open source on GitHub: https://github.com/4DvAnCeBoY/testmu-browser-agent-public-public
 
 ---
 
@@ -447,7 +447,7 @@ How We Cut AI Browser Automation Token Usage by Up to 90% with Accessibility Tre
 
 Most AI-driven browser automation tools work by dumping the full page HTML into the model's context. This works, but it's slow and expensive — a typical page sends 10,000–50,000 tokens before the agent takes a single action. The bigger problem is reliability: AI-generated CSS selectors break whenever a frontend developer renames a class or restructures a component.
 
-This post walks through how testmu-browser-agent approaches the problem differently. Instead of HTML serialization, the tool exposes a compact accessibility tree snapshot where every interactive element has a stable `@ref` ID — a short identifier derived from the element's role and position in the accessibility tree rather than its CSS or DOM path. When the AI sends back an action like `click @e45`, the agent resolves it through Chrome DevTools Protocol to the actual DOM node. Because accessibility roles are tied to semantic meaning rather than visual presentation, `@ref` IDs survive most UI refactors intact.
+This post walks through how testmu-browser-agent-public approaches the problem differently. Instead of HTML serialization, the tool exposes a compact accessibility tree snapshot where every interactive element has a stable `@ref` ID — a short identifier derived from the element's role and position in the accessibility tree rather than its CSS or DOM path. When the AI sends back an action like `click @e45`, the agent resolves it through Chrome DevTools Protocol to the actual DOM node. Because accessibility roles are tied to semantic meaning rather than visual presentation, `@ref` IDs survive most UI refactors intact.
 
 The second half of the post covers the architecture of the tool itself: how a local Go daemon manages a persistent Chrome connection over CDP, how the CLI and MCP server mode share the same underlying command layer, how sessions are encrypted with AES-256-GCM for safe use in CI pipelines, and how LambdaTest cloud integration fits into the same command surface without special-casing. The goal is a reference design for anyone building AI-integrated developer tooling where token efficiency, stability, and distribution simplicity all matter at the same time.
 
@@ -465,15 +465,15 @@ AI browser automation that doesn't break when CSS changes
 
 **Description:**
 
-testmu-browser-agent is an open source CLI and MCP server that gives AI coding assistants reliable, token-efficient browser control.
+testmu-browser-agent-public is an open source CLI and MCP server that gives AI coding assistants reliable, token-efficient browser control.
 
-Most browser automation tools expose raw HTML to AI agents — expensive in tokens and fragile when CSS changes. testmu-browser-agent exposes a compact accessibility tree with stable `@ref` IDs instead. Elements are referenced by role and meaning, not by CSS selectors, so AI-driven tests survive UI refactors.
+Most browser automation tools expose raw HTML to AI agents — expensive in tokens and fragile when CSS changes. testmu-browser-agent-public exposes a compact accessibility tree with stable `@ref` IDs instead. Elements are referenced by role and meaning, not by CSS selectors, so AI-driven tests survive UI refactors.
 
 Single Go binary. 90+ commands. 10 MCP tools. Works natively with Claude Code, Cursor, GitHub Copilot, Codex, Gemini CLI, Windsurf, Goose, OpenCode, and Cline.
 
-Install: `curl -fsSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public/main/scripts/install.sh | sh`
+Install: `curl -fsSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public-public/main/scripts/install.sh | sh`
 
-Or: `npm install -g testmu-browser-agent`
+Or: `npm install -g testmu-browser-agent-public`
 
 Features:
 - Stable @ref IDs via accessibility tree — survives CSS changes
@@ -489,7 +489,7 @@ Features:
 
 Hey Product Hunt — maker here.
 
-The core problem testmu-browser-agent is solving: AI browser agents generate CSS selectors that break constantly, and they dump entire HTML pages into context burning thousands of tokens per step.
+The core problem testmu-browser-agent-public is solving: AI browser agents generate CSS selectors that break constantly, and they dump entire HTML pages into context burning thousands of tokens per step.
 
 The fix we landed on is using Chrome's accessibility tree instead of the DOM. Each element gets a short stable `@ref` ID tied to its semantic role, not its visual structure. The AI navigates using those IDs, and a local Go daemon resolves them to real DOM nodes via CDP. Token usage drops up to 90%. Selectors are resistant to routine frontend changes.
 
@@ -497,4 +497,4 @@ The project ships as a single static binary so there's no runtime to install —
 
 We'd love to hear from anyone using AI assistants for browser testing or web scraping — especially about edge cases in the `@ref` system or AI tools we haven't integrated yet. Feedback here or in GitHub issues.
 
-https://github.com/4DvAnCeBoY/testmu-browser-agent-public
+https://github.com/4DvAnCeBoY/testmu-browser-agent-public-public

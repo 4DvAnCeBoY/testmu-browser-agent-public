@@ -32,7 +32,7 @@ Add to `~/.claude/settings.json`:
 ```json
 {
   "mcpServers": {
-    "testmu-browser-agent": {
+    "testmu-browser-agent-public": {
       "command": "testmu-browser-agent",
       "args": ["mcp"]
     }

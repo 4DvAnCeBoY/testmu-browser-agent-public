@@ -1,11 +1,11 @@
-# testmu-browser-agent
+# testmu-browser-agent-public
 
 **The browser automation layer built for AI agents.**
 
 A single Go binary. 90+ commands. 10 MCP tools. Works with every AI coding tool you already use.
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public/main/scripts/install.sh | sh
+curl -sSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public-public/main/scripts/install.sh | sh
 ```
 
 ```bash
@@ -34,7 +34,7 @@ testmu-browser-agent screenshot --output result.png
 | OpenCode | MCP server |
 | Cline | MCP server |
 
-Any tool that can run a shell command or speak MCP works with testmu-browser-agent.
+Any tool that can run a shell command or speak MCP works with testmu-browser-agent-public.
 
 ---
 
@@ -50,7 +50,7 @@ Every interactive element gets a stable `@ref` ID (`@e1`, `@e2`, ...) assigned f
 A native Go binary starts in milliseconds. Daemon mode keeps a single Chrome process alive across commands so there is no browser cold-start overhead between actions. Run commands individually or batch them through the REST API.
 
 ### Complete Command Set
-90+ commands cover the full browser automation surface: navigation, clicks, forms, keyboard, scrolling, screenshots, video recording, network interception, HAR export, cookie management, device emulation, CDP diagnostics, auth credential vault, response body capture, mobile via Appium, and more. Playwright and Puppeteer script the browser. testmu-browser-agent commands the browser — the distinction matters when an AI agent is the one deciding what to do next.
+90+ commands cover the full browser automation surface: navigation, clicks, forms, keyboard, scrolling, screenshots, video recording, network interception, HAR export, cookie management, device emulation, CDP diagnostics, auth credential vault, response body capture, mobile via Appium, and more. Playwright and Puppeteer script the browser. testmu-browser-agent-public commands the browser — the distinction matters when an AI agent is the one deciding what to do next.
 
 ### Cloud-Ready from Day One
 Pass `--provider lambdatest` and your session runs on LambdaTest's real browser grid. No local Chrome required, no Selenium Grid to maintain, no Docker compose file. The same commands work locally and in CI.
@@ -71,7 +71,7 @@ Accessibility snapshots are dramatically smaller than HTML DOM dumps — up to 9
 | Playwright MCP (accessibility) | ~800–1,500 tokens |
 | **testmu-browser-agent snapshot** | **~200–400 tokens** |
 
-testmu-browser-agent returns only the nodes that matter — interactive elements, headings, landmarks — with the minimum fields needed to act on them. Claude Code can process an entire single-page app's snapshot without burning most of its context window.
+testmu-browser-agent-public returns only the nodes that matter — interactive elements, headings, landmarks — with the minimum fields needed to act on them. Claude Code can process an entire single-page app's snapshot without burning most of its context window.
 
 ---
 
@@ -80,7 +80,7 @@ testmu-browser-agent returns only the nodes that matter — interactive elements
 **Step 1 — Install**
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public/main/scripts/install.sh | sh
+curl -sSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public-public/main/scripts/install.sh | sh
 ```
 
 One binary. No Node runtime. No Python environment. No Playwright install step.
@@ -125,7 +125,7 @@ Add to `~/.claude/settings.json` (user-wide) or your project's `.claude/settings
 ```json
 {
   "mcpServers": {
-    "testmu-browser-agent": {
+    "testmu-browser-agent-public": {
       "command": "testmu-browser-agent",
       "args": ["mcp"]
     }
@@ -172,7 +172,7 @@ testmu-browser-agent screenshot --output cart-test.png
 Navigate authenticated flows that JavaScript scrapers can't handle. Extract structured data via the accessibility tree — no brittle CSS selectors to maintain.
 
 ### CI/CD Pipelines
-Smoke test deployments on every push. testmu-browser-agent exits non-zero on errors and returns structured output that your CI pipeline can parse.
+Smoke test deployments on every push. testmu-browser-agent-public exits non-zero on errors and returns structured output that your CI pipeline can parse.
 
 ```yaml
 - name: Smoke test
@@ -197,30 +197,30 @@ Capture HAR exports on every deploy. Intercept network requests to assert on pay
 ### curl (macOS and Linux) — recommended
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public/main/scripts/install.sh | sh
+curl -sSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public-public/main/scripts/install.sh | sh
 ```
 
 ### npm
 
 ```bash
-npm install -g testmu-browser-agent
+npm install -g testmu-browser-agent-public
 ```
 
 ### Homebrew
 
 ```bash
-brew install testmu/tap/testmu-browser-agent
+brew install testmu/tap/testmu-browser-agent-public
 ```
 
 ### Docker
 
 ```bash
-docker run --rm -it ghcr.io/4DvAnCeBoY/testmu-browser-agent-public:latest snapshot
+docker run --rm -it ghcr.io/4DvAnCeBoY/testmu-browser-agent-public-public:latest snapshot
 ```
 
 ### Build from source
 
-Source is not included in this distribution. Download a pre-built binary from [GitHub Releases](https://github.com/4DvAnCeBoY/testmu-browser-agent-public/releases).
+Source is not included in this distribution. Download a pre-built binary from [GitHub Releases](https://github.com/4DvAnCeBoY/testmu-browser-agent-public-public/releases).
 
 ---
 
@@ -238,11 +238,11 @@ Source is not included in this distribution. Download a pre-built binary from [G
 ## Get Started
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public/main/scripts/install.sh | sh
+curl -sSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public-public/main/scripts/install.sh | sh
 ```
 
-- [GitHub](https://github.com/4DvAnCeBoY/testmu-browser-agent-public) — source, issues, releases
-- [Docs](https://github.com/4DvAnCeBoY/testmu-browser-agent-public/tree/main/docs) — full command reference and guides
-- [Changelog](https://github.com/4DvAnCeBoY/testmu-browser-agent-public/blob/main/CHANGELOG.md) — what's new
+- [GitHub](https://github.com/4DvAnCeBoY/testmu-browser-agent-public-public) — source, issues, releases
+- [Docs](https://github.com/4DvAnCeBoY/testmu-browser-agent-public-public/tree/main/docs) — full command reference and guides
+- [Changelog](https://github.com/4DvAnCeBoY/testmu-browser-agent-public-public/blob/main/CHANGELOG.md) — what's new
 
-Star the repo if testmu-browser-agent is useful. It helps other developers find it.
+Star the repo if testmu-browser-agent-public is useful. It helps other developers find it.
