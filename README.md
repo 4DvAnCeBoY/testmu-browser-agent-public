@@ -19,27 +19,6 @@ AI-native browser automation CLI and MCP server for Chrome. Single binary, zero 
 
 ---
 
-## What is testmu-browser-agent?
-
-testmu-browser-agent is a single Go binary that exposes browser automation through three surfaces: a 90+ command CLI, a 10-tool MCP server for Claude Code, and a REST/SSE daemon API.
-
-- **90+ CLI commands** — navigate, click, fill, screenshot, network interception, auth vault, device emulation, video recording, HAR capture, CDP diagnostics, and more, all from the terminal
-- **MCP server with 10 tools** — plug directly into Claude Code so AI agents can control the browser without any additional setup
-- **Accessibility snapshots with `@ref` IDs** — token-efficient, stable element references that survive DOM mutations
-- **LambdaTest cloud integration** — run sessions on real cloud browsers with a single flag; no infrastructure required
-- **AES-256-GCM encryption** — session state is encrypted at rest with a user-supplied storage key
-- **Daemon mode with REST API and SSE** — long-lived browser process with HTTP endpoints and a Server-Sent Events stream for real-time event monitoring
-
-```
-CLI / MCP / REST API
-       |
-  testmu-browser-agent (single Go binary)
-       |
-  Chrome (local) or LambdaTest (cloud)
-```
-
----
-
 ## Quick Start
 
 ```bash
@@ -64,6 +43,54 @@ testmu-browser-agent screenshot --output page.png
 # Close the browser
 testmu-browser-agent close
 ```
+
+---
+
+## What is testmu-browser-agent?
+
+testmu-browser-agent is a single Go binary that exposes browser automation through three surfaces: a 90+ command CLI, a 10-tool MCP server for Claude Code, and a REST/SSE daemon API.
+
+- **90+ CLI commands** — navigate, click, fill, screenshot, network interception, auth vault, device emulation, video recording, HAR capture, CDP diagnostics, and more, all from the terminal
+- **MCP server with 10 tools** — plug directly into Claude Code so AI agents can control the browser without any additional setup
+- **Accessibility snapshots with `@ref` IDs** — token-efficient, stable element references that survive DOM mutations
+- **LambdaTest cloud integration** — run sessions on real cloud browsers with a single flag; no infrastructure required
+- **AES-256-GCM encryption** — session state is encrypted at rest with a user-supplied storage key
+- **Daemon mode with REST API and SSE** — long-lived browser process with HTTP endpoints and a Server-Sent Events stream for real-time event monitoring
+
+---
+
+## Architecture
+
+testmu-browser-agent exposes one engine through three control surfaces:
+
+```
+CLI Command → daemon (127.0.0.1) → Chrome (local or LambdaTest cloud)
+MCP Server  → executor           → Chrome
+REST API    → executor           → Chrome
+```
+
+Three ways to control the same browser. Same commands, same engine, same behavior.
+
+- The **CLI** is the primary interface — 90+ commands, scriptable, composable with shell pipelines
+- The **MCP server** gives Claude Code 10 structured tools with typed JSON schemas — no shell escaping, no output parsing
+- The **REST API + SSE** lets any programming language drive the browser over HTTP, with a real-time event stream on `/events`
+
+All three surfaces share the same underlying executor, so a snapshot taken via MCP returns identical output to a snapshot taken via `curl` or the CLI.
+
+---
+
+## Why testmu-browser-agent?
+
+- **Single binary, zero dependencies** — one Go binary, no Node.js, no Playwright install, no browser drivers
+- **90+ CLI commands** — the most complete browser automation CLI available
+- **Built-in MCP server with 10 tools** — Claude Code gets structured tools with typed JSON schemas; no shell escaping, no output parsing
+- **REST API + SSE** — drive the browser from any programming language over HTTP
+- **Accessibility snapshots with stable `@ref` IDs** — token-efficient element references that survive DOM mutations
+- **AES-256-GCM encrypted session persistence** — save and restore full browser state securely
+- **LambdaTest cloud + Appium mobile testing built in** — switch from local Chrome to cloud or real mobile devices with a single flag
+- **25+ CDP diagnostic commands** — `web-vitals`, `cpu-throttle`, `vision-deficiency`, `webauthn`, and more
+- **Docker support out of the box** — Chrome included in the image, daemon exposed on port 9222
+- **Chrome for Testing auto-install** — `testmu-browser-agent install` downloads the correct Chrome version automatically
 
 ---
 
@@ -479,6 +506,8 @@ testmu-browser-agent device list                    # List emulatable device pro
 ---
 
 ## MCP Server (Claude Code Integration)
+
+> **Unique:** testmu-browser-agent is the only browser automation CLI with a built-in MCP server. Claude Code gets 10 structured tools with typed JSON schemas — no shell escaping, no output parsing.
 
 testmu-browser-agent ships a Model Context Protocol server that Claude Code can use to control a real Chrome browser during conversations. The MCP server exposes 10 grouped tools and communicates over stdio — no network port required.
 
