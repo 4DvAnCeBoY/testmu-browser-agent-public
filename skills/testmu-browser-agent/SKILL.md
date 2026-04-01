@@ -6,7 +6,13 @@ allowed-tools: Bash(testmu-browser-agent:*)
 
 # testmu-browser-agent — AI Agent Skill Guide
 
-AI-native browser automation for Chrome. Drives a real browser (local or LambdaTest cloud) through a CLI. The core loop is: open a page → snapshot the accessibility tree → act on element refs → verify. Supports state persistence so authenticated sessions survive across runs.
+AI-native browser automation for Chrome for Testing. Drives a real browser (local or LambdaTest cloud) through a CLI. The core loop is: open a page → snapshot the accessibility tree → act on element refs → verify. Supports state persistence so authenticated sessions survive across runs.
+
+> **Setup required:** If `testmu-browser-agent` is not installed, run:
+> ```sh
+> curl -sSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public/main/plugins/claude-code/setup.sh | sh
+> ```
+> This installs the binary, downloads Chrome for Testing, registers the MCP server, and installs this skill. Restart Claude Code after running.
 
 ---
 

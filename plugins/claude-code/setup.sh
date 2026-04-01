@@ -67,10 +67,12 @@ else
     info "Installed to ${INSTALL_DIR}/testmu-browser-agent"
 fi
 
-# ─── Step 1b: Install Chrome for Testing if needed ───
-if testmu-browser-agent install --help >/dev/null 2>&1; then
-    info "Installing Chrome for Testing (if not already present)..."
-    testmu-browser-agent install 2>/dev/null && info "Chrome for Testing ready." || warn "Chrome install skipped — using system Chrome."
+# ─── Step 1b: Install Chrome for Testing ───
+info "Installing Chrome for Testing (skip if already present)..."
+if command -v testmu-browser-agent >/dev/null 2>&1; then
+    testmu-browser-agent install 2>&1 | tail -3 || warn "Chrome for Testing install failed — will use system Chrome if available."
+else
+    warn "Binary not on PATH yet — skipping Chrome install. Run 'testmu-browser-agent install' manually."
 fi
 
 # ─── Step 2: Register MCP server in .claude/settings.json ───
@@ -92,31 +94,23 @@ if [ -f "$SETTINGS_FILE" ]; then
     if grep -q "testmu-browser-agent" "$SETTINGS_FILE" 2>/dev/null; then
         info "MCP server already registered in $SETTINGS_FILE"
     else
-        # Merge into existing settings using python (available on macOS/Linux)
-        if command -v python3 >/dev/null 2>&1; then
+        # Merge into existing settings using jq
+        MCP_ENTRY='{"testmu-browser-agent":{"command":"testmu-browser-agent","args":["mcp"],"env":{}}}'
+        if command -v jq >/dev/null 2>&1; then
+            TMP=$(mktemp)
+            jq --argjson entry "$MCP_ENTRY" '.mcpServers += $entry' "$SETTINGS_FILE" > "$TMP" && mv "$TMP" "$SETTINGS_FILE"
+            info "MCP server added to $SETTINGS_FILE"
+        elif command -v python3 >/dev/null 2>&1; then
             python3 -c "
-import json, sys
-
-with open('$SETTINGS_FILE', 'r') as f:
-    settings = json.load(f)
-
-if 'mcpServers' not in settings:
-    settings['mcpServers'] = {}
-
-settings['mcpServers']['testmu-browser-agent'] = {
-    'command': 'testmu-browser-agent',
-    'args': ['mcp'],
-    'env': {}
-}
-
-with open('$SETTINGS_FILE', 'w') as f:
-    json.dump(settings, f, indent=2)
-    f.write('\n')
+import json
+with open('$SETTINGS_FILE','r') as f: s=json.load(f)
+s.setdefault('mcpServers',{})['testmu-browser-agent']={'command':'testmu-browser-agent','args':['mcp'],'env':{}}
+with open('$SETTINGS_FILE','w') as f: json.dump(s,f,indent=2); f.write('\n')
 "
             info "MCP server added to $SETTINGS_FILE"
         else
-            warn "Cannot merge settings (python3 not found). Add manually:"
-            warn '  "testmu-browser-agent": { "command": "testmu-browser-agent", "args": ["mcp"] }'
+            warn "Neither jq nor python3 found. Add manually to $SETTINGS_FILE:"
+            warn '  "mcpServers": { "testmu-browser-agent": { "command": "testmu-browser-agent", "args": ["mcp"] } }'
         fi
     fi
 else
