@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "testmu-browser-agent": {
+      "command": "testmu-browser-agent",
+      "args": ["mcp"],
+      "env": {}
+    }
+  }
+}

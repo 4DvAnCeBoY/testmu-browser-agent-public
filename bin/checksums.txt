@@ -1,0 +1,4 @@
+84a8762c2d589d966dcbc092104ac18124a18f03c7bf7952d59897c3c075990e  testmu-browser-agent-darwin-amd64
+3fac73657c22ed7a6e6c5fded001e9cdd6753f6e28fe7890538b8f7a55f93901  testmu-browser-agent-darwin-arm64
+d71dfd195cebf2525146aa645d887e1940513a88f2a7d51f5aac9f0bc548a5d0  testmu-browser-agent-linux-amd64
+5e2c8ffb24828f439ce0566677e3f1091e320a127091fbe8a17d6930b5b92283  testmu-browser-agent-windows-amd64.exe

@@ -1,0 +1,8 @@
+{
+  "name": "testmu-browser-agent",
+  "description": "AI-native browser automation CLI and MCP server for Chrome",
+  "build": "make build",
+  "test": "make test",
+  "lint": "golangci-lint run ./...",
+  "instructions": "See AGENTS.md for full development instructions. This is a Go project using cobra CLI, go-rod for CDP, with local Chrome and LambdaTest cloud providers."
+}

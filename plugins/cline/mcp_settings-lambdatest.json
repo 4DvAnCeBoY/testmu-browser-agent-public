@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "testmu-browser-agent": {
+      "command": "testmu-browser-agent",
+      "args": ["mcp", "--provider", "lambdatest"],
+      "env": {
+        "LT_USERNAME": "${LT_USERNAME}",
+        "LT_ACCESS_KEY": "${LT_ACCESS_KEY}"
+      },
+      "disabled": false
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "name": "testmu-browser-agent",
+  "version": "1.0.0",
+  "description": "AI-native browser automation CLI and MCP server for Chrome",
+  "bin": {
+    "testmu-browser-agent": "bin/testmu-browser-agent"
+  },
+  "scripts": {
+    "postinstall": "node scripts/postinstall.js"
+  },
+  "keywords": [
+    "browser",
+    "automation",
+    "chrome",
+    "cdp",
+    "mcp",
+    "ai",
+    "testing",
+    "devtools"
+  ],
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/testmu/testmu-browser-agent.git"
+  },
+  "homepage": "https://github.com/testmu/testmu-browser-agent",
+  "os": ["darwin", "linux", "win32"],
+  "cpu": ["x64", "arm64"],
+  "engines": {
+    "node": ">=16"
+  }
+}

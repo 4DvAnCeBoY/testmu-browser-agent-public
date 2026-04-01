@@ -1,0 +1,38 @@
+name: Browser Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  browser-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install testmu-browser-agent
+        run: |
+          curl -sSL https://raw.githubusercontent.com/testmu/testmu-browser-agent/main/scripts/install.sh | sh
+          testmu-browser-agent --help
+
+      - name: Set LambdaTest credentials
+        run: |
+          echo "LT_USERNAME=${{ secrets.LT_USERNAME }}" >> $GITHUB_ENV
+          echo "LT_ACCESS_KEY=${{ secrets.LT_ACCESS_KEY }}" >> $GITHUB_ENV
+
+      - name: Run login flow test
+        run: |
+          chmod +x examples/ci-testing/test-login-flow.sh
+          ./examples/ci-testing/test-login-flow.sh
+
+      - name: Upload screenshots on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: failure-screenshots
+          path: screenshots/
+          retention-days: 7
