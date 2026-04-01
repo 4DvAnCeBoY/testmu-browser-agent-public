@@ -1,9 +1,9 @@
 #!/bin/sh
 # testmu-browser-agent installer
-# Usage: curl -sSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public/main/scripts/install.sh | sh
+# Usage: curl -sSL https://raw.githubusercontent.com/testmu/testmu-browser-agent/main/scripts/install.sh | sh
 set -e
 
-REPO="4DvAnCeBoY/testmu-browser-agent-public"
+REPO="testmu/testmu-browser-agent"
 BINARY="testmu-browser-agent"
 INSTALL_DIR="/usr/local/bin"
 
@@ -71,19 +71,21 @@ if curl -sSfL "$CHECKSUMS_URL" -o "$TMP_DIR/checksums.txt" 2>/dev/null; then
     fi
 fi
 
-# Install
+# Install — prefer ~/.local/bin (no sudo), fall back to /usr/local/bin
 chmod +x "$TMP_DIR/$BINARY"
 if [ -w "$INSTALL_DIR" ]; then
     mv "$TMP_DIR/$BINARY" "$INSTALL_DIR/$BINARY"
-elif command -v sudo >/dev/null 2>&1; then
-    echo "Installing to $INSTALL_DIR (requires sudo)..."
-    sudo mv "$TMP_DIR/$BINARY" "$INSTALL_DIR/$BINARY"
 else
-    echo "Cannot write to $INSTALL_DIR and sudo is not available."
-    echo "Installing to ~/.local/bin instead..."
+    # Use ~/.local/bin to avoid sudo prompts in sandboxed/CI environments
     INSTALL_DIR="$HOME/.local/bin"
     mkdir -p "$INSTALL_DIR"
     mv "$TMP_DIR/$BINARY" "$INSTALL_DIR/$BINARY"
+    if ! echo "$PATH" | grep -q "$INSTALL_DIR"; then
+        echo ""
+        echo "NOTE: Add ~/.local/bin to your PATH:"
+        echo "  export PATH=\"\$HOME/.local/bin:\$PATH\""
+        echo "Add this to your ~/.zshrc or ~/.bashrc to make it permanent."
+    fi
 fi
 
 # Verify
