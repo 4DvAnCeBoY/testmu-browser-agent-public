@@ -1,6 +1,6 @@
-# Introducing testmu-browser-agent-public: AI-Native Browser Automation for the Agentic Era
+# Introducing testmu-browser-agent: AI-Native Browser Automation for the Agentic Era
 
-Browser automation was designed for humans writing test scripts. AI agents are not humans writing test scripts — and the mismatch is costing you tokens, reliability, and developer time. Today we are shipping testmu-browser-agent-public: a single Go binary that gives AI agents a proper interface to the web.
+Browser automation was designed for humans writing test scripts. AI agents are not humans writing test scripts — and the mismatch is costing you tokens, reliability, and developer time. Today we are shipping testmu-browser-agent: a single Go binary that gives AI agents a proper interface to the web.
 
 ---
 
@@ -12,13 +12,13 @@ Today's typical browser automation tools hand an AI agent the raw DOM — thousa
 
 Then the page re-renders. The session state changes. The selector it computed no longer matches. Start over.
 
-AI agents need a browser that speaks their language: structured, minimal, stable output with references that survive normal DOM churn. That is what testmu-browser-agent-public delivers.
+AI agents need a browser that speaks their language: structured, minimal, stable output with references that survive normal DOM churn. That is what testmu-browser-agent delivers.
 
 ---
 
 ## What We Built
 
-testmu-browser-agent-public is a single statically-linked Go binary with three surfaces:
+testmu-browser-agent is a single statically-linked Go binary with three surfaces:
 
 - **CLI** — 90+ commands covering navigation, interaction, querying, media capture, network interception, device emulation, and CDP diagnostics. Pipe-friendly, scriptable, composable.
 - **MCP server** — 10 grouped tools that plug directly into Claude Code, Cursor, GitHub Copilot, Codex, Gemini CLI, Windsurf, Goose, OpenCode, and Cline. Zero configuration beyond a three-line JSON block.
@@ -29,7 +29,7 @@ All three surfaces control the same underlying browser. Switch between them free
 ```
 CLI / MCP / REST API
        |
-  testmu-browser-agent-public (single Go binary)
+  testmu-browser-agent (single Go binary)
        |
   Chrome (local) or LambdaTest (cloud)
 ```
@@ -63,7 +63,7 @@ Here is the core idea. Instead of giving an agent raw HTML, we give it an **acce
 </div>
 ```
 
-**After: what testmu-browser-agent-public gives an AI agent**
+**After: what testmu-browser-agent gives an AI agent**
 
 ```
 form "Sign in"
@@ -107,12 +107,12 @@ This is the core loop for agentic browser use: snapshot, act, diff, repeat. The 
 
 ## Claude Code Integration: The 5-Second Setup
 
-testmu-browser-agent-public's MCP server is the primary way to give Claude browser capabilities. Setup is one edit to your settings file.
+testmu-browser-agent's MCP server is the primary way to give Claude browser capabilities. Setup is one edit to your settings file.
 
 ### Step 1: Install
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public-public/main/scripts/install.sh | sh
+curl -sSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public/main/scripts/install.sh | sh
 ```
 
 ### Step 2: Configure Claude Code
@@ -122,7 +122,7 @@ Add this to `~/.claude/settings.json`:
 ```json
 {
   "mcpServers": {
-    "testmu-browser-agent-public": {
+    "testmu-browser-agent": {
       "command": "testmu-browser-agent",
       "args": ["mcp"],
       "env": {}
@@ -199,7 +199,7 @@ Running in CI or prefer no visible browser window? Pass `--headless`:
 ```json
 {
   "mcpServers": {
-    "testmu-browser-agent-public": {
+    "testmu-browser-agent": {
       "command": "testmu-browser-agent",
       "args": ["mcp", "--headless"]
     }
@@ -211,7 +211,7 @@ Running in CI or prefer no visible browser window? Pass `--headless`:
 
 ## Beyond Local: LambdaTest Cloud
 
-Local Chrome is fine for development. For CI pipelines, cross-browser validation, or testing on configurations you do not own locally, testmu-browser-agent-public has LambdaTest cloud built in.
+Local Chrome is fine for development. For CI pipelines, cross-browser validation, or testing on configurations you do not own locally, testmu-browser-agent has LambdaTest cloud built in.
 
 ```bash
 export LT_USERNAME="your-lt-username"
@@ -228,7 +228,7 @@ The same flag works for the MCP server:
 ```json
 {
   "mcpServers": {
-    "testmu-browser-agent-public": {
+    "testmu-browser-agent": {
       "command": "testmu-browser-agent",
       "args": ["mcp", "--provider", "lambdatest"],
       "env": {
@@ -248,7 +248,7 @@ For teams running parallel test suites, this means high-concurrency browser exec
 
 ## The Complete Toolkit
 
-Accessibility snapshots and MCP are the headline features, but testmu-browser-agent-public covers the full surface area of browser automation:
+Accessibility snapshots and MCP are the headline features, but testmu-browser-agent covers the full surface area of browser automation:
 
 **Network interception**
 
@@ -281,7 +281,7 @@ Test responsive layouts and mobile-specific behavior without physical devices:
 testmu-browser-agent device-emulate "iPhone 15"
 testmu-browser-agent geolocation 37.7749 -122.4194
 testmu-browser-agent timezone America/Los_Angeles
-testmu-browser-agent-public cpu-throttle 4   # 4x CPU slowdown
+testmu-browser-agent cpu-throttle 4   # 4x CPU slowdown
 ```
 
 **Video recording**
@@ -300,9 +300,9 @@ testmu-browser-agent video stop --format frames  # saves PNG frames
 Record full network traffic for performance analysis and debugging:
 
 ```bash
-testmu-browser-agent-public har start
+testmu-browser-agent har start
 # ... navigate, interact ...
-testmu-browser-agent-public har stop --path traffic.har
+testmu-browser-agent har stop --path traffic.har
 ```
 
 **Core Web Vitals**
@@ -338,7 +338,7 @@ testmu-browser-agent --provider appium --platform ios snapshot
 
 ## Architecture
 
-testmu-browser-agent-public is written in Go. That choice was deliberate.
+testmu-browser-agent is written in Go. That choice was deliberate.
 
 **Single binary deployment.** No runtime to install, no dependency tree to manage. Download one file and run it. This matters especially for CI environments where installing Node, Python, or JVM runtimes adds setup time and failure surface.
 
@@ -356,7 +356,7 @@ testmu-browser-agent --session work snapshot   # independent, non-conflicting
 
 **AES-256-GCM session encryption.** Pass `--storage-key` and saved session state (cookies, localStorage snapshots) is encrypted at rest. Useful for storing authenticated sessions in version control or passing them through CI artifact stores.
 
-The REST/SSE daemon exposes every action as an HTTP endpoint, making it straightforward to drive testmu-browser-agent-public from any language with an HTTP client — useful for integration with systems that do not speak MCP.
+The REST/SSE daemon exposes every action as an HTTP endpoint, making it straightforward to drive testmu-browser-agent from any language with an HTTP client — useful for integration with systems that do not speak MCP.
 
 ---
 
@@ -366,7 +366,7 @@ Five commands to go from zero to an AI agent controlling a browser:
 
 ```bash
 # 1. Install
-curl -sSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public-public/main/scripts/install.sh | sh
+curl -sSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public/main/scripts/install.sh | sh
 
 # 2. Verify
 testmu-browser-agent --version
@@ -388,7 +388,7 @@ Add the following to your existing `~/.claude/settings.json` (merge into the `mc
 ```json
 {
   "mcpServers": {
-    "testmu-browser-agent-public": {
+    "testmu-browser-agent": {
       "command": "testmu-browser-agent",
       "args": ["mcp"]
     }
@@ -401,7 +401,7 @@ macOS, Linux, and Windows are all supported. Pre-built binaries for Apple Silico
 **Docker:**
 
 ```bash
-docker run -p 9222:9222 4DvAnCeBoY/testmu-browser-agent-public-public:latest serve --headless
+docker run -p 9222:9222 4DvAnCeBoY/testmu-browser-agent-public:latest serve --headless
 ```
 
 ---
@@ -411,17 +411,17 @@ docker run -p 9222:9222 4DvAnCeBoY/testmu-browser-agent-public-public:latest ser
 The 1.0 release covers local Chrome, LambdaTest cloud, and Appium mobile. The work ahead includes:
 
 - **Additional cloud providers** — support for more cloud browser platforms beyond LambdaTest
-- **Playwright compatibility layer** — run existing Playwright test suites through testmu-browser-agent-public without rewriting them
+- **Playwright compatibility layer** — run existing Playwright test suites through testmu-browser-agent without rewriting them
 - **Persistent ref tracking** — refs that survive navigation by tracking element identity across page loads
 - **Richer snapshot formats** — optional structured JSON snapshots optimized for specific LLM context window sizes
 - **Agent-native test assertions** — semantic assertions that match the way AI agents reason about page state rather than DOM structure
 
 ---
 
-testmu-browser-agent-public is available now. The source is on GitHub. The install script puts you on the latest release in under 30 seconds.
+testmu-browser-agent is available now. The source is on GitHub. The install script puts you on the latest release in under 30 seconds.
 
 If you are building AI agents that need to interact with the web, this is the browser tool that was designed for them.
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public-public/main/scripts/install.sh | sh
+curl -sSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public/main/scripts/install.sh | sh
 ```

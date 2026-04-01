@@ -1,10 +1,10 @@
-# testmu-browser-agent-public — Gemini CLI Plugin
+# testmu-browser-agent — Gemini CLI Plugin
 
-Adds browser automation to Gemini CLI via `testmu-browser-agent-public`.
+Adds browser automation to Gemini CLI via `testmu-browser-agent`.
 
 ## Prerequisites
 
-- `testmu-browser-agent-public` installed and on your PATH
+- `testmu-browser-agent` installed and on your PATH
 - Chrome (local) or LambdaTest credentials (cloud)
 
 ```bash
@@ -27,10 +27,10 @@ cp plugins/gemini-cli/GEMINI.md /your/project/GEMINI.md
 Or copy directly from this repo:
 
 ```bash
-cp /path/to/testmu-browser-agent-public/plugins/gemini-cli/GEMINI.md .
+cp /path/to/testmu-browser-agent/plugins/gemini-cli/GEMINI.md .
 ```
 
-Gemini will now understand how to use `testmu-browser-agent-public` for browser tasks in that project.
+Gemini will now understand how to use `testmu-browser-agent` for browser tasks in that project.
 
 ### Option 2: MCP Server (Tool Calls)
 
@@ -46,7 +46,7 @@ Merge the following into `~/.gemini/settings.json`:
 ```json
 {
   "mcpServers": {
-    "testmu-browser-agent-public": {
+    "testmu-browser-agent": {
       "command": "testmu-browser-agent",
       "args": ["mcp"]
     }

@@ -1,18 +1,18 @@
 # GEMINI.md
 
-Instructions for Gemini CLI working with testmu-browser-agent-public and using it for browser automation tasks.
+Instructions for Gemini CLI working with testmu-browser-agent and using it for browser automation tasks.
 
 ## Project Overview
 
-testmu-browser-agent-public is a CLI and MCP server for AI-native browser automation. It controls Chrome (local or LambdaTest cloud) via the Chrome DevTools Protocol (CDP). Use it whenever you need to navigate websites, fill forms, extract data, take screenshots, or test web applications.
+testmu-browser-agent is a CLI and MCP server for AI-native browser automation. It controls Chrome (local or LambdaTest cloud) via the Chrome DevTools Protocol (CDP). Use it whenever you need to navigate websites, fill forms, extract data, take screenshots, or test web applications.
 
 **Install:**
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public-public/main/scripts/install.sh | sh
+curl -sSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public/main/scripts/install.sh | sh
 ```
 
-Or download from [GitHub Releases](https://github.com/4DvAnCeBoY/testmu-browser-agent-public-public/releases).
+Or download from [GitHub Releases](https://github.com/4DvAnCeBoY/testmu-browser-agent-public/releases).
 
 **Two usage modes:**
 - **CLI**: Shell commands (`testmu-browser-agent open`, `testmu-browser-agent snapshot`, etc.)
@@ -100,9 +100,9 @@ testmu-browser-agent click @e1               # Click by ref
 testmu-browser-agent fill @e1 "value"        # Fill input by ref
 testmu-browser-agent select @e1 "option"     # Select dropdown option
 testmu-browser-agent check @e1               # Check checkbox
-testmu-browser-agent-public press Enter             # Keyboard input
-testmu-browser-agent-public scroll down 500         # Scroll page
-testmu-browser-agent-public hover @e1              # Hover element
+testmu-browser-agent press Enter             # Keyboard input
+testmu-browser-agent scroll down 500         # Scroll page
+testmu-browser-agent hover @e1              # Hover element
 
 # Waiting
 testmu-browser-agent wait --selector ".results"      # Wait for element
@@ -137,11 +137,11 @@ testmu-browser-agent frame '#iframe-id'              # Switch into iframe
 
 # Diagnostics
 testmu-browser-agent errors                          # JavaScript errors
-testmu-browser-agent-public console                         # Console messages
+testmu-browser-agent console                         # Console messages
 
 # Server modes
 testmu-browser-agent mcp                             # Start MCP server (stdio JSON-RPC)
-testmu-browser-agent-public serve                           # Start HTTP daemon
+testmu-browser-agent serve                           # Start HTTP daemon
 ```
 
 ---

@@ -1,4 +1,4 @@
-# testmu-browser-agent-public — Claude Code Plugin
+# testmu-browser-agent — Claude Code Plugin
 
 Browser automation for Claude Code via MCP. Drives a real Chrome browser (local or LambdaTest cloud) from within your Claude Code session.
 
@@ -9,7 +9,7 @@ Browser automation for Claude Code via MCP. Drives a real Chrome browser (local 
 ### One-liner
 
 ```sh
-npx skills add 4DvAnCeBoY/testmu-browser-agent-public-public
+npx skills add 4DvAnCeBoY/testmu-browser-agent-public
 ```
 
 ### Manual MCP Configuration
@@ -21,7 +21,7 @@ Add the MCP server to your Claude Code settings. Choose **one** of:
 ```json
 {
   "mcpServers": {
-    "testmu-browser-agent-public": {
+    "testmu-browser-agent": {
       "command": "testmu-browser-agent",
       "args": ["mcp"],
       "env": {}
@@ -35,7 +35,7 @@ Add the MCP server to your Claude Code settings. Choose **one** of:
 ```json
 {
   "mcpServers": {
-    "testmu-browser-agent-public": {
+    "testmu-browser-agent": {
       "command": "testmu-browser-agent",
       "args": ["mcp"],
       "env": {}
@@ -55,7 +55,7 @@ To run against LambdaTest cloud browsers, use `plugins/claude-code/settings-lamb
 ```json
 {
   "mcpServers": {
-    "testmu-browser-agent-public": {
+    "testmu-browser-agent": {
       "command": "testmu-browser-agent",
       "args": ["mcp", "--provider", "lambdatest"],
       "env": {
@@ -76,7 +76,7 @@ Get your credentials at [lambdatest.com/capabilities-generator](https://www.lamb
 After adding the config and restarting Claude Code, verify the server is active:
 
 1. Open Claude Code and start a new conversation.
-2. Ask: "List the available MCP tools for testmu-browser-agent-public."
+2. Ask: "List the available MCP tools for testmu-browser-agent."
 3. Claude should list 10 tools: `browser_navigate`, `browser_interact`, `browser_query`, `browser_media`, `browser_state`, `browser_tabs`, `browser_wait`, `browser_config`, `browser_network`, `browser_devtools`.
 
 ---
@@ -95,7 +95,7 @@ Claude will call `browser_navigate`, `browser_query`, `browser_interact`, and `b
 
 ## Full Reference
 
-See [`skills/testmu-browser-agent-public/SKILL.md`](../../skills/testmu-browser-agent-public/SKILL.md) for the complete agent guide covering:
+See [`skills/testmu-browser-agent/SKILL.md`](../../skills/testmu-browser-agent/SKILL.md) for the complete agent guide covering:
 - Core workflow (open → snapshot → @ref → verify)
 - Common tasks: forms, auth, scraping, device emulation, network interception
 - All 10 MCP tools with JSON schemas

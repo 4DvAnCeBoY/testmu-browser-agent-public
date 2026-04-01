@@ -1,12 +1,12 @@
-# testmu-browser-agent-public — OpenCode Plugin
+# testmu-browser-agent — OpenCode Plugin
 
-Integrates testmu-browser-agent-public with [OpenCode](https://opencode.ai) as an MCP server, giving OpenCode direct access to browser automation tools.
+Integrates testmu-browser-agent with [OpenCode](https://opencode.ai) as an MCP server, giving OpenCode direct access to browser automation tools.
 
 ## Prerequisites
 
-- `testmu-browser-agent-public` installed and on your `PATH`
+- `testmu-browser-agent` installed and on your `PATH`
   ```sh
-  curl -sSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public-public/main/scripts/install.sh | sh
+  curl -sSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public/main/scripts/install.sh | sh
   ```
 
 ## Installation
@@ -28,7 +28,7 @@ Run the universal plugin installer from the project root:
    ```json
    {
      "mcpServers": {
-       "testmu-browser-agent-public": {
+       "testmu-browser-agent": {
          "command": "testmu-browser-agent",
          "args": ["mcp"]
        }
@@ -36,7 +36,7 @@ Run the universal plugin installer from the project root:
    }
    ```
 
-   If the file already contains other keys or `mcpServers` entries, add only the `"testmu-browser-agent-public"` entry inside the existing `mcpServers` object — do not replace the whole file.
+   If the file already contains other keys or `mcpServers` entries, add only the `"testmu-browser-agent"` entry inside the existing `mcpServers` object — do not replace the whole file.
 
 3. Restart OpenCode.
 
@@ -72,7 +72,7 @@ testmu-browser-agent mcp --help
 
 | Symptom | Fix |
 |---------|-----|
-| `command not found: testmu-browser-agent-public` | Re-run the install script or add `/usr/local/bin` to `PATH` |
+| `command not found: testmu-browser-agent` | Re-run the install script or add `/usr/local/bin` to `PATH` |
 | MCP tools not listed in OpenCode | Check JSON syntax in `~/.opencode/config.json` with `jq . ~/.opencode/config.json` |
 | Browser does not open | Ensure Chrome is installed; run `testmu-browser-agent open https://example.com` directly to test |
 | LambdaTest sessions fail | Verify `LT_USERNAME` and `LT_ACCESS_KEY` are exported in the same shell OpenCode launches from |

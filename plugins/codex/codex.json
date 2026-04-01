@@ -1,7 +1,7 @@
 {
-  "name": "testmu-browser-agent-public",
+  "name": "testmu-browser-agent",
   "description": "AI-native browser automation CLI and MCP server for Chrome. Use to navigate websites, fill forms, extract data, take screenshots, and test web applications. Supports local Chrome and LambdaTest cloud.",
-  "instructions": "testmu-browser-agent-public is a pre-built binary — install from https://github.com/4DvAnCeBoY/testmu-browser-agent-public-public/releases or via the install script. See AGENTS.md for full usage instructions. The core browser automation loop is: open a page → snapshot the accessibility tree (gets @ref IDs) → act on elements by ref → verify. Run 'testmu-browser-agent mcp' to start the MCP server with 10 browser tools. Run 'testmu-browser-agent snapshot' after every navigation to get fresh element refs before interacting.",
+  "instructions": "testmu-browser-agent is a pre-built binary — install from https://github.com/4DvAnCeBoY/testmu-browser-agent-public/releases or via the install script. See AGENTS.md for full usage instructions. The core browser automation loop is: open a page → snapshot the accessibility tree (gets @ref IDs) → act on elements by ref → verify. Run 'testmu-browser-agent mcp' to start the MCP server with 10 browser tools. Run 'testmu-browser-agent snapshot' after every navigation to get fresh element refs before interacting.",
   "commands": {
     "open": "testmu-browser-agent open <url>",
     "snapshot": "testmu-browser-agent snapshot",
@@ -9,6 +9,6 @@
     "fill": "testmu-browser-agent fill @<ref> \"<value>\"",
     "screenshot": "testmu-browser-agent screenshot --output <file>",
     "mcp": "testmu-browser-agent mcp",
-    "serve": "testmu-browser-agent-public serve"
+    "serve": "testmu-browser-agent serve"
   }
 }

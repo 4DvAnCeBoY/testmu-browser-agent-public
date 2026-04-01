@@ -1,5 +1,5 @@
 {
-  "name": "testmu-browser-agent-public",
+  "name": "testmu-browser-agent",
   "description": "AI-native browser automation CLI and MCP server for Chrome",
-  "instructions": "testmu-browser-agent-public is a pre-built binary — install it from https://github.com/4DvAnCeBoY/testmu-browser-agent-public-public/releases or via the install script. See AGENTS.md for full usage instructions and browser automation workflows."
+  "instructions": "testmu-browser-agent is a pre-built binary — install it from https://github.com/4DvAnCeBoY/testmu-browser-agent-public/releases or via the install script. See AGENTS.md for full usage instructions and browser automation workflows."
 }

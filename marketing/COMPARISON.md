@@ -1,14 +1,14 @@
-# testmu-browser-agent-public: Competitive Comparison
+# testmu-browser-agent: Competitive Comparison
 
 ## Executive Summary
 
-testmu-browser-agent-public is a Go single-binary browser automation tool built for AI agents. It ships three surfaces in one download — a 90+ command CLI, a 10-tool MCP server, and a REST/SSE daemon API — and connects to either a local Chrome instance or LambdaTest cloud with a single flag. Where Playwright MCP and Chrome DevTools MCP each burn an estimated 13,000–17,000 tokens before a single page action, testmu-browser-agent-public's CLI surface costs zero tokens for tool definitions and produces 200–400 token accessibility snapshots. Where agent-browser (Vercel) is the closest CLI peer, testmu-browser-agent-public extends the command set by ~80%, adds encrypted session persistence, a credential vault, a policy engine, Appium mobile testing, and first-class LambdaTest cloud integration — while remaining a single 10–15 MB binary installable with one curl command.
+testmu-browser-agent is a Go single-binary browser automation tool built for AI agents. It ships three surfaces in one download — a 90+ command CLI, a 10-tool MCP server, and a REST/SSE daemon API — and connects to either a local Chrome instance or LambdaTest cloud with a single flag. Where Playwright MCP and Chrome DevTools MCP each burn an estimated 13,000–17,000 tokens before a single page action, testmu-browser-agent's CLI surface costs zero tokens for tool definitions and produces 200–400 token accessibility snapshots. Where agent-browser (Vercel) is the closest CLI peer, testmu-browser-agent extends the command set by ~80%, adds encrypted session persistence, a credential vault, a policy engine, Appium mobile testing, and first-class LambdaTest cloud integration — while remaining a single 10–15 MB binary installable with one curl command.
 
 ---
 
 ## Feature Comparison Table
 
-| Feature | testmu-browser-agent-public | agent-browser (Vercel) | Playwright MCP | Chrome DevTools MCP | Puppeteer | Selenium | Bright Data Agent Browser |
+| Feature | testmu-browser-agent | agent-browser (Vercel) | Playwright MCP | Chrome DevTools MCP | Puppeteer | Selenium | Bright Data Agent Browser |
 |---|---|---|---|---|---|---|---|
 | **Language** | Go | Rust | TypeScript (Node) | TypeScript (Node) | JavaScript (Node) | Java (primary) | Closed-source (cloud) |
 | **Binary size** | ~10–15 MB | ~8–12 MB | N/A (npm package) | N/A (npm package) | N/A (npm package) | N/A (jar + driver) | N/A (SaaS) |
@@ -48,8 +48,8 @@ Token consumption is a first-order cost in AI agent workflows. Every token spent
 
 | Tool | Tool definition tokens | Source |
 |---|---|---|
-| testmu-browser-agent-public (CLI mode) | **0** | No MCP registration required |
-| testmu-browser-agent-public (MCP mode) | ~800–1,200 | 10 compact grouped tools |
+| testmu-browser-agent (CLI mode) | **0** | No MCP registration required |
+| testmu-browser-agent (MCP mode) | ~800–1,200 | 10 compact grouped tools |
 | agent-browser | **0** | CLI-based, no MCP |
 | Playwright MCP | ~13,700 | 50+ individual tools with full JSON schemas |
 | Chrome DevTools MCP | ~17,000 | 30+ verbose tools with nested schemas |
@@ -58,7 +58,7 @@ Token consumption is a first-order cost in AI agent workflows. Every token spent
 
 | Tool | Tokens per snapshot | Notes |
 |---|---|---|
-| testmu-browser-agent-public | 200–400 | Compact `@ref` accessibility tree, configurable `--max-length` |
+| testmu-browser-agent | 200–400 | Compact `@ref` accessibility tree, configurable `--max-length` |
 | agent-browser | 200–400 | Same `@ref` approach |
 | Playwright MCP | 3,000–5,000 | Full ARIA tree or screenshot bytes |
 | Chrome DevTools MCP | 3,000–6,000 | DOM tree serialization |
@@ -80,12 +80,12 @@ Chrome DevTools MCP:
   10 snapshots:      40,000 tokens
   Total tooling:     57,000 tokens
 
-testmu-browser-agent-public (CLI):
+testmu-browser-agent (CLI):
   Tool definitions:       0 tokens
   10 snapshots:       3,000 tokens  (300 avg each)
   Total tooling:      3,000 tokens
 
-testmu-browser-agent-public (MCP):
+testmu-browser-agent (MCP):
   Tool definitions:   1,000 tokens
   10 snapshots:       3,000 tokens
   Total tooling:      4,000 tokens
@@ -94,7 +94,7 @@ testmu-browser-agent-public (MCP):
 Estimated savings over Playwright MCP: up to ~44,700 tokens per 10-action workflow (up to ~92% reduction).
 Estimated savings over Chrome DevTools MCP: up to ~53,000 tokens per 10-action workflow (up to ~93% reduction).
 
-On a 200k-token context window, Playwright MCP exhausts ~24% of available context on tooling overhead alone in a 10-action session. testmu-browser-agent-public uses ~1.5%.
+On a 200k-token context window, Playwright MCP exhausts ~24% of available context on tooling overhead alone in a 10-action session. testmu-browser-agent uses ~1.5%.
 
 ---
 
@@ -102,7 +102,7 @@ On a 200k-token context window, Playwright MCP exhausts ~24% of available contex
 
 ### Supported AI Tools
 
-| AI Tool | testmu-browser-agent-public | agent-browser | Playwright MCP | Chrome DevTools MCP | Puppeteer | Selenium |
+| AI Tool | testmu-browser-agent | agent-browser | Playwright MCP | Chrome DevTools MCP | Puppeteer | Selenium |
 |---|---|---|---|---|---|---|
 | Claude Code | Yes (CLI + MCP) | Yes (CLI) | Yes (MCP) | Yes (MCP) | Manual | Manual |
 | Cursor | Yes (CLI + MCP) | Yes (CLI) | Yes (MCP) | Yes (MCP) | Manual | Manual |
@@ -114,22 +114,22 @@ On a 200k-token context window, Playwright MCP exhausts ~24% of available contex
 | OpenCode | Yes (CLI) | Yes (CLI) | No | No | Manual | Manual |
 | Cline | Yes (CLI + MCP) | No | Yes (MCP) | Yes (MCP) | Manual | Manual |
 
-**Key distinction:** testmu-browser-agent-public is one of few tools that supports all major AI agent surfaces — both CLI-first tools (Codex, Gemini CLI, Goose) and MCP-first tools (Claude Code, Cline, Windsurf) — with native integration, not workarounds.
+**Key distinction:** testmu-browser-agent is one of few tools that supports all major AI agent surfaces — both CLI-first tools (Codex, Gemini CLI, Goose) and MCP-first tools (Claude Code, Cline, Windsurf) — with native integration, not workarounds.
 
 ### Setup Complexity
 
-**testmu-browser-agent-public (CLI mode — any agent):**
+**testmu-browser-agent (CLI mode — any agent):**
 ```bash
-curl -sSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public-public/main/scripts/install.sh | sh
+curl -sSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public/main/scripts/install.sh | sh
 # Done. Zero config.
 ```
 Config lines required: **0**
 
-**testmu-browser-agent-public (MCP mode — Claude Code):**
+**testmu-browser-agent (MCP mode — Claude Code):**
 ```json
 {
   "mcpServers": {
-    "testmu-browser-agent-public": {
+    "testmu-browser-agent": {
       "command": "testmu-browser-agent",
       "args": ["mcp"]
     }
@@ -174,16 +174,16 @@ Config lines required: **9** plus manual Chrome path configuration.
 
 ## Unique Advantages
 
-The following capabilities exist only in testmu-browser-agent-public among this comparison set.
+The following capabilities exist only in testmu-browser-agent among this comparison set.
 
 ### Go single binary
-testmu-browser-agent-public compiles to a single self-contained binary (~10–15 MB) with no runtime dependencies. Compare this to Playwright MCP's requirement for Node.js, npm, and a ~200 MB Playwright installation. Go's toolchain is widely installed and the compile cycle is fast, which can ease community contribution.
+testmu-browser-agent compiles to a single self-contained binary (~10–15 MB) with no runtime dependencies. Compare this to Playwright MCP's requirement for Node.js, npm, and a ~200 MB Playwright installation. Go's toolchain is widely installed and the compile cycle is fast, which can ease community contribution.
 
 ### LambdaTest cloud built-in
-One flag (`--provider lambdatest`) switches any command from local Chrome to a real cloud browser. This requires no proxy configuration, no separate SDK, and no infrastructure. LambdaTest sessions get automatic video recording, HAR capture, and pass/fail test marking in the dashboard. Among the tools in this comparison, testmu-browser-agent-public is the only one that ships cloud-browser switching as a built-in CLI flag.
+One flag (`--provider lambdatest`) switches any command from local Chrome to a real cloud browser. This requires no proxy configuration, no separate SDK, and no infrastructure. LambdaTest sessions get automatic video recording, HAR capture, and pass/fail test marking in the dashboard. Among the tools in this comparison, testmu-browser-agent is the only one that ships cloud-browser switching as a built-in CLI flag.
 
 ### Appium mobile testing
-The `--provider appium` flag connects testmu-browser-agent-public to an Appium server, enabling the same 90+ command surface against real iOS and Android devices or emulators. Playwright MCP supports device viewport emulation but not actual mobile device control. Selenium requires a separate Appium configuration entirely distinct from its web automation API.
+The `--provider appium` flag connects testmu-browser-agent to an Appium server, enabling the same 90+ command surface against real iOS and Android devices or emulators. Playwright MCP supports device viewport emulation but not actual mobile device control. Selenium requires a separate Appium configuration entirely distinct from its web automation API.
 
 ### AES-256-GCM encrypted sessions
 Session state (cookies, localStorage, storage keys) is encrypted at rest using AES-256-GCM with a user-supplied key. No other tool in this set encrypts persisted browser state. This matters in CI environments where session files may be committed to version control or stored in shared artifact stores.
@@ -192,19 +192,19 @@ Session state (cookies, localStorage, storage keys) is encrypted at rest using A
 The `auth` command group provides a named credential store: save credentials once (`auth save`), replay them (`auth login`) across sessions. Credentials are stored encrypted. No MCP tool or other CLI in this set has an equivalent abstraction — users must either hardcode credentials or build their own vault.
 
 ### Policy engine
-The internal policy package allows defining allow/deny rules for requests and actions, enabling testmu-browser-agent-public to act as a controlled automation agent in sensitive environments. Bright Data has proxy-level rules, but no other tool exposes a programmable policy surface at the automation layer.
+The internal policy package allows defining allow/deny rules for requests and actions, enabling testmu-browser-agent to act as a controlled automation agent in sensitive environments. Bright Data has proxy-level rules, but no other tool exposes a programmable policy surface at the automation layer.
 
 ### REST API and SSE daemon
-The daemon process (`testmu-browser-agent-public serve`) exposes HTTP endpoints and a Server-Sent Events stream. This enables browser automation to be orchestrated from any language over HTTP — not just from Go or Node processes. The SSE stream delivers real-time browser events (console messages, network requests, navigation events) to any subscriber.
+The daemon process (`testmu-browser-agent serve`) exposes HTTP endpoints and a Server-Sent Events stream. This enables browser automation to be orchestrated from any language over HTTP — not just from Go or Node processes. The SSE stream delivers real-time browser events (console messages, network requests, navigation events) to any subscriber.
 
 ### 90+ commands (most complete CLI)
-agent-browser ships ~50 commands. testmu-browser-agent-public ships 90+, adding: `har start/stop`, `video start/stop`, `trace start/stop`, `profiler start/stop`, `web-vitals`, `performance-metrics`, `dom-snapshot`, `ax-query`, `frame-tree`, `webauthn-add/remove`, `isolated-world`, `expose`, `stream-enable/disable`, `screencast start/stop`, `batch`, `diff snapshot/url/screenshot`, `auth save/login/list/show/delete`, `route`/`unroute`, `request-detail`, `response-body`, `geolocation`, `timezone`, `locale`, `permissions`, `device-emulate`, `device-list`, `cpu-throttle`, `vision-deficiency`, `media-emulate`, `touch-emulation`, `ignore-certs`, `bypass-csp`, `fetch-auth`, `fetch-auth-persist`, `sw-unregister`, `indexeddb`, `clear-origin`, `browser-logs`, `new-targets`, and more.
+agent-browser ships ~50 commands. testmu-browser-agent ships 90+, adding: `har start/stop`, `video start/stop`, `trace start/stop`, `profiler start/stop`, `web-vitals`, `performance-metrics`, `dom-snapshot`, `ax-query`, `frame-tree`, `webauthn-add/remove`, `isolated-world`, `expose`, `stream-enable/disable`, `screencast start/stop`, `batch`, `diff snapshot/url/screenshot`, `auth save/login/list/show/delete`, `route`/`unroute`, `request-detail`, `response-body`, `geolocation`, `timezone`, `locale`, `permissions`, `device-emulate`, `device-list`, `cpu-throttle`, `vision-deficiency`, `media-emulate`, `touch-emulation`, `ignore-certs`, `bypass-csp`, `fetch-auth`, `fetch-auth-persist`, `sw-unregister`, `indexeddb`, `clear-origin`, `browser-logs`, `new-targets`, and more.
 
 ---
 
 ## When to Choose What
 
-### Choose testmu-browser-agent-public when:
+### Choose testmu-browser-agent when:
 - You are building AI agents that need browser control from any tool (Claude Code, Cursor, Codex, Gemini CLI, Goose, Cline, Windsurf, etc.)
 - Token efficiency matters — you are running multi-step workflows or have context window constraints
 - You want a single binary with no Node.js, no npm, no runtime dependency installation
@@ -250,4 +250,4 @@ agent-browser ships ~50 commands. testmu-browser-agent-public ships 90+, adding:
 
 ---
 
-*Document reflects testmu-browser-agent-public at time of writing. Competitor feature data based on publicly available documentation.*
+*Document reflects testmu-browser-agent at time of writing. Competitor feature data based on publicly available documentation.*

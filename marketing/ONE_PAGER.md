@@ -1,4 +1,4 @@
-# testmu-browser-agent-public — AI-Native Browser Automation for the Agentic Era
+# testmu-browser-agent — AI-Native Browser Automation for the Agentic Era
 
 ---
 
@@ -10,7 +10,7 @@ AI agents need to see and interact with the web — but existing browser tools w
 
 ## The Solution
 
-**testmu-browser-agent-public** is a single Go binary that speaks the language of AI agents. Instead of noisy screenshots, it serves accessibility tree snapshots with stable `@ref` IDs — giving your AI exactly what it needs in ~200 tokens instead of 3,000–5,000. Drop in the MCP config and Claude Code, Cursor, Copilot, Codex, or any of seven other tools can drive a real browser in seconds.
+**testmu-browser-agent** is a single Go binary that speaks the language of AI agents. Instead of noisy screenshots, it serves accessibility tree snapshots with stable `@ref` IDs — giving your AI exactly what it needs in ~200 tokens instead of 3,000–5,000. Drop in the MCP config and Claude Code, Cursor, Copilot, Codex, or any of seven other tools can drive a real browser in seconds.
 
 ---
 
@@ -32,7 +32,7 @@ AI agents need to see and interact with the web — but existing browser tools w
 ## How It Works
 
 ```
-1. INSTALL    curl -sSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public-public/main/scripts/install.sh | sh
+1. INSTALL    curl -sSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public/main/scripts/install.sh | sh
 
 2. CONNECT    Add one JSON block to your Claude Code MCP config
 
@@ -65,7 +65,7 @@ That's it. No Dockerfile. No driver binaries. No version pinning.
 
 ## Why TestMu
 
-TestMu builds infrastructure for the agentic testing era. The team has shipped production-grade browser tooling used across enterprise CI pipelines and brings that reliability to the open-source community. testmu-browser-agent-public is the first tool purpose-built for the reality that AI agents — not humans — are increasingly the ones clicking around your app.
+TestMu builds infrastructure for the agentic testing era. The team has shipped production-grade browser tooling used across enterprise CI pipelines and brings that reliability to the open-source community. testmu-browser-agent is the first tool purpose-built for the reality that AI agents — not humans — are increasingly the ones clicking around your app.
 
 ---
 
@@ -73,10 +73,10 @@ TestMu builds infrastructure for the agentic testing era. The team has shipped p
 
 ```bash
 # Install (macOS / Linux)
-curl -sSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public-public/main/scripts/install.sh | sh
+curl -sSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public/main/scripts/install.sh | sh
 ```
 
-**GitHub:** github.com/4DvAnCeBoY/testmu-browser-agent-public-public
+**GitHub:** github.com/4DvAnCeBoY/testmu-browser-agent-public
 **License:** Open source
 
 ---

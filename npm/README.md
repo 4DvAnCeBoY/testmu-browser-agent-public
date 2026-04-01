@@ -1,11 +1,11 @@
-# testmu-browser-agent-public
+# testmu-browser-agent
 
 AI-native browser automation CLI and MCP server for Chrome.
 
 ## Install
 
 ```bash
-npm install -g testmu-browser-agent-public
+npm install -g testmu-browser-agent
 ```
 
 ## Usage
@@ -16,4 +16,4 @@ testmu-browser-agent snapshot
 testmu-browser-agent screenshot --output page.png
 ```
 
-For full documentation, see the [main README](https://github.com/4DvAnCeBoY/testmu-browser-agent-public-public).
+For full documentation, see the [main README](https://github.com/4DvAnCeBoY/testmu-browser-agent-public).

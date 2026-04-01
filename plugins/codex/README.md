@@ -1,10 +1,10 @@
-# testmu-browser-agent-public — OpenAI Codex Plugin
+# testmu-browser-agent — OpenAI Codex Plugin
 
-Adds browser automation to OpenAI Codex CLI via `testmu-browser-agent-public`.
+Adds browser automation to OpenAI Codex CLI via `testmu-browser-agent`.
 
 ## Prerequisites
 
-- `testmu-browser-agent-public` installed and on your PATH
+- `testmu-browser-agent` installed and on your PATH
 - Chrome (local) or LambdaTest credentials (cloud)
 
 ```bash
@@ -26,7 +26,7 @@ cp plugins/codex/codex.json /your/project/codex.json
 
 ### Option 2: AGENTS.md (Agent instructions)
 
-Copy the enhanced `AGENTS.md` to your project root. It adds a "Using testmu-browser-agent-public" section that guides Codex on browser automation tasks.
+Copy the enhanced `AGENTS.md` to your project root. It adds a "Using testmu-browser-agent" section that guides Codex on browser automation tasks.
 
 ```bash
 cp plugins/codex/AGENTS.md /your/project/AGENTS.md
@@ -47,7 +47,7 @@ Merge the following into `~/.codex/config.json`:
 ```json
 {
   "mcpServers": {
-    "testmu-browser-agent-public": {
+    "testmu-browser-agent": {
       "command": "testmu-browser-agent",
       "args": ["mcp"]
     }

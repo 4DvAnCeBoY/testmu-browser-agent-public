@@ -17,7 +17,7 @@
 
 set -euo pipefail
 
-BIN="testmu-browser-agent-public"
+BIN="testmu-browser-agent"
 TARGET_URL="${1:-https://books.toscrape.com}"
 OUTPUT_DIR="${OUTPUT_DIR:-.}"
 SCREENSHOT_FILE="${SCREENSHOT_FILE:-page.png}"

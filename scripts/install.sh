@@ -1,9 +1,9 @@
 #!/bin/sh
 # testmu-browser-agent installer
-# Usage: curl -sSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public-public/main/scripts/install.sh | sh
+# Usage: curl -sSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public/main/scripts/install.sh | sh
 set -e
 
-REPO="4DvAnCeBoY/testmu-browser-agent-public-public"
+REPO="4DvAnCeBoY/testmu-browser-agent-public"
 BINARY="testmu-browser-agent"
 INSTALL_DIR="/usr/local/bin"
 
@@ -89,7 +89,7 @@ fi
 # Verify
 VERSION=$("$INSTALL_DIR/$BINARY" --version 2>/dev/null || echo "installed")
 echo ""
-echo "testmu-browser-agent-public $VERSION"
+echo "testmu-browser-agent $VERSION"
 echo "Installed to: $INSTALL_DIR/$BINARY"
 echo ""
 echo "Quick start:"

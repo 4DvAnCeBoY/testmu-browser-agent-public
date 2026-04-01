@@ -1,18 +1,18 @@
 # AGENTS.md
 
-Instructions for AI coding agents using testmu-browser-agent-public for browser automation.
+Instructions for AI coding agents using testmu-browser-agent for browser automation.
 
 ## Overview
 
-testmu-browser-agent-public is a pre-built binary CLI and MCP server for AI-native browser automation. Install it, then use it to control Chrome.
+testmu-browser-agent is a pre-built binary CLI and MCP server for AI-native browser automation. Install it, then use it to control Chrome.
 
 **Install:**
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public-public/main/scripts/install.sh | sh
+curl -sSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public/main/scripts/install.sh | sh
 ```
 
-Or download from [GitHub Releases](https://github.com/4DvAnCeBoY/testmu-browser-agent-public-public/releases).
+Or download from [GitHub Releases](https://github.com/4DvAnCeBoY/testmu-browser-agent-public/releases).
 
 ## Core Workflow
 
@@ -56,7 +56,7 @@ testmu-browser-agent click @e1                       # Click by ref
 testmu-browser-agent fill @e1 "value"               # Fill input by ref
 testmu-browser-agent select @e1 "option"            # Select dropdown
 testmu-browser-agent check @e1                      # Check checkbox
-testmu-browser-agent-public press Enter                    # Keyboard input
+testmu-browser-agent press Enter                    # Keyboard input
 testmu-browser-agent wait --selector ".results"     # Wait for element
 testmu-browser-agent wait --url "/done"             # Wait for URL
 testmu-browser-agent wait --text "Success"          # Wait for text

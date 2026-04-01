@@ -1,9 +1,9 @@
 ---
-name: testmu-browser-agent-public
+name: testmu-browser-agent
 description: AI-native browser automation for Chrome. Use when you need to navigate websites, fill forms, take screenshots, extract data, or test web applications. Supports local Chrome and LambdaTest cloud browsers via CLI or MCP server.
 ---
 
-# testmu-browser-agent-public — AI Agent Skill Guide
+# testmu-browser-agent — AI Agent Skill Guide
 
 AI-native browser automation for Chrome. Drives a real browser (local or LambdaTest cloud) through a CLI or MCP server. The core loop is: open a page → snapshot the accessibility tree → act on element refs → verify. Supports state persistence so authenticated sessions survive across runs.
 
@@ -288,7 +288,7 @@ testmu-browser-agent mcp
 ```json
 {
   "mcpServers": {
-    "testmu-browser-agent-public": {
+    "testmu-browser-agent": {
       "command": "testmu-browser-agent",
       "args": ["mcp"]
     }

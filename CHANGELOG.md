@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to testmu-browser-agent-public are documented here.
+All notable changes to testmu-browser-agent are documented here.
 
 ## [Unreleased]
 

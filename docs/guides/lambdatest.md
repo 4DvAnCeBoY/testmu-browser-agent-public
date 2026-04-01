@@ -1,6 +1,6 @@
 # LambdaTest Integration
 
-`testmu-browser-agent-public` can run browser sessions on [LambdaTest](https://www.lambdatest.com/) cloud infrastructure instead of a local browser. This enables parallel test execution, cross-browser testing, and CI/CD pipelines without managing local browser installations.
+`testmu-browser-agent` can run browser sessions on [LambdaTest](https://www.lambdatest.com/) cloud infrastructure instead of a local browser. This enables parallel test execution, cross-browser testing, and CI/CD pipelines without managing local browser installations.
 
 ---
 
@@ -68,7 +68,7 @@ Quick reference:
 ```json
 {
   "mcpServers": {
-    "testmu-browser-agent-public": {
+    "testmu-browser-agent": {
       "command": "testmu-browser-agent",
       "args": ["mcp", "--provider", "lambdatest"],
       "env": {
@@ -134,7 +134,7 @@ export LT_ACCESS_KEY="your-lt-access-key"
 
 ### `Error: Unsupported OS` during install
 
-Windows users: download `testmu-browser-agent-public-windows-amd64.exe` manually from the releases page. The install script only supports macOS and Linux.
+Windows users: download `testmu-browser-agent-windows-amd64.exe` manually from the releases page. The install script only supports macOS and Linux.
 
 ---
 

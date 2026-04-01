@@ -1,4 +1,4 @@
-# testmu-browser-agent-public — Cursor Plugin
+# testmu-browser-agent — Cursor Plugin
 
 Browser automation for Cursor via MCP. Drives a real Chrome browser (local or LambdaTest cloud) from within your Cursor AI session.
 
@@ -13,8 +13,8 @@ Browser automation for Cursor via MCP. Drives a real Chrome browser (local or La
 1. Open Cursor Settings (`Cmd+,` / `Ctrl+,`)
 2. Go to **MCP Servers**
 3. Add a new server with:
-   - Name: `testmu-browser-agent-public`
-   - Command: `testmu-browser-agent-public`
+   - Name: `testmu-browser-agent`
+   - Command: `testmu-browser-agent`
    - Args: `mcp`
 
 **Option B — Project config file:**
@@ -24,7 +24,7 @@ Create `.cursor/mcp.json` in your project root (or copy `plugins/cursor/mcp.json
 ```json
 {
   "mcpServers": {
-    "testmu-browser-agent-public": {
+    "testmu-browser-agent": {
       "command": "testmu-browser-agent",
       "args": ["mcp"]
     }
@@ -38,7 +38,7 @@ Copy the rules file into your Cursor rules directory:
 
 ```sh
 mkdir -p .cursor/rules
-cp plugins/cursor/rules/testmu-browser-agent-public.md .cursor/rules/
+cp plugins/cursor/rules/testmu-browser-agent.md .cursor/rules/
 ```
 
 Or add it via Cursor Settings > Rules > Add Rule File.
@@ -52,7 +52,7 @@ To run against LambdaTest cloud browsers, use `plugins/cursor/mcp-lambdatest.jso
 ```json
 {
   "mcpServers": {
-    "testmu-browser-agent-public": {
+    "testmu-browser-agent": {
       "command": "testmu-browser-agent",
       "args": ["mcp", "--provider", "lambdatest"],
       "env": {
@@ -74,7 +74,7 @@ After adding the config and restarting Cursor, verify the server is active:
 
 1. Open the Cursor AI chat panel.
 2. Ask: "What MCP tools are available for browser automation?"
-3. Cursor should list the 10 testmu-browser-agent-public tools.
+3. Cursor should list the 10 testmu-browser-agent tools.
 
 Or verify the binary is reachable:
 
@@ -97,4 +97,4 @@ Open https://example.com, snapshot the page, fill the search input with "hello",
 
 ## Full Reference
 
-See [`skills/testmu-browser-agent-public/SKILL.md`](../../skills/testmu-browser-agent-public/SKILL.md) for the complete agent guide, or check the condensed rules at `plugins/cursor/rules/testmu-browser-agent-public.md`.
+See [`skills/testmu-browser-agent/SKILL.md`](../../skills/testmu-browser-agent/SKILL.md) for the complete agent guide, or check the condensed rules at `plugins/cursor/rules/testmu-browser-agent.md`.

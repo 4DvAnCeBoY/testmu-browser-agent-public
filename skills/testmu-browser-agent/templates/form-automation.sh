@@ -2,7 +2,7 @@
 # form-automation.sh
 #
 # Description: Demonstrates filling and submitting an HTML form using
-#              testmu-browser-agent-public. Uses the httpbin.org pizza order form
+#              testmu-browser-agent. Uses the httpbin.org pizza order form
 #              as a demo target.
 #
 # Usage:
@@ -19,7 +19,7 @@
 
 set -euo pipefail
 
-BIN="testmu-browser-agent-public"
+BIN="testmu-browser-agent"
 TARGET_URL="${1:-https://httpbin.org/forms/post}"
 CUSTOMER_NAME="${CUSTOMER_NAME:-Jane Doe}"
 CUSTOMER_PHONE="${CUSTOMER_PHONE:-555-0100}"

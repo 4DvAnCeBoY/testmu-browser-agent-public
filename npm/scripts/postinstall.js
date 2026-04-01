@@ -7,7 +7,7 @@ const fs = require("fs");
 const path = require("path");
 const os = require("os");
 
-const REPO = "4DvAnCeBoY/testmu-browser-agent-public-public";
+const REPO = "4DvAnCeBoY/testmu-browser-agent-public";
 const BASE_URL = `https://github.com/${REPO}/releases/latest/download`;
 
 const PLATFORM_MAP = {
@@ -37,14 +37,14 @@ function getBinaryName() {
   }
 
   const ext = process.platform === "win32" ? ".exe" : "";
-  return `testmu-browser-agent-public-${platform}-${arch}${ext}`;
+  return `testmu-browser-agent-${platform}-${arch}${ext}`;
 }
 
 function download(url) {
   return new Promise((resolve, reject) => {
     const client = url.startsWith("https") ? https : http;
     client
-      .get(url, { headers: { "User-Agent": "testmu-browser-agent-public-npm" } }, (res) => {
+      .get(url, { headers: { "User-Agent": "testmu-browser-agent-npm" } }, (res) => {
         // Follow redirects (GitHub releases use 302)
         if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location) {
           return download(res.headers.location).then(resolve, reject);
@@ -68,7 +68,7 @@ async function main() {
   const url = `${BASE_URL}/${binaryName}`;
   const binDir = path.join(__dirname, "..", "bin");
   const ext = process.platform === "win32" ? ".exe" : "";
-  const dest = path.join(binDir, `testmu-browser-agent-public${ext}`);
+  const dest = path.join(binDir, `testmu-browser-agent${ext}`);
 
   console.log(`Downloading ${binaryName} from GitHub releases...`);
 
@@ -84,9 +84,9 @@ async function main() {
       fs.chmodSync(dest, 0o755);
     }
 
-    console.log(`Successfully installed testmu-browser-agent-public to ${dest}`);
+    console.log(`Successfully installed testmu-browser-agent to ${dest}`);
   } catch (err) {
-    console.error(`\nFailed to download testmu-browser-agent-public binary.`);
+    console.error(`\nFailed to download testmu-browser-agent binary.`);
     console.error(`URL: ${url}`);
     console.error(`Error: ${err.message}`);
     console.error(
