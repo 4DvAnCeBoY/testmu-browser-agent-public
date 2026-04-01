@@ -16,4 +16,4 @@ testmu-browser-agent snapshot
 testmu-browser-agent screenshot --output page.png
 ```
 
-For full documentation, see the [main README](https://github.com/testmu/testmu-browser-agent).
+For full documentation, see the [main README](https://github.com/4DvAnCeBoY/testmu-browser-agent-public).

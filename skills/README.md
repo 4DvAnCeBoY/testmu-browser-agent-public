@@ -19,10 +19,10 @@ Options: `--yes` (non-interactive), `--lambdatest` (enable cloud), `--tool curso
 Install the binary first:
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/testmu/testmu-browser-agent/main/scripts/install.sh | sh
+curl -sSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public/main/scripts/install.sh | sh
 ```
 
-Or download from [GitHub Releases](https://github.com/testmu/testmu-browser-agent/releases).
+Or download from [GitHub Releases](https://github.com/4DvAnCeBoY/testmu-browser-agent-public/releases).
 
 ## Plugin Packages
 
@@ -49,7 +49,7 @@ Each directory has a README with step-by-step instructions.
 ### Option A: Marketplace Plugin (recommended)
 
 ```bash
-npx skills add testmu/testmu-browser-agent
+npx skills add 4DvAnCeBoY/testmu-browser-agent-public
 ```
 
 This installs the skill to `.claude/skills/testmu-browser-agent/SKILL.md` and registers the MCP server automatically.

@@ -12,7 +12,7 @@ This guide shows how to set up testmu-browser-agent as an MCP (Model Context Pro
 Download and install the latest release:
 
 ```sh
-curl -sSL https://raw.githubusercontent.com/testmu/testmu-browser-agent/main/scripts/install.sh | sh
+curl -sSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public/main/scripts/install.sh | sh
 ```
 
 Or place the binary manually somewhere on your `PATH`:

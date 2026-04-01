@@ -2,9 +2,9 @@
 
 AI-native browser automation CLI and MCP server for Chrome, built in Go.
 
-[![CI](https://github.com/testmu/testmu-browser-agent/actions/workflows/ci.yml/badge.svg)](https://github.com/testmu/testmu-browser-agent/actions)
+[![CI](https://github.com/4DvAnCeBoY/testmu-browser-agent-public/actions/workflows/ci.yml/badge.svg)](https://github.com/4DvAnCeBoY/testmu-browser-agent-public/actions)
 [![Go 1.23+](https://img.shields.io/badge/go-1.23%2B-blue.svg)](https://go.dev/)
-[![Platform](https://img.shields.io/badge/platform-macOS%20%7C%20Linux%20%7C%20Windows-lightgrey.svg)](https://github.com/testmu/testmu-browser-agent/releases)
+[![Platform](https://img.shields.io/badge/platform-macOS%20%7C%20Linux%20%7C%20Windows-lightgrey.svg)](https://github.com/4DvAnCeBoY/testmu-browser-agent-public/releases)
 
 ### Works with your AI coding tool
 
@@ -45,7 +45,7 @@ CLI / MCP / REST API
 
 ```bash
 # Install
-curl -sSL https://raw.githubusercontent.com/testmu/testmu-browser-agent/main/scripts/install.sh | sh
+curl -sSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public/main/scripts/install.sh | sh
 
 # Open a page
 testmu-browser-agent open https://example.com
@@ -73,14 +73,14 @@ testmu-browser-agent close
 ### Install script (macOS and Linux)
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/testmu/testmu-browser-agent/main/scripts/install.sh | sh
+curl -sSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public/main/scripts/install.sh | sh
 ```
 
 The script detects your OS and architecture, downloads the correct binary from the latest release, and installs it to `/usr/local/bin`.
 
 ### Manual download
 
-Download the pre-built binary for your platform from the [Releases](https://github.com/testmu/testmu-browser-agent/releases) page:
+Download the pre-built binary for your platform from the [Releases](https://github.com/4DvAnCeBoY/testmu-browser-agent-public/releases) page:
 
 | Platform        | Binary                                  |
 |-----------------|-----------------------------------------|
@@ -101,7 +101,7 @@ mv testmu-browser-agent-darwin-arm64 /usr/local/bin/testmu-browser-agent
 Requires Go 1.23 or later.
 
 ```bash
-git clone https://github.com/testmu/testmu-browser-agent.git
+git clone https://github.com/4DvAnCeBoY/testmu-browser-agent-public.git
 cd testmu-browser-agent
 make build        # outputs ./testmu-browser-agent
 make install      # copies binary to /usr/local/bin

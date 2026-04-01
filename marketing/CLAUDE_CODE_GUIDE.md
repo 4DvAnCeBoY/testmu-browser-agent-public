@@ -23,7 +23,7 @@ No CSS selectors. No Playwright boilerplate. No script to write and debug. Just 
 ### Step 1 — Install the binary
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/testmu/testmu-browser-agent/main/scripts/install.sh | sh
+curl -sSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public/main/scripts/install.sh | sh
 ```
 
 Or via npm:
@@ -61,7 +61,7 @@ Add this to `~/.claude/settings.json` (user-wide) or `.claude/settings.json` (pr
 The Skills installer registers the MCP server and drops the usage guide into Claude's context automatically:
 
 ```bash
-npx skills add testmu/testmu-browser-agent
+npx skills add 4DvAnCeBoY/testmu-browser-agent-public
 ```
 
 That's it. Restart Claude Code and ask it to open a website.
@@ -553,7 +553,7 @@ No maintenance. No fragile selectors. No boilerplate.
 
 ```bash
 # 1. Install
-curl -sSL https://raw.githubusercontent.com/testmu/testmu-browser-agent/main/scripts/install.sh | sh
+curl -sSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public/main/scripts/install.sh | sh
 
 # 2. Add to Claude Code settings
 # ~/.claude/settings.json → see "30-Second Setup" above
@@ -564,7 +564,7 @@ curl -sSL https://raw.githubusercontent.com/testmu/testmu-browser-agent/main/scr
 # Ask Claude: "Open https://example.com and tell me what links are on the page."
 ```
 
-- [GitHub](https://github.com/testmu/testmu-browser-agent) — source, issues, releases
+- [GitHub](https://github.com/4DvAnCeBoY/testmu-browser-agent-public) — source, issues, releases
 - [Full Command Reference](../docs/guides/commands.md) — every CLI command and flag
 - [LambdaTest Integration](../docs/guides/lambdatest.md) — cloud browser setup
 - [MCP Protocol Details](../docs/guides/mcp-integration.md) — tool schemas, JSON-RPC examples

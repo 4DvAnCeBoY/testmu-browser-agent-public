@@ -9,7 +9,7 @@ Browser automation for Claude Code via MCP. Drives a real Chrome browser (local 
 ### One-liner
 
 ```sh
-npx skills add testmu/testmu-browser-agent
+npx skills add 4DvAnCeBoY/testmu-browser-agent-public
 ```
 
 ### Manual MCP Configuration

@@ -7,7 +7,7 @@ const fs = require("fs");
 const path = require("path");
 const os = require("os");
 
-const REPO = "testmu/testmu-browser-agent";
+const REPO = "4DvAnCeBoY/testmu-browser-agent-public";
 const BASE_URL = `https://github.com/${REPO}/releases/latest/download`;
 
 const PLATFORM_MAP = {
