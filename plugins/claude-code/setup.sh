@@ -132,35 +132,46 @@ SETTINGS
     info "Created $SETTINGS_FILE with MCP server config"
 fi
 
-# ─── Step 3: Install skill to current project ───
-info "Installing skill to current project..."
-SKILL_DIR=".claude/skills/testmu-browser-agent"
-mkdir -p "$SKILL_DIR/references" "$SKILL_DIR/templates"
+# ─── Step 3: Install skill globally + to current project ───
+# Global install (~/.claude/skills/) makes the skill available in ALL projects.
+# Project install (.claude/skills/) is a local copy for this repo only.
 
-# Download skill files from the repo
+install_skill() {
+    local TARGET_DIR="$1"
+    local LABEL="$2"
+    mkdir -p "$TARGET_DIR/references" "$TARGET_DIR/templates"
+
+    curl -sSfL "$BASE_RAW/SKILL.md" -o "$TARGET_DIR/SKILL.md"
+
+    # Verify frontmatter
+    if ! grep -q "allowed-tools:" "$TARGET_DIR/SKILL.md" 2>/dev/null; then
+        TMP=$(mktemp)
+        printf -- '---\nname: testmu-browser-agent\ndescription: Browser automation CLI for AI agents. Use when the user needs to interact with websites, including navigating pages, filling forms, clicking buttons, taking screenshots, extracting data, testing web apps, or automating any browser task.\nallowed-tools: Bash(testmu-browser-agent:*)\n---\n\n' > "$TMP"
+        cat "$TARGET_DIR/SKILL.md" >> "$TMP"
+        mv "$TMP" "$TARGET_DIR/SKILL.md"
+    fi
+
+    curl -sSfL "$BASE_RAW/references/commands.md" -o "$TARGET_DIR/references/commands.md" 2>/dev/null || true
+    curl -sSfL "$BASE_RAW/references/snapshot-refs.md" -o "$TARGET_DIR/references/snapshot-refs.md" 2>/dev/null || true
+    curl -sSfL "$BASE_RAW/references/mcp-tools.md" -o "$TARGET_DIR/references/mcp-tools.md" 2>/dev/null || true
+    curl -sSfL "$BASE_RAW/references/session-management.md" -o "$TARGET_DIR/references/session-management.md" 2>/dev/null || true
+    curl -sSfL "$BASE_RAW/templates/form-automation.sh" -o "$TARGET_DIR/templates/form-automation.sh" 2>/dev/null || true
+    curl -sSfL "$BASE_RAW/templates/authenticated-session.sh" -o "$TARGET_DIR/templates/authenticated-session.sh" 2>/dev/null || true
+    curl -sSfL "$BASE_RAW/templates/capture-workflow.sh" -o "$TARGET_DIR/templates/capture-workflow.sh" 2>/dev/null || true
+
+    info "Skill installed to $LABEL ($TARGET_DIR/)"
+}
+
 BASE_RAW="https://raw.githubusercontent.com/${REPO}/main/skills/testmu-browser-agent"
 
-# Download SKILL.md with the proper frontmatter (allowed-tools: Bash(testmu-browser-agent:*))
-curl -sSfL "$BASE_RAW/SKILL.md" -o "$SKILL_DIR/SKILL.md"
+# Global install — available in every project
+info "Installing skill globally..."
+install_skill "$HOME/.claude/skills/testmu-browser-agent" "global"
 
-# Verify frontmatter is present; if not, prepend it
-if ! grep -q "allowed-tools:" "$SKILL_DIR/SKILL.md" 2>/dev/null; then
-    warn "SKILL.md missing frontmatter — patching..."
-    TMP=$(mktemp)
-    printf -- '---\nname: testmu-browser-agent\ndescription: Browser automation CLI for AI agents. Use when the user needs to interact with websites, including navigating pages, filling forms, clicking buttons, taking screenshots, extracting data, testing web apps, or automating any browser task.\nallowed-tools: Bash(testmu-browser-agent:*)\n---\n\n' > "$TMP"
-    cat "$SKILL_DIR/SKILL.md" >> "$TMP"
-    mv "$TMP" "$SKILL_DIR/SKILL.md"
-    info "Frontmatter patched into $SKILL_DIR/SKILL.md"
-fi
-curl -sSfL "$BASE_RAW/references/commands.md" -o "$SKILL_DIR/references/commands.md" 2>/dev/null || true
-curl -sSfL "$BASE_RAW/references/snapshot-refs.md" -o "$SKILL_DIR/references/snapshot-refs.md" 2>/dev/null || true
-curl -sSfL "$BASE_RAW/references/mcp-tools.md" -o "$SKILL_DIR/references/mcp-tools.md" 2>/dev/null || true
-curl -sSfL "$BASE_RAW/references/session-management.md" -o "$SKILL_DIR/references/session-management.md" 2>/dev/null || true
-curl -sSfL "$BASE_RAW/templates/form-automation.sh" -o "$SKILL_DIR/templates/form-automation.sh" 2>/dev/null || true
-curl -sSfL "$BASE_RAW/templates/authenticated-session.sh" -o "$SKILL_DIR/templates/authenticated-session.sh" 2>/dev/null || true
-curl -sSfL "$BASE_RAW/templates/capture-workflow.sh" -o "$SKILL_DIR/templates/capture-workflow.sh" 2>/dev/null || true
-
-info "Skill installed to $SKILL_DIR/"
+# Project install — local copy for current repo
+info "Installing skill to current project..."
+SKILL_DIR=".claude/skills/testmu-browser-agent"
+install_skill "$SKILL_DIR" "project"
 
 # ─── Done ───
 echo ""
