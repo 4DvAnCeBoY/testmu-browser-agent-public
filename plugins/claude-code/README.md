@@ -6,11 +6,15 @@ Browser automation for Claude Code via MCP. Drives a real Chrome browser (local 
 
 ## Installation
 
-### One-liner
+### One-liner (recommended)
+
+Installs the binary, registers MCP server, and adds the skill to your project:
 
 ```sh
-npx skills add 4DvAnCeBoY/testmu-browser-agent-public
+curl -sSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public/main/plugins/claude-code/setup.sh | sh
 ```
+
+Restart Claude Code after running.
 
 ### Manual MCP Configuration
 
