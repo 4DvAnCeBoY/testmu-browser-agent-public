@@ -153,7 +153,7 @@ testmu-browser-agent is a single static Go binary.
 
 No Node runtime. No Python venv. No Docker image.
 
-`curl | sh`, add it to `~/.claude/settings.json`, and your AI agent has a full browser.
+`curl | sh`, add it to `.claude/settings.json`, and your AI agent has a full browser.
 
 https://github.com/4DvAnCeBoY/testmu-browser-agent-public
 

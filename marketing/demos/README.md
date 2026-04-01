@@ -104,7 +104,7 @@ you want more time for viewers to read each command.
 
 ## Prerequisites
 
-- `testmu-browser-agent` installed and on PATH (via `curl | sh`, npm, or Homebrew)
-- Chrome or Chromium installed (or run `testmu-browser-agent install`)
+- `bin/testmu-browser-agent` built and on PATH (or referenced by relative path from project root)
+- Chrome or Chromium installed (or run `bin/testmu-browser-agent install`)
 - VHS installed for GIF recording (`brew install vhs`)
 - Network access to `example.com`, `httpbin.org`, `the-internet.herokuapp.com`, `news.ycombinator.com`

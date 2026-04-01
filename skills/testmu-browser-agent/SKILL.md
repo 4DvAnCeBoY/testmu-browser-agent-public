@@ -790,31 +790,6 @@ Use `record restart` to start a new recording segment without stopping the sessi
 
 ## Security
 
-### Domain allowlist
-
-Restrict the browser to specific origins. Any navigation outside the allowlist is blocked.
-
-```sh
-testmu-browser-agent open https://app.example.com \
-  --allow-origins "app.example.com,api.example.com"
-```
-
-### Action policy
-
-Disallow specific actions in automated or untrusted pipelines.
-
-```sh
-testmu-browser-agent open https://app.example.com \
-  --deny-actions "download,eval,upload"
-```
-
-Use `confirm` and `deny` to approve or reject policy-guarded actions interactively:
-
-```sh
-testmu-browser-agent confirm <action-id>
-testmu-browser-agent deny <action-id>
-```
-
 ### Encrypted state
 
 Protect sensitive session data at rest with AES-256-GCM encryption.
@@ -974,8 +949,6 @@ These flags apply to every command and must appear before the subcommand:
 --output <string>         Output format: text (default), json, compact
 --verbose                 Enable debug logging
 --session <string>        Named session for isolated browser instances
---allow-origins <string>  Comma-separated domain allowlist
---deny-actions <string>   Comma-separated action denylist
 --appium-url <string>     Appium server URL (with --provider appium)
 --platform <string>       Mobile platform: ios or android (with --provider appium)
 ```

@@ -4,8 +4,8 @@
       "command": "testmu-browser-agent",
       "args": ["mcp", "--provider", "lambdatest"],
       "env": {
-        "LT_USERNAME": "YOUR_LT_USERNAME",
-        "LT_ACCESS_KEY": "YOUR_LT_ACCESS_KEY"
+        "LT_USERNAME": "${LT_USERNAME}",
+        "LT_ACCESS_KEY": "${LT_ACCESS_KEY}"
       },
       "disabled": false
     }

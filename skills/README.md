@@ -46,13 +46,13 @@ Each directory has a README with step-by-step instructions.
 
 ## Claude Code
 
-### Option A: One-liner setup (recommended)
+### Option A: Marketplace Plugin (recommended)
 
 ```bash
 curl -sSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public/main/plugins/claude-code/setup.sh | sh
 ```
 
-This installs the binary, registers the MCP server in `~/.claude/settings.json`, and copies the skill to `.claude/skills/testmu-browser-agent/` in your current project.
+This installs the skill to `.claude/skills/testmu-browser-agent/SKILL.md` and registers the MCP server automatically.
 
 ### Option B: Manual MCP Setup
 

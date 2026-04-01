@@ -58,10 +58,10 @@ Add this to `~/.claude/settings.json` (user-wide) or `.claude/settings.json` (pr
 
 ### Step 3 — (Optional) Install as a Skill
 
-The plugin installer auto-detects your AI coding tools and configures them all:
+The Skills installer registers the MCP server and drops the usage guide into Claude's context automatically:
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public/main/scripts/install-plugins.sh | sh
+npx skills add 4DvAnCeBoY/testmu-browser-agent-public
 ```
 
 That's it. Restart Claude Code and ask it to open a website.
@@ -337,18 +337,18 @@ Claude: "Alert — status changed at check 4 (2:03pm):
 
 All 10 tools, with their actions:
 
-| Tool | Actions / Conditions | What it does |
+| Tool | Actions | What it does |
 |---|---|---|
 | `browser_navigate` | `open`, `navigate`, `back`, `forward`, `reload`, `close` | Navigate the browser: open URLs, move through history, reload or close |
 | `browser_interact` | `click`, `dblclick`, `fill`, `type`, `press`, `select`, `scroll`, `hover`, `tap`, `drag`, `upload`, `focus`, `check`, `uncheck`, `swipe` | Interact with elements: clicks, forms, keyboard, gestures, file upload |
 | `browser_query` | `snapshot`, `get`, `find`, `eval`, `inspect` | Read the page: accessibility tree, DOM content, element search, JavaScript |
 | `browser_media` | `screenshot`, `pdf`, `record` | Capture media: PNG/JPEG screenshots, PDF export, video recording |
-| `browser_state` | `cookies_get`, `cookies_set`, `cookies_clear`, `cookies_delete`, `state_save`, `state_load`, `state_list`, `state_clean`, `state_delete`, `storage`, `clipboard` | Browser state: cookies, saved sessions, localStorage, clipboard |
-| `browser_tabs` | `tabs`, `tab`, `window`, `frame` | Tab management: open, close, switch tabs; switch to iframes |
-| `browser_wait` | no `action` field — use condition fields: `selector`, `url`, `text`, `load`, `function`, `download`, `timeout` | Wait for conditions: element visible, URL change, text appears, load state, JS condition, download, fixed delay |
-| `browser_config` | `set`, `connect`, `vision_deficiency`, `cpu_throttle`, `bypass_csp`, `media_emulate`, `touch_emulation` | Configure: viewport, user-agent, remote CDP, vision/CPU/CSP/media/touch emulation |
-| `browser_network` | `console`, `errors`, `dialog`, `highlight`, `stream_enable`, `stream_disable`, `stream_status`, `requests`, `request_detail`, `har_start`, `har_stop` | Monitor: console logs, page errors, dialog handling, event streaming, network requests, HAR capture |
-| `browser_devtools` | `trace`, `profiler`, `batch`, `performance_metrics`, `ax_query`, `browser_logs`, `frame_tree`, `dom_snapshot`, `webauthn` | DevTools: performance tracing, CPU profiling, batch execution, AX query, DOM snapshot, WebAuthn |
+| `browser_state` | `cookies_get`, `cookies_set`, `cookies_clear`, `state_save`, `state_load`, `storage_get`, `storage_set`, `storage_clear`, `clipboard_read`, `clipboard_write` | Browser state: cookies, saved sessions, localStorage, clipboard |
+| `browser_tabs` | `list`, `new`, `close`, `switch`, `window_new`, `frame` | Tab management: open, close, switch tabs; switch to iframes |
+| `browser_wait` | `selector`, `url`, `text`, `timeout` | Wait for conditions: element visible, URL change, text appears, fixed delay |
+| `browser_config` | `set`, `connect` | Configure: viewport, user-agent, geolocation, custom headers, remote CDP |
+| `browser_network` | `console`, `errors`, `dialog`, `highlight`, `stream` | Monitor: console logs, page errors, dialog handling, event streaming |
+| `browser_devtools` | `trace_start`, `trace_stop`, `profiler_start`, `profiler_stop`, `batch` | DevTools: performance tracing, CPU profiling, batch execution |
 
 Claude has all 10 tools available the moment you restart after adding the MCP config. It picks the right tool for each step automatically.
 

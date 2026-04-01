@@ -180,7 +180,7 @@ The following capabilities exist only in testmu-browser-agent among this compari
 testmu-browser-agent compiles to a single self-contained binary (~10–15 MB) with no runtime dependencies. Compare this to Playwright MCP's requirement for Node.js, npm, and a ~200 MB Playwright installation. Go's toolchain is widely installed and the compile cycle is fast, which can ease community contribution.
 
 ### LambdaTest cloud built-in
-One flag (`--provider lambdatest`) switches any command from local Chrome to a real cloud browser. This requires no proxy configuration, no separate SDK, and no infrastructure. LambdaTest sessions get automatic video recording, HAR capture, and pass/fail test marking in the dashboard. Among the tools in this comparison, testmu-browser-agent is the only one that ships cloud-browser switching as a built-in CLI flag (based on publicly available documentation at time of writing).
+One flag (`--provider lambdatest`) switches any command from local Chrome to a real cloud browser. This requires no proxy configuration, no separate SDK, and no infrastructure. LambdaTest sessions get automatic video recording, HAR capture, and pass/fail test marking in the dashboard. Among the tools in this comparison, testmu-browser-agent is the only one that ships cloud-browser switching as a built-in CLI flag.
 
 ### Appium mobile testing
 The `--provider appium` flag connects testmu-browser-agent to an Appium server, enabling the same 90+ command surface against real iOS and Android devices or emulators. Playwright MCP supports device viewport emulation but not actual mobile device control. Selenium requires a separate Appium configuration entirely distinct from its web automation API.

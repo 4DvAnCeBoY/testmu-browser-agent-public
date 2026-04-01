@@ -1,4 +1,15 @@
-# Runtime image — linux/amd64 pinned for Chrome compatibility
+# Build stage
+FROM golang:1.23-bookworm AS builder
+
+WORKDIR /src
+
+COPY go.mod go.sum ./
+RUN go mod download
+
+COPY . .
+RUN CGO_ENABLED=0 go build -ldflags="-s -w" -o testmu-browser-agent ./cmd/testmu-browser-agent/
+
+# Runtime stage — pinned to amd64 for Chrome compatibility
 FROM --platform=linux/amd64 debian:bookworm-slim
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -25,17 +36,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm /tmp/chrome.deb \
     && rm -rf /var/lib/apt/lists/*
 
-# Download the pre-built binary from the latest release
-ARG VERSION=latest
-RUN REPO="4DvAnCeBoY/testmu-browser-agent-public" && \
-    if [ "$VERSION" = "latest" ]; then \
-        TAG=$(curl -sSf "https://api.github.com/repos/$REPO/releases/latest" | grep '"tag_name"' | sed -E 's/.*"([^"]+)".*/\1/'); \
-    else \
-        TAG="$VERSION"; \
-    fi && \
-    curl -sSfL "https://github.com/$REPO/releases/download/$TAG/testmu-browser-agent-linux-amd64" \
-        -o /usr/local/bin/testmu-browser-agent && \
-    chmod +x /usr/local/bin/testmu-browser-agent
+COPY --from=builder /src/testmu-browser-agent /usr/local/bin/testmu-browser-agent
 
 EXPOSE 9222
 

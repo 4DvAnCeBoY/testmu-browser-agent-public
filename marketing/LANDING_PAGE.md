@@ -145,12 +145,12 @@ Tools are grouped by function so Claude Code's tool picker stays clean:
 | `browser_interact` | Click, fill, type, press, select, scroll, hover, drag, tap, check, upload |
 | `browser_query` | Accessibility snapshot, get text/HTML, find elements, eval JS, inspect |
 | `browser_media` | Screenshot (PNG/JPEG), PDF export, video recording |
-| `browser_state` | Cookies (get/set/clear/delete), localStorage, clipboard, session save/load/list/clean/delete |
+| `browser_state` | Cookies, localStorage, clipboard, session save/load |
 | `browser_tabs` | List, create, close, switch tabs/windows/frames |
 | `browser_wait` | Wait for selector, URL pattern, text, load state, JS condition, download |
-| `browser_config` | Viewport/user-agent (set), CDP connection (connect), vision deficiency, CPU throttle, bypass CSP, media/touch emulation |
-| `browser_network` | Console logs, page errors, dialog handling, highlight, SSE stream enable/disable/status, requests, request detail, HAR start/stop |
-| `browser_devtools` | Chrome trace, CPU profiler, batch commands, performance metrics, AX query, browser logs, frame tree, DOM snapshot, WebAuthn |
+| `browser_config` | Viewport, user-agent, geolocation, timezone, CDP connection |
+| `browser_network` | Console logs, page errors, dialog handling, highlight, SSE stream |
+| `browser_devtools` | Chrome trace, CPU profiler, batch commands, performance metrics |
 
 Each tool maps to the same underlying engine as the CLI, so behavior is identical whether you call it from a shell or from Claude Code.
 
@@ -218,9 +218,15 @@ brew install testmu/tap/testmu-browser-agent
 docker run --rm -it ghcr.io/4DvAnCeBoY/testmu-browser-agent-public:latest snapshot
 ```
 
-### Pre-built binaries only
+### Build from source
 
-Source is not included in this distribution. Download a pre-built binary from [GitHub Releases](https://github.com/4DvAnCeBoY/testmu-browser-agent-public/releases).
+```bash
+git clone https://github.com/4DvAnCeBoY/testmu-browser-agent-public
+cd testmu-browser-agent
+go build -o testmu-browser-agent ./cmd/testmu-browser-agent
+```
+
+Requires Go 1.23+. No CGO. Cross-compiles cleanly.
 
 ---
 
