@@ -1,5 +1,7 @@
 # Give Claude Code Eyes and Hands on the Web
 
+> **v1.0.6** — Production-ready with 85 E2E tests, hardened auth encryption, and 31 bug fixes.
+
 You can already ask Claude Code to write code, refactor files, and run tests. Now you can ask it to open a browser, click a button, fill out a form, and screenshot the result — all from a single prompt, no Playwright script required.
 
 **testmu-browser-agent** is a one-binary MCP server that gives Claude Code a real Chrome browser it controls directly. Claude navigates, reads the page, reasons about what to do next, and acts — in a loop, until your task is done.
@@ -23,7 +25,7 @@ No CSS selectors. No Playwright boilerplate. No script to write and debug. Just 
 ### Step 1 — Install the binary
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public/main/scripts/install.sh | sh
+curl -sSL https://raw.githubusercontent.com/testmu/testmu-browser-agent/main/scripts/install.sh | sh
 ```
 
 Or via npm:
@@ -61,7 +63,7 @@ Add this to `~/.claude/settings.json` (user-wide) or `.claude/settings.json` (pr
 The Skills installer registers the MCP server and drops the usage guide into Claude's context automatically:
 
 ```bash
-npx skills add 4DvAnCeBoY/testmu-browser-agent-public
+npx skills add testmu/testmu-browser-agent
 ```
 
 That's it. Restart Claude Code and ask it to open a website.
@@ -553,7 +555,7 @@ No maintenance. No fragile selectors. No boilerplate.
 
 ```bash
 # 1. Install
-curl -sSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public/main/scripts/install.sh | sh
+curl -sSL https://raw.githubusercontent.com/testmu/testmu-browser-agent/main/scripts/install.sh | sh
 
 # 2. Add to Claude Code settings
 # ~/.claude/settings.json → see "30-Second Setup" above
@@ -564,7 +566,7 @@ curl -sSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-publ
 # Ask Claude: "Open https://example.com and tell me what links are on the page."
 ```
 
-- [GitHub](https://github.com/4DvAnCeBoY/testmu-browser-agent-public) — source, issues, releases
+- [GitHub](https://github.com/testmu/testmu-browser-agent) — source, issues, releases
 - [Full Command Reference](../docs/guides/commands.md) — every CLI command and flag
 - [LambdaTest Integration](../docs/guides/lambdatest.md) — cloud browser setup
 - [MCP Protocol Details](../docs/guides/mcp-integration.md) — tool schemas, JSON-RPC examples

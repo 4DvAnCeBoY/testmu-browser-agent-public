@@ -1,5 +1,7 @@
 # testmu-browser-agent: Competitive Comparison
 
+> Document reflects testmu-browser-agent **v1.0.6** (2026-04-04). 85 E2E tests passing.
+
 ## Executive Summary
 
 testmu-browser-agent is a Go single-binary browser automation tool built for AI agents. It ships three surfaces in one download — a 90+ command CLI, a 10-tool MCP server, and a REST/SSE daemon API — and connects to either a local Chrome instance or LambdaTest cloud with a single flag. Where Playwright MCP and Chrome DevTools MCP each burn an estimated 13,000–17,000 tokens before a single page action, testmu-browser-agent's CLI surface costs zero tokens for tool definitions and produces 200–400 token accessibility snapshots. Where agent-browser (Vercel) is the closest CLI peer, testmu-browser-agent extends the command set by ~80%, adds encrypted session persistence, a credential vault, a policy engine, Appium mobile testing, and first-class LambdaTest cloud integration — while remaining a single 10–15 MB binary installable with one curl command.
@@ -120,7 +122,7 @@ On a 200k-token context window, Playwright MCP exhausts ~24% of available contex
 
 **testmu-browser-agent (CLI mode — any agent):**
 ```bash
-curl -sSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public/main/scripts/install.sh | sh
+curl -sSL https://raw.githubusercontent.com/testmu/testmu-browser-agent/main/scripts/install.sh | sh
 # Done. Zero config.
 ```
 Config lines required: **0**

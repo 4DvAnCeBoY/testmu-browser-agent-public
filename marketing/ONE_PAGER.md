@@ -1,5 +1,7 @@
 # testmu-browser-agent — AI-Native Browser Automation for the Agentic Era
 
+> **v1.0.6** — Production-ready. 31 bug fixes, 85 E2E tests passing, hardened encryption.
+
 ---
 
 ## The Problem
@@ -32,7 +34,7 @@ AI agents need to see and interact with the web — but existing browser tools w
 ## How It Works
 
 ```
-1. INSTALL    curl -sSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public/main/scripts/install.sh | sh
+1. INSTALL    curl -sSL https://raw.githubusercontent.com/testmu/testmu-browser-agent/main/scripts/install.sh | sh
 
 2. CONNECT    Add one JSON block to your Claude Code MCP config
 
@@ -73,10 +75,10 @@ TestMu builds infrastructure for the agentic testing era. The team has shipped p
 
 ```bash
 # Install (macOS / Linux)
-curl -sSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public/main/scripts/install.sh | sh
+curl -sSL https://raw.githubusercontent.com/testmu/testmu-browser-agent/main/scripts/install.sh | sh
 ```
 
-**GitHub:** github.com/4DvAnCeBoY/testmu-browser-agent-public
+**GitHub:** github.com/testmu/testmu-browser-agent
 **License:** Open source
 
 ---

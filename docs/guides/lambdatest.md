@@ -1,5 +1,7 @@
 # LambdaTest Integration
 
+> **v1.0.6** — LambdaTest provider tested with full E2E suite. 4 LT-specific bug fixes.
+
 `testmu-browser-agent` can run browser sessions on [LambdaTest](https://www.lambdatest.com/) cloud infrastructure instead of a local browser. This enables parallel test execution, cross-browser testing, and CI/CD pipelines without managing local browser installations.
 
 ---

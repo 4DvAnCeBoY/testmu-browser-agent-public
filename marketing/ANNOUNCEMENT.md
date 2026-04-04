@@ -1,5 +1,7 @@
 # Introducing testmu-browser-agent: AI-Native Browser Automation for the Agentic Era
 
+> **Latest: v1.0.6** — 31 bug fixes, hardened auth encryption (PBKDF2), comprehensive CLI audit, all 85 E2E tests passing. [Release notes →](https://github.com/4DvAnCeBoY/testmu-browser-agent-public/releases/tag/v1.0.6)
+
 Browser automation was designed for humans writing test scripts. AI agents are not humans writing test scripts — and the mismatch is costing you tokens, reliability, and developer time. Today we are shipping testmu-browser-agent: a single Go binary that gives AI agents a proper interface to the web.
 
 ---
@@ -112,7 +114,7 @@ testmu-browser-agent's MCP server is the primary way to give Claude browser capa
 ### Step 1: Install
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public/main/scripts/install.sh | sh
+curl -sSL https://raw.githubusercontent.com/testmu/testmu-browser-agent/main/scripts/install.sh | sh
 ```
 
 ### Step 2: Configure Claude Code
@@ -366,7 +368,7 @@ Five commands to go from zero to an AI agent controlling a browser:
 
 ```bash
 # 1. Install
-curl -sSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public/main/scripts/install.sh | sh
+curl -sSL https://raw.githubusercontent.com/testmu/testmu-browser-agent/main/scripts/install.sh | sh
 
 # 2. Verify
 testmu-browser-agent --version
@@ -401,7 +403,7 @@ macOS, Linux, and Windows are all supported. Pre-built binaries for Apple Silico
 **Docker:**
 
 ```bash
-docker run -p 9222:9222 4DvAnCeBoY/testmu-browser-agent-public:latest serve --headless
+docker run -p 9222:9222 testmu/testmu-browser-agent:latest serve --headless
 ```
 
 ---
@@ -423,5 +425,5 @@ testmu-browser-agent is available now. The source is on GitHub. The install scri
 If you are building AI agents that need to interact with the web, this is the browser tool that was designed for them.
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public/main/scripts/install.sh | sh
+curl -sSL https://raw.githubusercontent.com/testmu/testmu-browser-agent/main/scripts/install.sh | sh
 ```
