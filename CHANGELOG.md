@@ -2,6 +2,60 @@
 
 All notable changes to testmu-browser-agent are documented here.
 
+## [v1.0.6] — 2026-04-04
+
+### Bug Fixes (31 total)
+
+**Critical**
+- fix: `record stop --output` now writes base64 PNG frames to disk (BUG-003)
+- fix: auth vault encrypted by default using PBKDF2-HMAC-SHA256 (100k iterations) — plaintext migration automatic (BUG-008)
+
+**High**
+- fix: `batch` command normalizes `command→action`, `args→params` field mapping + stdin support (BUG-017)
+- fix: `trace stop --output` CLI flag wired to handler (BUG-018)
+- fix: MCP server cleans stale daemon socket before connecting (BUG-021)
+- fix: `find --role` matches implicit ARIA roles (a→link, button→button, etc.) (BUG-024)
+- fix: `swipe` CLI converts direction+distance to startX/startY/endX/endY coords
+- fix: `device` CLI maps subcommands to `device_list`/`device_emulate` actions
+- fix: `stream` CLI routes to `stream_enable` instead of non-existent action
+
+**Medium**
+- fix: `har` CLI command added (start/stop with --output)  (BUG-009)
+- fix: `clipboard write` grants CDP permissions for headless mode (BUG-028)
+- fix: `cookies delete` auto-detects current page URL for CDP (BUG-030)
+- fix: `addinitscript` executes on navigate, not just open (BUG-032)
+- fix: `dialog accept/dismiss` persists across multiple dialogs + `Page.enable` (BUG-034)
+- fix: `screenshot --full` uses `captureBeyondViewport` + content size clip (BUG-039)
+- fix: `frame main/top/parent` returns to top-level frame (BUG-043)
+- fix: `find --label` returns labeled inputs AND label elements (BUG-046)
+- fix: `wait --load domcontentloaded` pre-checks `document.readyState` before subscribing
+- fix: `wait --fn` accepts any truthy value (numbers, strings), not just `true`
+- fix: HAR output permissions changed to 0o600 (contains auth headers)
+- fix: output directory auto-created for record, trace, HAR
+
+**Low**
+- fix: `is hidden` returns `true` for nonexistent elements instead of 30s timeout (BUG-045)
+- fix: dialog handler cancels previous goroutine on re-configure (prevents leaks)
+
+### New CLI Flags
+- `click --new-tab` — Ctrl+click to open in new tab
+- `dialog --text` — text input for prompt dialogs
+- `tab new --url` — open new tab with pre-loaded URL
+- `record stop --output` — save screencast frames
+- `trace stop --output` — save trace data
+- `har stop --output` — save HAR data
+
+### Resource Leak Fixes
+- `cleanupBeforeBrowserSwap()` now cancels: dialog handler, record frame collector, browser log capture, fetch auth credentials, stale init scripts
+
+### Documentation
+- SKILL.md: fix geolocation syntax (--lat/--lon flags, not positional)
+- SKILL.md: fix tab switch syntax (`tab switch <id>`, not `tab <id>`)
+- SKILL.md: fix record output format (JSON frames, not WebM)
+- SKILL.md: add HAR capture commands, dialog --text, tab --url
+
+---
+
 ## [Unreleased]
 
 ### Browser Execution

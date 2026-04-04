@@ -358,6 +358,7 @@ testmu-browser-agent errors --clear          # Read and clear error buffer
 
 ```sh
 testmu-browser-agent dialog accept           # Accept alert/confirm/prompt
+testmu-browser-agent dialog accept --text "answer"  # Accept prompt with text input
 testmu-browser-agent dialog dismiss          # Dismiss dialog
 ```
 
@@ -377,9 +378,11 @@ testmu-browser-agent highlight <ref|selector>                # Visually highligh
 ### Video Recording
 
 ```sh
-testmu-browser-agent record start                            # Start video recording
-testmu-browser-agent record stop --output recording.webm     # Stop and save recording
+testmu-browser-agent record start                            # Start screencast recording
+testmu-browser-agent record stop --output recording.json     # Stop and save frames (base64 PNG array)
 testmu-browser-agent record restart                          # Restart recording (new file)
+testmu-browser-agent har start                               # Start HAR (HTTP Archive) capture
+testmu-browser-agent har stop --output traffic.har           # Stop and save HAR data
 ```
 
 ### State & Cookies
@@ -418,7 +421,8 @@ testmu-browser-agent clipboard write "text"                  # Write to clipboar
 ```sh
 testmu-browser-agent tabs                    # List all open tabs with IDs and URLs
 testmu-browser-agent tab new                 # Open a new blank tab
-testmu-browser-agent tab <id>                # Switch to tab by ID
+testmu-browser-agent tab switch <id>         # Switch to tab by ID
+testmu-browser-agent tab new --url <url>     # Open a new tab with URL
 testmu-browser-agent tab close <id>          # Close a tab by ID
 testmu-browser-agent window new              # Open a new browser window
 ```
@@ -437,8 +441,8 @@ testmu-browser-agent frame 'main'            # Switch back to main frame (use 'm
 testmu-browser-agent device-list                             # List all available device profiles
 testmu-browser-agent device-emulate "iPhone 15"              # Emulate device (viewport, UA, scale factor)
 testmu-browser-agent device-emulate "Pixel 7"                # Android device
-testmu-browser-agent geolocation 37.7749 -122.4194           # Override geolocation (lat lon)
-testmu-browser-agent geolocation 37.7749 -122.4194 --accuracy 100  # With accuracy in metres
+testmu-browser-agent geolocation --lat 37.7749 --lon -122.4194           # Override geolocation (lat lon)
+testmu-browser-agent geolocation --lat 37.7749 --lon -122.4194 --accuracy 100  # With accuracy in meters
 testmu-browser-agent timezone "America/New_York"             # Override timezone
 testmu-browser-agent locale "fr-FR"                          # Override locale
 testmu-browser-agent permissions geolocation notifications   # Grant browser permissions
@@ -467,7 +471,7 @@ testmu-browser-agent batch '<json-commands>' --bail          # Execute multiple 
 testmu-browser-agent connect <ws-url>                        # Connect to remote CDP endpoint
 testmu-browser-agent set viewport 1920x1080                  # Set viewport size at runtime
 testmu-browser-agent set useragent "Mozilla/5.0 ..."         # Override user-agent
-testmu-browser-agent set geolocation "37.77,-122.41"         # Set geolocation via config
+testmu-browser-agent geolocation --lat 37.77 --lon -122.41   # Set geolocation override
 testmu-browser-agent set offline true                        # Toggle offline via config
 testmu-browser-agent set headers '{"X-Custom":"value"}'      # Set extra HTTP headers
 ```
@@ -749,7 +753,7 @@ testmu-browser-agent device-emulate "Pixel 7"
 testmu-browser-agent set viewport 375x812
 
 # Override geolocation (e.g. San Francisco)
-testmu-browser-agent geolocation 37.7749 -122.4194
+testmu-browser-agent geolocation --lat 37.7749 --lon -122.4194
 
 # Override timezone and locale
 testmu-browser-agent timezone "Europe/London"
@@ -781,7 +785,7 @@ testmu-browser-agent click @e2
 testmu-browser-agent wait --text "Success"
 
 # Stop and save the recording
-testmu-browser-agent record stop --output workflow.webm
+testmu-browser-agent record stop --output workflow.json
 ```
 
 Use `record restart` to start a new recording segment without stopping the session.
