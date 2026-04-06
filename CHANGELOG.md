@@ -2,6 +2,70 @@
 
 All notable changes to testmu-browser-agent are documented here.
 
+## [v1.0.7] — 2026-04-06
+
+### Security Hardening (7 fixes)
+- fix: path traversal protection — new `safePath()` helper applied to all 11 file-output handlers (screenshot, PDF, HAR, trace, record, state, download, video, upload, auth vault)
+- fix: symlink bypass prevention — `filepath.EvalSymlinks` on parent directory in safePath
+- fix: KDF upgrade — replace weak iterated SHA-256 with PBKDF2-HMAC-SHA256 (100k rounds) for state encryption
+- fix: DevTools WebSocket origin check — reject non-localhost origins (DNS rebinding protection)
+- fix: CORS origin bypass — `localhost.evil.com` no longer passes origin check
+- fix: VaultPath traversal — validate through safePath() in all 5 auth handlers
+- fix: upload file paths validated through safePath() before DOM.setFileInputFiles
+
+### Concurrency Fixes (10 fixes)
+- fix: `handleConnect` data race — add `clientMu` RWMutex for e.client/e.session swap
+- fix: `StartTargetMonitor` goroutine leak — cancellable context, cleanup on browser swap
+- fix: `handleFetchAuth` goroutine lifetime — use background context with stored cancel
+- fix: `handleCredentials` goroutine lifetime — same pattern as handleFetchAuth
+- fix: `handleExpose` goroutine lifetime — use background context with stored cancel (was dying immediately after response)
+- fix: trace data race — `traceMu` protects traceChunks append/read
+- fix: `fetchCredsStore` global map leak — moved into Executor struct
+- fix: `browserLogStore` global sync.Map leak — moved into Executor struct
+- fix: `handleRecord` — protect screencastInUse reads/writes with mediaMu
+- fix: `handleConnect` — serialize entire connect sequence under clientMu; restart targetMonitor and enableAutoAttach after swap
+- fix: `StartConsoleCapture`/`StartErrorCapture` — store cancel before launching goroutine (race fix)
+- fix: `wait domcontentloaded` — snapshot e.client under clientMu.RLock
+- fix: `diff.go` — protect lastSnapshot/lastScreenshot with pageMu
+
+### Memory Bounds (9 caps added)
+- fix: `NetworkCapture` capped at 5,000 entries with oldest eviction + backing array freed
+- fix: `recordFrames` capped at 600 (matches maxVideoFrames)
+- fix: `consoleMessages` capped at 10,000 entries
+- fix: `pageErrors` capped at 5,000 entries
+- fix: `browserLogCapture.logs` capped at 5,000
+- fix: `newTargets` capped at 1,000
+- fix: HAR entries/completed capped at 5,000
+- fix: individual console messages truncated at 64KB
+- fix: port=0 + empty socketPath returns error instead of silent no-listener daemon
+
+### MCP & REST API Fixes (7 fixes)
+- fix: `browser_state` MCP routing — correct action name mapping for storage/clipboard
+- fix: `batch` JSON parsing — restructure flat commands to nested {action, params} format
+- fix: `trace_start`/`trace_stop` MCP routing — use params["action"] not subcommand
+- fix: `profiler_start`/`profiler_stop` — same routing fix
+- fix: REST API — always bind TCP listener on non-zero port; fix executor race condition
+- fix: MCP shutdown calls `executor.Cleanup()` before closing provider
+- fix: `handleClose` cancels console/error capture goroutines before nulling page
+- fix: shutdown() panic recovery — wrap Cleanup() in deferred recover
+
+### LambdaTest
+- fix: CDP heartbeat every 30s prevents idle session timeout
+
+### Documentation
+- README: correct "90+ CLI commands" to "68+ CLI commands, 90+ total actions"
+- README: CDP section now clearly marked "MCP & REST API only" with table format
+
+### Testing
+- test: 80+ new unit tests across 5 new test files
+- test: path traversal, KDF round-trip, WebSocket origin check, memory caps, executor fields, daemon HTTP handler, MCP routing
+- test: 304 unit tests + 98 E2E tests all passing with -race
+
+### BREAKING CHANGES
+- State encryption KDF upgraded from iterated SHA-256 to PBKDF2. Previously encrypted state files will not decrypt — re-save state after upgrading.
+
+---
+
 ## [v1.0.6] — 2026-04-04
 
 ### Bug Fixes (31 total)

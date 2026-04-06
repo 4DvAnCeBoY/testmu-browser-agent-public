@@ -4,10 +4,10 @@
 
 A single Go binary. 90+ commands. 10 MCP tools. Works with every AI coding tool you already use.
 
-> **v1.0.6** — 31 bug fixes, hardened auth encryption, 85 E2E tests. [Changelog →](https://github.com/4DvAnCeBoY/testmu-browser-agent-public/blob/main/CHANGELOG.md)
+> **v1.0.7** — 31 bug fixes, hardened auth encryption, 85 E2E tests. [Changelog →](https://github.com/4DvAnCeBoY/testmu-browser-agent-public/blob/main/CHANGELOG.md)
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/testmu/testmu-browser-agent/main/scripts/install.sh | sh
+curl -sSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public/main/scripts/install.sh | sh
 ```
 
 ```bash
@@ -60,6 +60,11 @@ Pass `--provider lambdatest` and your session runs on LambdaTest's real browser 
 ### Secure by Design
 Session state is encrypted at rest with AES-256-GCM. Credentials stored in the built-in vault never appear in shell history. A policy engine lets you define allow/deny rules for what domains an agent is permitted to visit — essential when AI agents browse autonomously.
 
+Security hardening in v1.0.7:
+- Path traversal protection on all file operations
+- PBKDF2 encryption for state persistence
+- DNS rebinding protection on DevTools proxy
+
 ---
 
 ## Token Efficiency
@@ -82,7 +87,7 @@ testmu-browser-agent returns only the nodes that matter — interactive elements
 **Step 1 — Install**
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/testmu/testmu-browser-agent/main/scripts/install.sh | sh
+curl -sSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public/main/scripts/install.sh | sh
 ```
 
 One binary. No Node runtime. No Python environment. No Playwright install step.
@@ -199,7 +204,7 @@ Capture HAR exports on every deploy. Intercept network requests to assert on pay
 ### curl (macOS and Linux) — recommended
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/testmu/testmu-browser-agent/main/scripts/install.sh | sh
+curl -sSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public/main/scripts/install.sh | sh
 ```
 
 ### npm
@@ -217,20 +222,9 @@ brew install testmu/tap/testmu-browser-agent
 ### Docker
 
 ```bash
-docker run --rm -it ghcr.io/testmu/testmu-browser-agent:latest snapshot
+docker run --rm -it ghcr.io/4DvAnCeBoY/testmu-browser-agent-public:latest snapshot
 ```
 
-### Build from source
-
-```bash
-git clone https://github.com/testmu/testmu-browser-agent
-cd testmu-browser-agent
-go build -o testmu-browser-agent ./cmd/testmu-browser-agent
-```
-
-Requires Go 1.23+. No CGO. Cross-compiles cleanly.
-
----
 
 ## Numbers
 
@@ -246,11 +240,11 @@ Requires Go 1.23+. No CGO. Cross-compiles cleanly.
 ## Get Started
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/testmu/testmu-browser-agent/main/scripts/install.sh | sh
+curl -sSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public/main/scripts/install.sh | sh
 ```
 
-- [GitHub](https://github.com/testmu/testmu-browser-agent) — source, issues, releases
-- [Docs](https://github.com/testmu/testmu-browser-agent/tree/main/docs) — full command reference and guides
-- [Changelog](https://github.com/testmu/testmu-browser-agent/blob/main/CHANGELOG.md) — what's new
+- [GitHub](https://github.com/4DvAnCeBoY/testmu-browser-agent-public) — source, issues, releases
+- [Docs](https://github.com/4DvAnCeBoY/testmu-browser-agent-public/tree/main/docs) — full command reference and guides
+- [Changelog](https://github.com/4DvAnCeBoY/testmu-browser-agent-public/blob/main/CHANGELOG.md) — what's new
 
 Star the repo if testmu-browser-agent is useful. It helps other developers find it.

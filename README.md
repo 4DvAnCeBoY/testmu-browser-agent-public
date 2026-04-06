@@ -1,8 +1,9 @@
 # testmu-browser-agent
 
-AI-native browser automation CLI and MCP server for Chrome. Single binary, zero dependencies.
+AI-native browser automation CLI and MCP server for Chrome, built in Go.
 
 [![CI](https://github.com/4DvAnCeBoY/testmu-browser-agent-public/actions/workflows/ci.yml/badge.svg)](https://github.com/4DvAnCeBoY/testmu-browser-agent-public/actions)
+[![Go 1.23+](https://img.shields.io/badge/go-1.23%2B-blue.svg)](https://go.dev/)
 [![Platform](https://img.shields.io/badge/platform-macOS%20%7C%20Linux%20%7C%20Windows-lightgrey.svg)](https://github.com/4DvAnCeBoY/testmu-browser-agent-public/releases)
 
 ### Works with your AI coding tool
@@ -15,7 +16,29 @@ AI-native browser automation CLI and MCP server for Chrome. Single binary, zero 
 
 ---
 
-90+ CLI commands. 10 MCP tools. Stable `@ref` element IDs. Single binary. Zero dependencies.
+68+ CLI commands. 10 MCP tools. 90+ total actions. Stable `@ref` element IDs. Single binary. Zero dependencies.
+
+---
+
+## What is testmu-browser-agent?
+
+testmu-browser-agent is a single Go binary that exposes browser automation through three surfaces: a 68+ command CLI, a 10-tool MCP server for Claude Code, and a REST/SSE daemon API — 90+ total actions.
+
+- **68+ CLI commands** — navigate, click, fill, screenshot, network interception, auth vault, device emulation, video recording, HAR capture, and more, all from the terminal
+- **22 CDP actions** — advanced diagnostics, security, and performance actions available via MCP tools and REST API
+- **MCP server with 10 tools** — plug directly into Claude Code so AI agents can control the browser without any additional setup
+- **Accessibility snapshots with `@ref` IDs** — token-efficient, stable element references that survive DOM mutations
+- **LambdaTest cloud integration** — run sessions on real cloud browsers with a single flag; no infrastructure required
+- **AES-256-GCM encryption** — session state is encrypted at rest with a user-supplied storage key
+- **Daemon mode with REST API and SSE** — long-lived browser process with HTTP endpoints and a Server-Sent Events stream for real-time event monitoring
+
+```
+CLI / MCP / REST API
+       |
+  testmu-browser-agent (single Go binary)
+       |
+  Chrome (local) or LambdaTest (cloud)
+```
 
 ---
 
@@ -43,54 +66,6 @@ testmu-browser-agent screenshot --output page.png
 # Close the browser
 testmu-browser-agent close
 ```
-
----
-
-## What is testmu-browser-agent?
-
-testmu-browser-agent is a single Go binary that exposes browser automation through three surfaces: a 90+ command CLI, a 10-tool MCP server for Claude Code, and a REST/SSE daemon API.
-
-- **90+ CLI commands** — navigate, click, fill, screenshot, network interception, auth vault, device emulation, video recording, HAR capture, CDP diagnostics, and more, all from the terminal
-- **MCP server with 10 tools** — plug directly into Claude Code so AI agents can control the browser without any additional setup
-- **Accessibility snapshots with `@ref` IDs** — token-efficient, stable element references that survive DOM mutations
-- **LambdaTest cloud integration** — run sessions on real cloud browsers with a single flag; no infrastructure required
-- **AES-256-GCM encryption** — session state is encrypted at rest with a user-supplied storage key
-- **Daemon mode with REST API and SSE** — long-lived browser process with HTTP endpoints and a Server-Sent Events stream for real-time event monitoring
-
----
-
-## Architecture
-
-testmu-browser-agent exposes one engine through three control surfaces:
-
-```
-CLI Command → daemon (127.0.0.1) → Chrome (local or LambdaTest cloud)
-MCP Server  → executor           → Chrome
-REST API    → executor           → Chrome
-```
-
-Three ways to control the same browser. Same commands, same engine, same behavior.
-
-- The **CLI** is the primary interface — 90+ commands, scriptable, composable with shell pipelines
-- The **MCP server** gives Claude Code 10 structured tools with typed JSON schemas — no shell escaping, no output parsing
-- The **REST API + SSE** lets any programming language drive the browser over HTTP, with a real-time event stream on `/events`
-
-All three surfaces share the same underlying executor, so a snapshot taken via MCP returns identical output to a snapshot taken via `curl` or the CLI.
-
----
-
-## Why testmu-browser-agent?
-
-- **Single binary, zero dependencies** — one Go binary, no Node.js, no Playwright install, no browser drivers
-- **90+ CLI commands** — the most complete browser automation CLI available
-- **Built-in MCP server with 10 tools** — Claude Code gets structured tools with typed JSON schemas; no shell escaping, no output parsing
-- **REST API + SSE** — drive the browser from any programming language over HTTP
-- **Accessibility snapshots with stable `@ref` IDs** — token-efficient element references that survive DOM mutations
-- **AES-256-GCM encrypted session persistence** — save and restore full browser state securely
-- **LambdaTest cloud + Appium mobile testing built in** — switch from local Chrome to cloud or real mobile devices with a single flag
-- **25+ CDP diagnostic commands** — `web-vitals`, `cpu-throttle`, `vision-deficiency`, `webauthn`, and more
-- **Docker support out of the box** — Chrome included in the image, daemon exposed on port 9222
-- **Chrome for Testing auto-install** — `testmu-browser-agent install` downloads the correct Chrome version automatically
 
 ---
 
@@ -122,7 +97,6 @@ chmod +x testmu-browser-agent-darwin-arm64
 mv testmu-browser-agent-darwin-arm64 /usr/local/bin/testmu-browser-agent
 ```
 
----
 
 ## CLI Commands
 
@@ -429,60 +403,36 @@ testmu-browser-agent session list --output json
 
 Each session creates a separate daemon with its own Unix socket in `~/.testmu-browser-agent/`. The `--socket` flag overrides session-based socket resolution for backward compatibility.
 
-### CDP / Advanced Browser Control
+### CDP / Advanced Browser Control (MCP & REST API only)
 
-Low-level Chrome DevTools Protocol actions for advanced diagnostics, security testing, and performance analysis.
+Low-level Chrome DevTools Protocol actions for advanced diagnostics, security testing, and performance analysis. These actions are available via the **MCP tools** (`browser_config`, `browser_state`, `browser_network`, `browser_devtools`, `browser_query`) and the **REST API** — not as standalone CLI commands.
 
-```bash
-# Security
-testmu-browser-agent ignore-certs                    # Ignore TLS certificate errors
-testmu-browser-agent ignore-certs --disable          # Re-enable certificate validation
-testmu-browser-agent bypass-csp                      # Bypass Content Security Policy
-testmu-browser-agent bypass-csp --disable            # Re-enable CSP
-
-# Cookies and Storage (CDP-level)
-testmu-browser-agent cookies-delete <name>           # Delete a specific cookie by name
-testmu-browser-agent clear-origin <origin>           # Clear all storage for an origin
-testmu-browser-agent cache --disable                 # Disable browser cache
-testmu-browser-agent cache --enable                  # Re-enable browser cache
-testmu-browser-agent indexeddb <origin>              # List IndexedDB databases for an origin
-
-# Emulation
-testmu-browser-agent touch-emulation                 # Enable touch event emulation
-testmu-browser-agent touch-emulation --disable       # Disable touch emulation
-testmu-browser-agent media-emulate print             # Emulate CSS media type (print, screen)
-testmu-browser-agent vision-deficiency deuteranopia   # Simulate vision deficiency
-testmu-browser-agent cpu-throttle 4                  # Throttle CPU (4x slowdown)
-testmu-browser-agent cpu-throttle 1                  # Remove CPU throttling
-
-# Authentication
-testmu-browser-agent fetch-auth <user> <pass>        # Handle HTTP Basic/Digest auth prompt
-testmu-browser-agent fetch-auth-persist <user> <pass> # Persist HTTP auth across navigations
-
-# Performance and Diagnostics
-testmu-browser-agent performance-metrics             # Get runtime performance metrics
-testmu-browser-agent web-vitals                      # Measure Core Web Vitals (LCP, FID, CLS)
-testmu-browser-agent dom-snapshot                    # Capture a full DOM snapshot
-testmu-browser-agent ax-query                        # Query the accessibility tree via CDP
-testmu-browser-agent frame-tree                      # Get the page frame tree hierarchy
-
-# Target and Worker Management
-testmu-browser-agent new-targets                     # List newly created tabs/popups
-testmu-browser-agent sw-unregister                   # Unregister service workers
-testmu-browser-agent browser-logs                    # Start capturing browser-level logs
-testmu-browser-agent browser-logs-get                # Retrieve captured browser logs
-
-# Scripting
-testmu-browser-agent isolated-world                  # Create an isolated JavaScript world
-testmu-browser-agent scroll-into-view-cdp <nodeId>   # Scroll node into view via CDP (by backend node ID)
-
-# WebAuthn
-testmu-browser-agent webauthn-add                    # Add a virtual WebAuthn authenticator
-testmu-browser-agent webauthn-remove <id>            # Remove a virtual authenticator
-
-# Request Data
-testmu-browser-agent get-post-data <requestId>       # Get POST body for a captured request
-```
+| Category | Action | Description |
+|----------|--------|-------------|
+| **Security** | `ignore_certs` | Ignore TLS certificate errors |
+| | `bypass_csp` | Bypass Content Security Policy |
+| **Storage** | `cookies_delete` | Delete a specific cookie by name |
+| | `clear_origin` | Clear all storage for an origin |
+| | `cache` | Disable/enable browser cache |
+| | `indexeddb` | List IndexedDB databases for an origin |
+| **Emulation** | `touch_emulation` | Enable/disable touch event emulation |
+| | `media_emulate` | Emulate CSS media type (print, screen) |
+| | `vision_deficiency` | Simulate vision deficiency |
+| | `cpu_throttle` | Throttle CPU (e.g. 4x slowdown) |
+| **Authentication** | `fetch_auth` | Handle HTTP Basic/Digest auth prompt |
+| | `fetch_auth_persist` | Persist HTTP auth across navigations |
+| **Performance** | `performance_metrics` | Get runtime performance metrics |
+| | `web_vitals` | Measure Core Web Vitals (LCP, FID, CLS) |
+| | `dom_snapshot` | Capture a full DOM snapshot |
+| | `ax_query` | Query the accessibility tree via CDP |
+| | `frame_tree` | Get the page frame tree hierarchy |
+| **Targets** | `new_targets` | List newly created tabs/popups |
+| | `sw_unregister` | Unregister service workers |
+| | `browser_logs` | Start/get browser-level log capture |
+| **Scripting** | `isolated_world` | Create an isolated JavaScript world |
+| | `scroll_into_view_cdp` | Scroll node into view by backend node ID |
+| **WebAuthn** | `webauthn_add` / `webauthn_remove` | Add/remove virtual authenticators |
+| **Request** | `get_post_data` | Get POST body for a captured request |
 
 ### Maintenance
 
@@ -506,8 +456,6 @@ testmu-browser-agent device list                    # List emulatable device pro
 ---
 
 ## MCP Server (Claude Code Integration)
-
-> **Unique:** testmu-browser-agent is the only browser automation CLI with a built-in MCP server. Claude Code gets 10 structured tools with typed JSON schemas — no shell escaping, no output parsing.
 
 testmu-browser-agent ships a Model Context Protocol server that Claude Code can use to control a real Chrome browser during conversations. The MCP server exposes 10 grouped tools and communicates over stdio — no network port required.
 
@@ -768,7 +716,7 @@ These flags apply to every command:
 
 ## Docker
 
-Run testmu-browser-agent in a Docker container with Chrome included:
+Build and run testmu-browser-agent in a Docker container with Chrome included:
 
 ```bash
 # Build the image
@@ -812,4 +760,10 @@ docker run --rm \
 
 ## Benchmarks
 
-Benchmark results and historical data are in [benchmarks/](benchmarks/).
+Run the benchmark suite to measure snapshot generation, action dispatch, and SSE throughput on your machine:
+
+```bash
+make benchmark
+```
+
+Results and historical data are in [benchmarks/](benchmarks/).

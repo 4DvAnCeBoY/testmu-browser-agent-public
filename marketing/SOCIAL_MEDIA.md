@@ -1,14 +1,14 @@
 # testmu-browser-agent — Social Media Launch Kit
 
-> **Updated for v1.0.6** (2026-04-04) — 31 bug fixes, hardened encryption, 85 E2E tests.
+> **Updated for v1.0.7** (2026-04-04) — 31 bug fixes, hardened encryption, 85 E2E tests.
 
 ---
 
-## 0. v1.0.6 Stability Release Tweet
+## 0. v1.0.7 Stability Release Tweet
 
 ---
 
-**v1.0.6 of testmu-browser-agent is out.**
+**v1.0.7 of testmu-browser-agent is out.**
 
 31 bug fixes found by running 3 AI reviewers in parallel (Opus, Gemini, Codex).
 
@@ -36,7 +36,7 @@ We built a browser automation tool that cuts AI token usage by up to 90% and is 
 
 testmu-browser-agent: AI-native CLI + MCP server, single Go binary, 90+ commands, open source.
 
-https://github.com/testmu/testmu-browser-agent
+https://github.com/4DvAnCeBoY/testmu-browser-agent-public
 
 ---
 
@@ -132,7 +132,7 @@ Same commands. Same MCP tools. Cloud or local.
 Install in one line:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/testmu/testmu-browser-agent/main/scripts/install.sh | sh
+curl -fsSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public/main/scripts/install.sh | sh
 ```
 
 Or via npm:
@@ -149,7 +149,7 @@ Then: `testmu-browser-agent mcp` and point your AI tool at it.
 
 If you're building AI agents that touch a browser, try testmu-browser-agent.
 
-- Star the repo: https://github.com/testmu/testmu-browser-agent
+- Star the repo: https://github.com/4DvAnCeBoY/testmu-browser-agent-public
 - Drop feedback in the issues — we read everything
 - RT if you know someone building browser automation with AI
 
@@ -167,7 +167,7 @@ testmu-browser-agent sends a compact accessibility snapshot with stable `@ref` I
 
 Same automation. Up to 90% fewer tokens. Your API bill will thank you.
 
-https://github.com/testmu/testmu-browser-agent
+https://github.com/4DvAnCeBoY/testmu-browser-agent-public
 
 ---
 
@@ -179,7 +179,7 @@ No Node runtime. No Python venv. No Docker image.
 
 `curl | sh`, add it to `.claude/settings.json`, and your AI agent has a full browser.
 
-https://github.com/testmu/testmu-browser-agent
+https://github.com/4DvAnCeBoY/testmu-browser-agent-public
 
 ---
 
@@ -191,7 +191,7 @@ testmu-browser-agent encrypts all persisted sessions with AES-256-GCM.
 
 That's the same standard used by banks. It should be table stakes for browser automation too.
 
-https://github.com/testmu/testmu-browser-agent
+https://github.com/4DvAnCeBoY/testmu-browser-agent-public
 
 ---
 
@@ -205,7 +205,7 @@ testmu-browser-agent runs headless out of the box.
 
 Comprehensive E2E test coverage. No environment-specific hacks.
 
-https://github.com/testmu/testmu-browser-agent
+https://github.com/4DvAnCeBoY/testmu-browser-agent-public
 
 ---
 
@@ -217,7 +217,7 @@ A class name changed. The CSS selector died. The AI is lost.
 
 testmu-browser-agent references elements by accessibility role and a stable `@ref` ID — not CSS. Survives most UI refactors.
 
-https://github.com/testmu/testmu-browser-agent
+https://github.com/4DvAnCeBoY/testmu-browser-agent-public
 
 ---
 
@@ -257,7 +257,7 @@ testmu-browser-agent addresses both. The agent receives a compact accessibility 
 **Getting started**
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/testmu/testmu-browser-agent/main/scripts/install.sh | sh
+curl -fsSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public/main/scripts/install.sh | sh
 ```
 
 Or install via npm for teams already on Node-based tooling:
@@ -270,7 +270,7 @@ We believe browser automation should be a first-class capability for AI developm
 
 Star the project, try it in your workflow, and let us know what's missing.
 
-https://github.com/testmu/testmu-browser-agent
+https://github.com/4DvAnCeBoY/testmu-browser-agent-public
 
 ---
 
@@ -324,11 +324,11 @@ Distribution. A static binary that installs with `curl | sh` removes a whole cat
 
 - Comprehensive E2E test suite
 - Open source under MIT
-- Install: `curl -fsSL https://raw.githubusercontent.com/testmu/testmu-browser-agent/main/scripts/install.sh | sh`
+- Install: `curl -fsSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public/main/scripts/install.sh | sh`
 
 Happy to answer questions about the `@ref` system, the daemon design, or the MCP integration.
 
-https://github.com/testmu/testmu-browser-agent
+https://github.com/4DvAnCeBoY/testmu-browser-agent-public
 
 ---
 
@@ -355,9 +355,9 @@ The AI navigates using `@ref` references, not CSS. These IDs are derived from th
 
 The project is a Go binary that runs as both a CLI (90+ commands) and an MCP server. Works with Claude Code, Cursor, Copilot, Codex, Gemini CLI, and others. Sessions are AES-256-GCM encrypted. LambdaTest cloud is built in for teams.
 
-Install: `curl -fsSL https://raw.githubusercontent.com/testmu/testmu-browser-agent/main/scripts/install.sh | sh`
+Install: `curl -fsSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public/main/scripts/install.sh | sh`
 
-Repo: https://github.com/testmu/testmu-browser-agent
+Repo: https://github.com/4DvAnCeBoY/testmu-browser-agent-public
 
 Would love feedback on the `@ref` approach specifically — I think it's the most interesting design decision and I'm curious what edge cases others see.
 
@@ -399,7 +399,7 @@ The interesting part is how we reduce token usage. Instead of serializing DOM to
 - Comprehensive E2E test suite
 - MIT license
 
-Repo: https://github.com/testmu/testmu-browser-agent
+Repo: https://github.com/4DvAnCeBoY/testmu-browser-agent-public
 
 Happy to dig into any of the Go implementation details if people are curious.
 
@@ -417,7 +417,7 @@ If you're using Claude Code and want it to control a browser, testmu-browser-age
 
 1. Install the binary:
 ```bash
-curl -fsSL https://raw.githubusercontent.com/testmu/testmu-browser-agent/main/scripts/install.sh | sh
+curl -fsSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public/main/scripts/install.sh | sh
 ```
 
 2. Add to `.claude/settings.json`:
@@ -455,7 +455,7 @@ Claude references `@ref` IDs in its actions. This is much more token-efficient t
 - Extract structured data from pages
 - Run tests and assertions
 
-90+ commands total. Open source on GitHub: https://github.com/testmu/testmu-browser-agent
+90+ commands total. Open source on GitHub: https://github.com/4DvAnCeBoY/testmu-browser-agent-public
 
 ---
 
@@ -495,7 +495,7 @@ Most browser automation tools expose raw HTML to AI agents — expensive in toke
 
 Single Go binary. 90+ commands. 10 MCP tools. Works natively with Claude Code, Cursor, GitHub Copilot, Codex, Gemini CLI, Windsurf, Goose, OpenCode, and Cline.
 
-Install: `curl -fsSL https://raw.githubusercontent.com/testmu/testmu-browser-agent/main/scripts/install.sh | sh`
+Install: `curl -fsSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public/main/scripts/install.sh | sh`
 
 Or: `npm install -g testmu-browser-agent`
 
@@ -521,4 +521,4 @@ The project ships as a single static binary so there's no runtime to install —
 
 We'd love to hear from anyone using AI assistants for browser testing or web scraping — especially about edge cases in the `@ref` system or AI tools we haven't integrated yet. Feedback here or in GitHub issues.
 
-https://github.com/testmu/testmu-browser-agent
+https://github.com/4DvAnCeBoY/testmu-browser-agent-public

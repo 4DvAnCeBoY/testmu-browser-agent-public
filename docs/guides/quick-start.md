@@ -1,6 +1,6 @@
 # Quick Start Guide
 
-> **v1.0.6** — Production-ready. 85 E2E tests passing.
+> **v1.0.7** — Production-ready. 85 E2E tests passing.
 
 Get up and running with `testmu-browser-agent` in 5 minutes.
 
@@ -9,14 +9,14 @@ Get up and running with `testmu-browser-agent` in 5 minutes.
 ### Option 1: curl (recommended)
 
 ```sh
-curl -sSL https://raw.githubusercontent.com/testmu/testmu-browser-agent/main/scripts/install.sh | sh
+curl -sSL https://raw.githubusercontent.com/4DvAnCeBoY/testmu-browser-agent-public/main/scripts/install.sh | sh
 ```
 
 The script auto-detects your OS and architecture (darwin/linux, amd64/arm64), downloads the latest release, verifies the checksum, and installs to `/usr/local/bin`.
 
 ### Option 2: Manual download
 
-1. Visit the [releases page](https://github.com/testmu/testmu-browser-agent/releases) and download the binary for your platform:
+1. Visit the [releases page](https://github.com/4DvAnCeBoY/testmu-browser-agent-public/releases) and download the binary for your platform:
 
    | Platform      | Binary                                    |
    |---------------|-------------------------------------------|

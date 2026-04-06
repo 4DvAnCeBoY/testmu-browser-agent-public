@@ -1,6 +1,6 @@
 # Commands Reference
 
-> **v1.0.6** — 90+ commands, all tested. New: `har start/stop`, `click --new-tab`, `dialog --text`, `tab new --url`.
+> **v1.0.7** — 90+ commands, all tested. New: `har start/stop`, `click --new-tab`, `dialog --text`, `tab new --url`.
 
 Complete reference for all `testmu-browser-agent` commands and flags.
 
